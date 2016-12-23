@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+    <!--JQUERY must be before angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../content/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="../scripts/app.js"></script>
+    <script type="text/javascript" src="../scripts/scheduleController.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../content/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../content/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../content/custom/schedule.css">
+	<title>SCHEDULE</title>
+</head>
+<body style="background-color: #455a64; color: white;">
+	<div ng-app="myApp" ng-controller="scheduleCtrl">
+		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
+			<div class="col-xs-4">
+				<h5>YESTERDAY</h5>
+			</div>
+			<div class="col-xs-4" style="background-color: #64b5f6">
+				<h5>TODAY</h5>
+			</div>
+			<div class="col-xs-4">
+				<h5>TOMORROW</h5>
+			</div>
+		</div>
+		<div class="left" align="center" style="margin-top: 10px">
+			<div ng-click="openHome()"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<br/>
+			<br/>
+			<div ng-click="openPatientList()"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<br/>
+			<br/>
+			<div ng-click="openSchedule()"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+		</div>
+		<div class="main">
+			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
+				<table style="color: white; font-size: 15px;" width="100%" rules="rows">
+					<tr style="font-weight: bold;">
+						<td width="65%">Pacientes</td>
+						<td>Hora</td>
+						<td>Tipo</td>
+					</tr>
+					<tr ng-repeat="appointment in scheduleDataList" style="font-style: bold;">
+						<td width="65%" ng-click="showPatientInfo(appointment.Patient.ID)">{{appointment.Patient.Name}}</td>
+						<td>{{appointment.Time}}</td>
+						<td>{{appointment.Type.Name}}
+					</tr>
+				</table>
+			</div>
+			<div id="patientInfo" class="sidenav" ng-show="selectedPatient">
+				<a href="javascript:void(0)" class="closebtn" ng-click="closePatientInfo()">&times;</a>
+				<div class="row" ng-click="openPatientInformation()">
+					<div class="col-xs-6" style="font-size:25px; color: white;">{{selectedPatient.Name}}</div>
+					<div class="col-xs-6"><img ng-src={{selectedPatient.Image}} alt="image" style="width:100px;height:100;"></div>
+				</div>
+				<table>
+					<tr>
+						<td width="70%" class="patient-info-property-name">Classification: </td>
+						<td class="patient-info-property-value">{{selectedPatient.Classification}}</td>
+					</tr>
+					<tr>
+						<td class="patient-info-property-name">Risk Factor: </td>
+						<td class="patient-info-property-value">{{selectedPatient.RiskFactor}}</td>
+					</tr>
+					<tr>
+						<td class="patient-info-property-name">Sex: </td>
+						<td class="patient-info-property-value">{{selectedPatient.Sex}}</td>
+					</tr>
+					<tr>
+						<td class="patient-info-property-name">Zone: </td>
+						<td class="patient-info-property-value">{{selectedPatient.Zone}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="footer navbar-fixed-bottom" style="color: #626465; text-align: center; background-color: white; font-size: 25px;">
+				<button ng-click="openHome()"><i class="fa fa-arrow-left" aria-hidden="true"></i>Home</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

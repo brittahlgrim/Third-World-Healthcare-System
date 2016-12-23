@@ -1,0 +1,56 @@
+.top {
+    position:absolute;
+    left:0; right:0;
+    height: 40px;
+}
+.left {
+    position:absolute;
+    left:0; top:40px; bottom: 0;
+    width: 50px;
+}
+.main {
+    position: absolute;
+    left:50px; top:40px; right:0; bottom:0;
+    width: calc(100% - 70px);
+}
+
+/* The side navigation menu */
+.sidenav {
+    height: calc(100% - 70px); /* 100% Full-height */
+    width: 75%; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 40px;
+    right: 0;
+    background-color: #455a64;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav {
+    padding-left: 20px;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s
+}
+
+.patient-info-property-name {
+	color: #64b5f6;
+	font-size: 15px;
+}
+
+.patient-info-property-value {
+	color: white;
+	font-size: 15px;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}

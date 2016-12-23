@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="../scripts/app.js"></script>
+    <script type="text/javascript" src="../scripts/patientListController.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../content/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../content/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../content/custom/schedule.css">
+	<title>SCHEDULE</title>
+</head>
+<body style="background-color: #455a64; color: white;">
+	<div ng-app="myApp" ng-controller="patientListCtrl">
+		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
+			<h4>Lista de Pacientes</h4>
+		</div>
+		<div class="left" align="center" style="margin-top: 10px">
+			<div ng-click="openHome()"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<br/>
+			<br/>
+			<div ng-click="openPatientList()"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<br/>
+			<br/>
+			<div ng-click="openSchedule()"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+		</div>
+		<div class="main">
+			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
+				<table style="color: white; font-size: 15px;" width="100%" rules="rows">
+					<tr style="font-weight: bold;">
+						<td width="20px;"></td>
+						<td>Nombre</td>
+						<td>Visita Próxima</td>
+					</tr>
+					<tr ng-repeat="user in users" style="font-style: bold;">
+						<td><i class="fa fa-user" aria-hidden="true"></i></td>
+						<td ng-click="openPatientInformation(user.ID)">{{user.Name}}</td>
+						<td>{{user.NextVisitDate}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="footer navbar-fixed-bottom" style="color: #626465; text-align: center; background-color: white; font-size: 25px;">
+				<button ng-click="openHome()"><i class="fa fa-arrow-left" aria-hidden="true"></i>Home</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
