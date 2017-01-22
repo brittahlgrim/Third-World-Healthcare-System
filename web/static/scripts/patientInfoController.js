@@ -1,21 +1,21 @@
 angular.module('myApp').controller('patientInfoCtrl', 
 	['$scope', '$http', function($scope, $http){
-		var indexOfHtml = window.location.href.indexOf("/patientInfo.html");
+		var indexOfHtml = window.location.href.indexOf("/patientInfo");
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
 		$scope.openHome = function(){
-			window.location.href = viewDirectory + "/home.html";
+			window.location.href = viewDirectory + "/home";
 		};
 		$scope.openPatientList = function(){
-			window.location.href = viewDirectory + "/patientList.html";
+			window.location.href = viewDirectory + "/patientList";
 		};
 		$scope.openSchedule = function(){
-			window.location.href = viewDirectory + "/schedule.html";
+			window.location.href = viewDirectory + "/schedule";
 		};
 
 		$scope.patient = {
 				ID: 1,
 				Name: "Valeria Diaz",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Medium",
 				Sex: "Female",

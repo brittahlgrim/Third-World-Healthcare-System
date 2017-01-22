@@ -48,19 +48,19 @@ angular.module('myApp').controller('patientListCtrl',
 			}
 		];
 
-		var indexOfHtml = window.location.href.indexOf("/patientList.html");
+		var indexOfHtml = window.location.href.indexOf("/patientList");
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
 		$scope.openHome = function(){
-			window.location.href = viewDirectory + "/home.html";
+			window.location.href = viewDirectory + "/home";
 		};
 		$scope.openPatientList = function(){
-			window.location.href = viewDirectory + "/patientList.html";
+			window.location.href = viewDirectory + "/patientList";
 		};
 		$scope.openSchedule = function(){
-			window.location.href = viewDirectory + "/schedule.html";
+			window.location.href = viewDirectory + "/schedule";
 		};
 		$scope.openPatientInformation = function(){
-			window.location.href = viewDirectory + "/patientInfo.html";
+			window.location.href = viewDirectory + "/patientInfo";
 		};
 	}]
 );

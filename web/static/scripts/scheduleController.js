@@ -1,18 +1,18 @@
 angular.module('myApp').controller('scheduleCtrl', 
 	['$scope', '$http', function($scope, $http){
-		var indexOfHtml = window.location.href.indexOf("/schedule.html");
+		var indexOfHtml = window.location.href.indexOf("/schedule");
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
 		$scope.openHome = function(){
-			window.location.href = viewDirectory + "/home.html";
+			window.location.href = viewDirectory + "/home";
 		};
 		$scope.openPatientList = function(){
-			window.location.href = viewDirectory + "/patientList.html";
+			window.location.href = viewDirectory + "/patientList";
 		};
 		$scope.openSchedule = function(){
-			window.location.href = viewDirectory + "/schedule.html";
+			window.location.href = viewDirectory + "/schedule";
 		};
 		$scope.openPatientInformation = function(){
-			window.location.href = viewDirectory + "/patientInfo.html";
+			window.location.href = viewDirectory + "/patientInfo";
 		};
 
 		$scope.selectedPatient = null;
@@ -33,7 +33,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 1,
 				Name: "Jason Todd",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Medium",
 				Sex: "Male",
@@ -42,7 +42,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 2,
 				Name: "Mary Lincoln",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Critical",
 				RiskFactor: "High",
 				Sex: "Female",
@@ -51,7 +51,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 3,
 				Name: "Joe Smith",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Low",
 				Sex: "Male",
@@ -60,7 +60,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 4,
 				Name: "John Cena",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Low",
 				Sex: "Male",
@@ -69,7 +69,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 5,
 				Name: "Jenny Cena",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Low",
 				Sex: "Female",
@@ -78,7 +78,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 6,
 				Name: "Addison Henning",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Low",
 				Sex: "Female",
@@ -87,7 +87,7 @@ angular.module('myApp').controller('scheduleCtrl',
 			{
 				ID: 7,
 				Name: "George Hill",
-				Image: "../content/images/Globe.png",
+				Image: "content/images/Globe.png",
 				Classification: "Healthy",
 				RiskFactor: "Low",
 				Sex: "Male",
