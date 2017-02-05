@@ -12,9 +12,9 @@ var connection = mysql.createConnection({
 var app = express();
 var path = require('path');
 
-<<<<<<< HEAD
+
 app.use(express.static(path.join(__dirname, '../static')));
-=======
+
 connection.connect(function(err){
 	if(!err) {
 		console.log("Database is connected ... nn");
@@ -49,7 +49,6 @@ app.get('/patientList', function(req, res){
 app.get('/schedule', function(req, res){
 	res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
 });
->>>>>>> master
 
 var router = require("../routes/router");
 app.use('/', router);
