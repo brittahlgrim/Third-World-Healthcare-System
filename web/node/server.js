@@ -19,18 +19,7 @@ connection.connect(function(err){
 		console.log("Error connecting database ... nn");
 	}
 });
-/*
-app.get("/",function(req,res){
-	connection.query('SELECT * FROM employees;',
-		function(err, rows, fields) {
-			connection.end();
-			if(!err)
-				console.log('The solution is: ', rows);
-			else
-				console.log('Error while performing Query.');
-		});
-});
-*/
+
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/../static/views/home.html'));
 });
