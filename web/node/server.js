@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
 	host		: 'localhost',
 	user		: 'root',
 	password	: 'topeno',
-	database	: 'test'
+	database	: 'twhs_test_db'
 });
 
 var app = express();
@@ -21,6 +21,22 @@ connection.connect(function(err){
 	} else {
 		console.log("Error connecting database ... nn");
 	}
+});
+
+app.get('/getNames', function(req, res){
+
+	connection.query('SELECT * from firstTable', function(err, rows, fields) {
+		if (!err)
+			console.log('The solution is: ', rows);
+		else
+	    	console.log('Error while performing Query.');
+
+		res.writeHead(200, {"Content-Type": "application/json"});
+		var json = JSON.stringify(rows);
+		res.end(json);
+
+	});
+
 });
 
 app.get('/', function(req, res){
