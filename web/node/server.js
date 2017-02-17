@@ -1,19 +1,23 @@
-var express = require('express');
+var express     = require('express');
+var app         = express();
+var port        = process.env.PORT || 8080;
+var mysql       = require('mysql');
+var passport    = require('passport');
+var flash       = require('connect-flash');
+
+var cookieParser    = require('cookie-parser');
+var session      = require('express-session');
+
 var http = require('http');
 var https = require('https');
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-	host		: 'localhost',
-	user		: 'root',
-	password	: 'topeno',
-	database	: 'test'
+
+var configDB    = require('../../config/database.js');
+var connection  = mysql.createConnection({
+    host: configDB.host,
+    user: configDB.user,
+    password: configDB.password,
+    database: configDB.database
 });
-
-var app = express();
-var path = require('path');
-
-
-app.use(express.static(path.join(__dirname, '../static')));
 
 connection.connect(function(err){
 	if(!err) {
@@ -22,6 +26,21 @@ connection.connect(function(err){
 		console.log("Error connecting database ... nn");
 	}
 });
+
+require('../../config/passport')(passport, connection); //pass passport for configuration
+
+app.use(cookieParser());
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
+var path = require('path');
+app.use(express.static(path.join(__dirname, '../static')));
+
 /*
 app.get("/",function(req,res){
 	connection.query('SELECT * FROM employees;',
@@ -34,26 +53,11 @@ app.get("/",function(req,res){
 		});
 });
 */
-app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/home.html'));
-});
-
-app.get('/home', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/home.html'));
-});
-
-app.get('/patientList', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/patientList.html'));
-});
-
-app.get('/schedule', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
-});
-
-var router = require("../routes/router");
-app.use('/', router);
-//var routes = require("../routes/routes")(app);
 
 
-app.listen(8080, function(){
-});
+// routes ======================================================================
+require('../routes/router.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+// launch ======================================================================
+app.listen(port);
+console.log('The magic happens on port ' + port);

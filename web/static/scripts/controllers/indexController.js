@@ -1,4 +1,4 @@
-angular.module('myApp').controller('homeCtrl', 
+angular.module('myApp').controller('indexCtrl',
 	['$scope', '$http', function($scope, $http){
 
 	}]

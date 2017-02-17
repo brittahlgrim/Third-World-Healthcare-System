@@ -1,4 +1,4 @@
-angular.module('myApp').controller('homeCtrl', 
+angular.module('myApp').controller('signupCtrl',
 	['$scope', '$http', function($scope, $http){
 
 	}]

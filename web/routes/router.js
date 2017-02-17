@@ -2,35 +2,84 @@
 var express = require('express');
 var path = require('path');
 
-module.exports = (function() {
+module.exports = function(app, passport) {
     'use strict';
-    var router = express.Router();
+    //var router = express.Router();
 
-    router.get('/', function(req, res){
+    /**auth**/
+    // =====================================
+    // HOME PAGE (with login links) ========
+    // =====================================
+    app.get('/', function(req, res) {
+        res.sendFile(path.join(__dirname + '/../static/views/index.html'));
+    });
+
+    // =====================================
+    // LOGIN ===============================
+    // =====================================
+    // show the login form
+    app.get('/login', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.sendFile(path.join(__dirname + '/../static/views/login.html'));
+    });
+
+    // process the login form
+    // app.post('/login', do all our passport stuff here);
+
+    // =====================================
+    // SIGNUP ==============================
+    // =====================================
+    // show the signup form
+    app.get('/signup', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.sendFile(path.join(__dirname + '/../static/views/signup.html'));
+    });
+
+    // process the signup form
+    // app.post('/signup', do all our passport stuff here);
+
+    // =====================================
+    // PROFILE SECTION =====================
+    // =====================================
+    // we will want this protected so you have to be logged in to visit
+    // we will use route middleware to verify this (the isLoggedIn function)
+    app.get('/profile', isLoggedIn, function(req, res) {
+        //todo: send user from session to actually log in
+        //will this be on req.user?
+        res.sendFile(path.join(__dirname + '/../static/views/signup.html'));
+    });
+
+    // =====================================
+    // LOGOUT ==============================
+    // =====================================
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+    /**end auth**/
+
+    app.get('/', function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/home.html'));
 	});
-
-	router.get('/home', function(req, res){
+	app.get('/home', function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/home.html'));
 	});
-
-	router.get('/patientList', function(req, res){
+	app.get('/patientList', function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/patientList.html'));
 	});
-
-	router.get('/schedule', function(req, res){
+	app.get('/schedule', function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
 	});
-
 	//to get a specific patient page, 
-	router.get('/patientInfo', function(req, res){
+	app.get('/patientInfo', function(req, res){
 		if(req.query.patientID)
 			res.sendFile(path.join(__dirname + '/../static/views/patientInfo.html'));
 		else
 			res.redirect('/patientList');
 	});
-
-	router.get('/getPatientInfo', function(req, res){
+	app.get('/getPatientInfo', function(req, res){
 		var id = req.query.patientID;
 		if(!id){
 			return null;
@@ -83,6 +132,23 @@ module.exports = (function() {
 			var json = JSON.stringify(patientInfo);
 			res.end(json);
 		}
-	})
-    return router;    
-})();
+	});
+
+	// process the signup form
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+};
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/login');
+};

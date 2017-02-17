@@ -32,13 +32,13 @@
 			</div>
 		</div>
 		<div class="left" align="center" style="margin-top: 10px">
-			<div ng-click="openHome()"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
 			<br/>
 			<br/>
-			<div ng-click="openPatientList()"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
 			<br/>
 			<br/>
-			<div ng-click="openSchedule()"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></div>
+			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
 		</div>
 		<div class="main">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
@@ -57,7 +57,7 @@
 			</div>
 			<div id="patientInfo" class="sidenav" ng-show="selectedPatient">
 				<a href="javascript:void(0)" class="closebtn" ng-click="closePatientInfo()">&times;</a>
-				<div class="row" ng-click="openPatientInformation()">
+				<div class="row" ng-click="openPatientInformation(selectedPatient.ID)">
 					<div class="col-xs-6" style="font-size:25px; color: white;">{{selectedPatient.Name}}</div>
 					<div class="col-xs-6"><img ng-src={{selectedPatient.Image}} alt="image" style="width:100px;height:100;"></div>
 				</div>
