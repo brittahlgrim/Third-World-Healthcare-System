@@ -24,4 +24,4 @@
 //};
 //
 //// create the model for users and expose it to our app
-//module.exports = mysql.model('User', userSchema);
+//module.exports = mysql.model('User', userSchema);*/

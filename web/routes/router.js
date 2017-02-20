@@ -19,23 +19,32 @@ module.exports = function(app, passport) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.sendFile(path.join(__dirname + '/../static/views/login.html'));
     });
 
     // process the login form
-    // app.post('/login', do all our passport stuff here);
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
     // =====================================
     // SIGNUP ==============================
     // =====================================
     // show the signup form
     app.get('/signup', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.sendFile(path.join(__dirname + '/../static/views/signup.html'));
     });
+
+	// process the signup form
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
     // process the signup form
     // app.post('/signup', do all our passport stuff here);
@@ -60,32 +69,31 @@ module.exports = function(app, passport) {
     });
     /**end auth**/
 
-    app.get('/', function(req, res){
+    app.get('/', isLoggedIn, function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/home.html'));
 	});
-	app.get('/home', function(req, res){
+	app.get('/home', isLoggedIn, function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/home.html'));
 	});
-	app.get('/patientList', function(req, res){
+	app.get('/patientList', isLoggedIn, function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/patientList.html'));
 	});
-	app.get('/schedule', function(req, res){
+	app.get('/schedule', isLoggedIn, function(req, res){
 		res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
 	});
 	//to get a specific patient page, 
-	app.get('/patientInfo', function(req, res){
+	app.get('/patientInfo', isLoggedIn, function(req, res){
 		if(req.query.patientID)
 			res.sendFile(path.join(__dirname + '/../static/views/patientInfo.html'));
 		else
 			res.redirect('/patientList');
 	});
-	app.get('/getPatientInfo', function(req, res){
+	app.get('/getPatientInfo', isLoggedIn, function(req, res){
 		var id = req.query.patientID;
 		if(!id){
 			return null;
 		}
 		else{
-			console.log("here");
 			//var patientInfo = getPatientInfoFromDB(patientID);
 			var patientInfo = {
 				ID: id,
@@ -133,18 +141,10 @@ module.exports = function(app, passport) {
 			res.end(json);
 		}
 	});
-
-	// process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();

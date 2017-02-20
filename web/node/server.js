@@ -13,17 +13,15 @@ var https = require('https');
 
 var configDB    = require('../../config/database.js');
 var connection  = mysql.createConnection({
-    host: configDB.host,
     user: configDB.user,
-    password: configDB.password,
-    database: configDB.database
+    password: configDB.password
 });
 
 connection.connect(function(err){
 	if(!err) {
-		console.log("Database is connected ... nn");
+		console.log("Database is connected ... \n\n");
 	} else {
-		console.log("Error connecting database ... nn");
+		console.log("Error connecting database ... \n\n");
 	}
 });
 
