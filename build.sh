@@ -72,7 +72,7 @@ fi
 #do an npm update for all specified files
 if [ "$skip_npm_update" = false ]
 then
-	./web/node/do-npm-update.sh
+	npm install
 fi
 
 #-----

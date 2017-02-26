@@ -6,7 +6,7 @@ var path = require('path');
 
 var app         = express();
 var port        = process.env.PORT || 8080;
-
+var mysql       = require('mysql');
 var passport    = require('passport');
 var flash       = require('connect-flash');
 
@@ -15,6 +15,29 @@ var flash       = require('connect-flash');
 require('../../config/passport')(passport); //pass passport for configuration
 
 app.use(express.static(path.join(__dirname, '../static')));
+var configDB    = require('../../config/database.js');
+var connection  = mysql.createConnection({
+    host: configDB.host,
+    user: configDB.user,
+    password: configDB.password,
+    database: configDB.database
+});
+
+console.log("Attempting SQL connection at\nhost: " + configDB.host +
+"\nuser: " + configDB.user +
+"\npassword: " + configDB.password +
+"\ndatabase: " + configDB.database);
+
+connection.connect(function(err){
+	if(!err) {
+		console.log("Database is connected ...");
+	} else {
+		console.log("***\n***\nError connecting to database:\nError code: "+ err+"\n***\n***");
+	}
+});
+
+require('../../config/passport')(passport, connection); //pass passport for configuration
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
