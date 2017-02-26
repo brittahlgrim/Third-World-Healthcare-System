@@ -19,11 +19,16 @@ var connection  = mysql.createConnection({
     database: configDB.database
 });
 
+console.log("Attempting SQL connection at\nhost: " + configDB.host +
+"\nuser: " + configDB.user +
+"\npassword: " + configDB.password +
+"\ndatabase: " + configDB.database);
+
 connection.connect(function(err){
 	if(!err) {
-		console.log("Database is connected ... nn");
+		console.log("Database is connected ...");
 	} else {
-		console.log("Error connecting database ... nn");
+		console.log("***\n***\nError connecting to database:\nError code: "+ err+"\n***\n***");
 	}
 });
 
