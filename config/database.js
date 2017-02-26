@@ -1,7 +1,10 @@
 // config/database.js
 module.exports = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'benbrittdavidjpsydney',
-    'database' : 'test'
+    'connection': {
+        'host': 'localhost',
+        'user': 'root',
+        'password': 'benbrittdavidjpsydney'
+    },
+	'database': 'my_schema',
+    'users_table': 'users'
 };

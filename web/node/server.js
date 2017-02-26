@@ -1,56 +1,33 @@
 var express     = require('express');
+var session      = require('express-session');
+var cookieParser    = require('cookie-parser');
+var bodyParser = require('body-parser');
+var path = require('path');
+
 var app         = express();
 var port        = process.env.PORT || 8080;
-var mysql       = require('mysql');
+
 var passport    = require('passport');
 var flash       = require('connect-flash');
 
-var cookieParser    = require('cookie-parser');
-var session      = require('express-session');
 
-var http = require('http');
-var https = require('https');
+//connect to our database
+require('../../config/passport')(passport); //pass passport for configuration
 
-var configDB    = require('../../config/database.js');
-var connection  = mysql.createConnection({
-    user: configDB.user,
-    password: configDB.password
-});
-
-connection.connect(function(err){
-	if(!err) {
-		console.log("Database is connected ... \n\n");
-	} else {
-		console.log("Error connecting database ... \n\n");
-	}
-});
-
-require('../../config/passport')(passport, connection); //pass passport for configuration
-
-app.use(cookieParser());
-
-// required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
-
-var path = require('path');
 app.use(express.static(path.join(__dirname, '../static')));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-/*
-app.get("/",function(req,res){
-	connection.query('SELECT * FROM employees;',
-		function(err, rows, fields) {
-			connection.end();
-			if(!err)
-				console.log('The solution is: ', rows);
-			else
-				console.log('Error while performing Query.');
-		});
-});
-*/
+//required for passport
+app.use(session({
+	secret: 'benbrittdavidjpsydney',
+	resave: true,
+	saveUnitialized: true
+}));//session secret
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 
 // routes ======================================================================
