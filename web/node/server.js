@@ -16,12 +16,7 @@ require('../../config/passport')(passport); //pass passport for configuration
 
 app.use(express.static(path.join(__dirname, '../static')));
 var configDB    = require('../../config/database.js');
-var connection  = mysql.createConnection({
-    host: configDB.host,
-    user: configDB.user,
-    password: configDB.password,
-    database: configDB.database
-});
+var connection  = mysql.createConnection(configDB.connection);
 
 console.log("Attempting SQL connection at\nhost: " + configDB.host +
 "\nuser: " + configDB.user +
@@ -54,7 +49,7 @@ app.use(flash());
 
 
 // routes ======================================================================
-require('../routes/router.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('../routes/router.js')(app, passport, connection); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
 app.listen(port);

@@ -1,6 +1,6 @@
 var path = require('path');
 // app/routes.js
-module.exports = function(app, passport) {
+module.exports = function(app, passport, connection) {
 
 	// =====================================
 	// HOME PAGE (with login links) ========
