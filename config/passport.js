@@ -4,6 +4,21 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var bcrypt   = require('bcrypt-nodejs');
 
+//sql scripts - these should be put into separate files
+var findByUsernameQueryString = "SELECT * FROM twhs_test_db.dbo.authentication where username = ?;";
+var insertQueryString = "INSERT INTO twhs_test_db.dbo.authentication (username, password) VALUES (?, ?)";
+var findByIdQueryString = "SELECT * FROM twhs_test_db.dbo.authentication where ID = ?";
+
+//helpers
+var generateHash = function(password)
+{
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+}
+var validPassword = function(password, storedPassword)
+{
+	return bcrypt.compareSync(password, storedPassword);
+}
+
 // load up the user model
 //var User            = require('../app/models/user');
 
@@ -42,7 +57,6 @@ module.exports = function(passport, dbConnection) {
 		passReqToCallback : true // allows us to pass back the entire request to the callback
 	},
 	function(req, username, password, done) {
-
 		// asynchronous
 		// User.findOne wont fire unless data is sent back
 		process.nextTick(function() {
@@ -71,8 +85,6 @@ module.exports = function(passport, dbConnection) {
 						newUser.local.username    = username;
 						newUser.local.password = hash;
 
-						console.log(username);
-						console.log(password);
 						dbConnection.query(insertQueryString, username, hash, function(err, rows, fields){
 							if(err)
 								throw err;
@@ -89,7 +101,7 @@ module.exports = function(passport, dbConnection) {
 
 	}));
 
-// =========================================================================
+	// =========================================================================
 	// LOCAL LOGIN =============================================================
 	// =========================================================================
 	// we are using named strategies since we have one for login and one for signup
@@ -102,7 +114,6 @@ module.exports = function(passport, dbConnection) {
 		passReqToCallback : true // allows us to pass back the entire request to the callback
 	},
 	function(req, username, password, done) { // callback with username and password from our form
-		console.log("here");
 
 		// find a user whose username is the same as the forms username
 		// we are checking to see if the user trying to login already exists
@@ -128,16 +139,3 @@ module.exports = function(passport, dbConnection) {
 	}));
 
 };
-
-var generateHash = function(password)
-{
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-}
-var validPassword = function(password, storedPassword)
-{
-	return bcrypt.compareSync(password, storedPassword);
-}
-
-var findByUsernameQueryString = "SELECT * FROM twhs_test_db.dbo.authentication where username = ?;";
-var insertQueryString = "INSERT INTO twhs_test_db.dbo.authentication (username, password) VALUES (?, ?)";
-var findByIdQueryString = "SELECT * FROM twhs_test_db.dbo.authentication where ID = ?";
