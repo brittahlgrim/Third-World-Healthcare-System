@@ -5,6 +5,6 @@ module.exports = {
         'user': 'root',
         'password': 'benbrittdavidjpsydney'
     },
-	'database': 'my_schema',
+	'database': 'twhs_test_db',
     'users_table': 'users'
 };
