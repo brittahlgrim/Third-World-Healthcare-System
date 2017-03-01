@@ -26,8 +26,6 @@ module.exports = function(app, passport, connection) {
             failureFlash : true // allow flash messages
 		}),
         function(req, res) {
-            console.log("hello");
-
             if (req.body.remember) {
               req.session.cookie.maxAge = 1000 * 60 * 3; //3 hours max limit for being logged in
             } else {
@@ -47,7 +45,7 @@ module.exports = function(app, passport, connection) {
 
 	// process the signup form
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/profile', // redirect to the secure profile section
+		successRedirect : '/home', // redirect to the secure home
 		failureRedirect : '/signup', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
@@ -141,7 +139,9 @@ function isLoggedIn(req, res, next) {
 
 	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
+	{
 		return next();
+	}
 
 	// if they aren't redirect them to the home page
 	res.redirect('/login');
