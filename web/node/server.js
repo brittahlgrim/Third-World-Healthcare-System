@@ -14,7 +14,6 @@ var flash       = require('connect-flash');
 //connect to our database
 require('../../config/passport')(passport); //pass passport for configuration
 
-app.use(express.static(path.join(__dirname, '../static')));
 var configDB    = require('../../config/database.js');
 var connection  = mysql.createConnection(configDB.connection);
 
@@ -37,6 +36,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, '../static')));
 //required for passport
 app.use(session({
 	secret: 'benbrittdavidjpsydney',
@@ -46,7 +46,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
 
 // routes ======================================================================
 require('../routes/router.js')(app, passport, connection); // load our routes and pass in our app and fully configured passport
