@@ -1,1 +1,5 @@
 .DS_Store
+.idea/modules.xml
+.idea/workspace.xml
+Third-World-Healthcare-System.iml
+node_modules/

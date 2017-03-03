@@ -1,48 +1,55 @@
-var express = require('express');
-var http = require('http');
-var https = require('https');
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-	host		: 'localhost',
-	user		: 'root',
-	password	: 'topeno',
-	database	: 'test'
-});
-
-var app = express();
+var express     = require('express');
+var session      = require('express-session');
+var cookieParser    = require('cookie-parser');
+var bodyParser = require('body-parser');
 var path = require('path');
 
+var app         = express();
+var port        = process.env.PORT || 8080;
+var mysql       = require('mysql');
+var passport    = require('passport');
+var flash       = require('connect-flash');
 
-app.use(express.static(path.join(__dirname, '../static')));
+
+//connect to our database
+require('../../config/passport')(passport); //pass passport for configuration
+
+var configDB    = require('../../config/database.js');
+var connection  = mysql.createConnection(configDB.connection);
+
+console.log("Attempting SQL connection at\nhost: " + configDB.host +
+"\nuser: " + configDB.user +
+"\npassword: " + configDB.password +
+"\ndatabase: " + configDB.database);
 
 connection.connect(function(err){
 	if(!err) {
-		console.log("Database is connected ... nn");
+		console.log("Database is connected ...");
 	} else {
-		console.log("Error connecting database ... nn");
+		console.log("***\n***\nError connecting to database:\nError code: "+ err+"\n***\n***");
 	}
 });
 
-app.get('/', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/home.html'));
-});
+require('../../config/passport')(passport, connection); //pass passport for configuration
 
-app.get('/home', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/home.html'));
-});
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.get('/patientList', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/patientList.html'));
-});
+app.use(express.static(path.join(__dirname, '../static')));
+//required for passport
+app.use(session({
+	secret: 'benbrittdavidjpsydney',
+	resave: true,
+	saveUnitialized: true
+}));//session secret
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
-app.get('/schedule', function(req, res){
-	res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
-});
+// routes ======================================================================
+require('../routes/router.js')(app, passport, connection); // load our routes and pass in our app and fully configured passport
 
-var router = require("../routes/router");
-app.use('/', router);
-//var routes = require("../routes/routes")(app);
-
-
-app.listen(8080, function(){
-});
+// launch ======================================================================
+app.listen(port);
+console.log('The magic happens on port ' + port);

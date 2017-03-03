@@ -47,20 +47,8 @@ angular.module('myApp').controller('patientListCtrl',
 				NextVisitDate: "07/12/2016"
 			}
 		];
-
-		var indexOfHtml = window.location.href.indexOf("/patientList");
-		var viewDirectory = window.location.href.substr(0, indexOfHtml);
-		$scope.openHome = function(){
-			window.location.href = viewDirectory + "/home";
-		};
-		$scope.openPatientList = function(){
-			window.location.href = viewDirectory + "/patientList";
-		};
-		$scope.openSchedule = function(){
-			window.location.href = viewDirectory + "/schedule";
-		};
-		$scope.openPatientInformation = function(){
-			window.location.href = viewDirectory + "/patientInfo";
+		$scope.openPatientInformation = function(patientID){
+			window.location.href = "/patientInfo?patientID=" + patientID;
 		};
 	}]
 );
