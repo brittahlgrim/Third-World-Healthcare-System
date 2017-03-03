@@ -1,0 +1,29 @@
+{
+  "name": "third-world-healthcare-system",
+  "version": "1.0.0",
+  "description": "initial dependencies",
+  "main": "./web/node/server.js",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brittahlgrim/Third-World-Healthcare-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brittahlgrim/Third-World-Healthcare-System/issues"
+  },
+  "homepage": "https://github.com/brittahlgrim/Third-World-Healthcare-System#readme"
+}

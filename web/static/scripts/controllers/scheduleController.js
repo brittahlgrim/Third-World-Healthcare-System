@@ -1,18 +1,7 @@
 angular.module('myApp').controller('scheduleCtrl', 
 	['$scope', '$http', function($scope, $http){
-		var indexOfHtml = window.location.href.indexOf("/schedule");
-		var viewDirectory = window.location.href.substr(0, indexOfHtml);
-		$scope.openHome = function(){
-			window.location.href = viewDirectory + "/home";
-		};
-		$scope.openPatientList = function(){
-			window.location.href = viewDirectory + "/patientList";
-		};
-		$scope.openSchedule = function(){
-			window.location.href = viewDirectory + "/schedule";
-		};
-		$scope.openPatientInformation = function(){
-			window.location.href = viewDirectory + "/patientInfo";
+		$scope.openPatientInformation = function(patientID){
+			window.location.href = "/patientInfo?patientID=" + patientID;
 		};
 
 		$scope.selectedPatient = null;

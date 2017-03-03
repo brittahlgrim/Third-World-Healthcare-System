@@ -1,5 +1,6 @@
 angular.module('myApp').controller('homeCtrl', 
 	['$scope', '$http', function($scope, $http){
+<<<<<<< HEAD
 		var indexOfHtml = window.location.href.indexOf("/home");
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
 		$scope.openHome = function(){
@@ -11,6 +12,8 @@ angular.module('myApp').controller('homeCtrl',
 		$scope.openSchedule = function(){
 			window.location.href = viewDirectory + "/schedule";
 		};
+=======
+>>>>>>> 9acd073ef72da1ae2946ed8f78a7c5ff12e4f3ad
 
 	}]
 );
