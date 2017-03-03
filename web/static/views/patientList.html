@@ -34,13 +34,15 @@
 				<table style="color: white; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
 						<td width="20px;"></td>
-						<td>Nombre</td>
+						<td>Nombre Primero</td>
+						<td>Nombre Ultimo</td>
 						<td>Visita Próxima</td>
 					</tr>
-					<tr ng-repeat="user in users" style="font-style: bold;">
+					<tr ng-repeat="x in names" style="font-style: bold;">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
-						<td ng-click="openPatientInformation(user.ID)">{{user.Name}}</td>
-						<td>{{user.NextVisitDate}}</td>
+						<td ng-click="openPatientInformation(x.id)">{{x.id}} {{x.name}}</td>
+						<td ng-click="openPatientInformation(x.id)">{{x.owner}}</td>
+						<td>{{x.birth}}</td>
 					</tr>
 				</table>
 			</div>

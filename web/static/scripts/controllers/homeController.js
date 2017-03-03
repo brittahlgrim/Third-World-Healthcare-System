@@ -12,13 +12,5 @@ angular.module('myApp').controller('homeCtrl',
 			window.location.href = viewDirectory + "/schedule";
 		};
 
-		$scope.getNames = function() {
-			$http.get("/getNames").success(function (data) {
-				$scope.names = data;
-			}).error(function() {
-				alert("Error in request for getNames()" + error);
-			});
-		}
-
 	}]
 );

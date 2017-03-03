@@ -24,7 +24,7 @@ module.exports = (function() {
 
 	//to get a specific patient page, 
 	router.get('/patientInfo', function(req, res){
-		if(req.query.patientID)
+		if(1)
 			res.sendFile(path.join(__dirname + '/../static/views/patientInfo.html'));
 		else
 			res.redirect('/patientList');

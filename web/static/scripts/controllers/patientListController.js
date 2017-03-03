@@ -62,5 +62,14 @@ angular.module('myApp').controller('patientListCtrl',
 		$scope.openPatientInformation = function(){
 			window.location.href = viewDirectory + "/patientInfo";
 		};
+
+		$scope.getNames = function() {
+			$http.get("/getNames").success(function (data) {
+				$scope.names = data;
+			}).error(function() {
+				alert("Error in request for getNames()" + error);
+			});
+		}
+		$scope.getNames();
 	}]
 );
