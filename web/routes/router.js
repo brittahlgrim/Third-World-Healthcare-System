@@ -70,6 +70,21 @@ module.exports = function(app, passport, connection) {
         else
             res.redirect('/patientList');
     });
+    app.get('/getNames', function(req, res){
+
+		connection.query('SELECT * from firstTable', function(err, rows, fields) {
+			if (!err)
+				console.log('The solution is: ', rows);
+			else
+		    	console.log('Error while performing Query.');
+
+			res.writeHead(200, {"Content-Type": "application/json"});
+			var json = JSON.stringify(rows);
+			res.end(json);
+
+		});
+
+	});
     app.get('/getPatientInfo', isLoggedIn, function(req, res){
     		var id = req.query.patientID;
     		if(!id){

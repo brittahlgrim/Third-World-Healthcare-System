@@ -8,4 +8,19 @@ angular.module("myApp").factory("PatientService", [
 				});
 		};
 	}]
-);
+)
+
+	.service('selectPatientService', function() {
+
+		var selectedPatientID = null;
+
+		return {
+			getSelectedPatientID: function() {
+				return selectedPatientID;
+			},
+			setSelectedPatientID: function(selectedID) {
+				selectedPatientID = selectID
+			}
+		}
+
+	});
