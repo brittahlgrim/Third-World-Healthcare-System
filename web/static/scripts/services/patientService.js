@@ -6,6 +6,12 @@ angular.module("myApp").factory('PatientService', function($http) {
 			}).error(function(){
 				failureCallback(null);
 			});
+		},
+		getSelectedPatientID: function() {
+			return selectedPatientID;
+		},
+		setSelectedPatientID: function(selectedID) {
+			selectedPatientID = selectID
 		}
 	};
     return patientService;

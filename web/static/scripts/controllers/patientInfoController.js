@@ -3,6 +3,15 @@ angular.module('myApp').controller('patientInfoCtrl',
 		var indexOfHtml = window.location.href.indexOf("/patientInfo");
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
 
+		$scope.getNames = function() {
+			$http.get("/getNames").success(function (data) {
+				$scope.names = data;
+			}).error(function() {
+				alert("Error in request for getNames()" + error);
+			});
+		}
+		$scope.getNames();		
+
 		$scope.patient = null;
 		
 
@@ -14,7 +23,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 				alert("could not load patient data");
 			}
 			//todo: remove this from being hardcoded
-			var patientID = 4;
+			var patientID = 3;
 			//TODO: create a patientService and add this http call to that
 			$http.get("/getPatientInfo?patientID=" + patientID)
 				.success(function (response) {
