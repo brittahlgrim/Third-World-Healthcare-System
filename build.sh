@@ -82,9 +82,9 @@ fi
 echo "Attempting to connect to db..." > $output
 
 #delete any previous database, remake it
-mysql --user=root --password=topeno -e "drop database twhs_test_db"
-mysql --user=root --password=topeno -e "create database twhs_test_db"
-mysql --user=root --password=topeno twhs_test_db < ./db/records_db_table_structure.sql
+mysql --user=root --password=$db_root_password -e "drop database twhs_test_db"
+mysql --user=root --password=$db_root_password -e "create database twhs_test_db"
+mysql --user=root --password=$db_root_password twhs_test_db < ./db/records_db_table_structure.sql
 
 echo "Attempting to start node server..." > $output
 $open_node_command ./web/node/server.js &
