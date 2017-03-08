@@ -2,6 +2,9 @@ var path = require('path');
 // app/routes.js
 module.exports = function(app, passport, connection) {
 
+	var dbconfig = require('../../config/database');
+	connection.query('USE ' + dbconfig.database);
+
 	// =====================================
 	// HOME PAGE (with login links) ========
 	// =====================================

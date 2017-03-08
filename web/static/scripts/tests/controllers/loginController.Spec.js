@@ -1,48 +1,3 @@
-
-
-// describe('loginCtrl', function() {
-//   var loginCtrl;
-
-//   // Before each test load our api.users module
-//   beforeEach(angular.mock.module('myApp'));
-
-//   // Before each test set our injected Users factory (_Users_) to our local Users variable
-//   beforeEach(inject(function(_loginCtrl_) {
-//     loginCtrl = _loginCtrl_;
-//   }));
-
-//   // A simple test to verify the Users factory exists
-//   it('should exist', function() {
-//     expect(loginCtrl).toBeDefined();
-//   });
-// });
-
-// describe('loginCtrl', function() {
-//     var scope, $http, authenticationService, createController;
-
-//     beforeEach(inject(function ($rootScope, $controller, _$http_, _authenticationService_) {
-//         $http = _$http_;
-//         authenticationService = _authenticationService_;
-//         scope = $rootScope.$new();
-
-//         createController = function() {
-//             return $controller('loginCtrl', {
-//                 '$scope': scope,
-//                 '$http':$http,
-//                 'authenticationService':authenticationService
-//             });
-//         };
-//     }));
-
-//     it('should have a method to check if the path is active', function() {
-//         var controller = createController();
-//         $location.path('/about');
-//         expect($location.path()).toBe('/about');
-//         expect(scope.isActive('/about')).toBe(true);
-//         expect(scope.isActive('/contact')).toBe(false);
-//     });
-// });
-
 describe('loginCtrl', function() {
   beforeEach(module('myApp'));
 
@@ -55,7 +10,6 @@ describe('loginCtrl', function() {
     $window = _$window_;
     authenticationService = _authenticationService_;
 
-    //spyOn(authenticationService, 'login');
     alertMessage = "";
     $window = {
       alert: function(message){
@@ -65,9 +19,6 @@ describe('loginCtrl', function() {
         href: ""
       }
     };
-    // spyOn($window, 'alert').and.callFake(function(message){
-    //   alertMessage = message;
-    // });
 
     $controller = _$controller_('loginCtrl', { $scope: $scope, $http: $http, $window: $window, authenticationService: authenticationService });
   }));
