@@ -34,15 +34,15 @@
 				<table style="color: white; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
 						<td width="20px;"></td>
-						<td>Nombre Primero</td>
-						<td>Nombre Ultimo</td>
-						<td>Visita Próxima</td>
+						<td>Nombre</td>
+						<td>Patient ID</td>
+						<td>Risk Factor</td>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold;">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
-						<td ng-click="openPatientInformation(x.id)">{{x.id}} {{x.name}}</td>
-						<td ng-click="openPatientInformation(x.id)">{{x.owner}}</td>
-						<td>{{x.birth}}</td>
+						<td ng-click="openPatientInformation(x.ID)">{{x.ID}} {{x.Name}}</td>
+						<td ng-click="openPatientInformation(x.ID)">{{x.PatientID}}</td>
+						<td>{{x.RiskFactor}}</td>
 					</tr>
 				</table>
 			</div>
