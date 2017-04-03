@@ -1062,3 +1062,235 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-03-02 21:24:55
+
+
+
+
+
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+--
+-- Host: localhost    Database: emr
+-- ------------------------------------------------------
+-- Server version 5.7.17
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ECOSF`
+--
+
+DROP TABLE IF EXISTS `ECOSF`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ECOSF` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` blob NOT NULL,
+  `Zones` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ECOSF`
+--
+
+LOCK TABLES `ECOSF` WRITE;
+/*!40000 ALTER TABLE `ECOSF` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ECOSF` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `FAMILY`
+--
+
+DROP TABLE IF EXISTS `FAMILY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `FAMILY` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` blob NOT NULL,
+  `HeadPersonID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `FAMILY`
+--
+
+LOCK TABLES `FAMILY` WRITE;
+/*!40000 ALTER TABLE `FAMILY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `FAMILY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `GRUPO`
+--
+
+DROP TABLE IF EXISTS `GRUPO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GRUPO` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(100) NOT NULL,
+  `Description` blob,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `GRUPO`
+--
+
+LOCK TABLES `GRUPO` WRITE;
+/*!40000 ALTER TABLE `GRUPO` DISABLE KEYS */;
+/*!40000 ALTER TABLE `GRUPO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `NEXT_APT_CODE`
+--
+
+DROP TABLE IF EXISTS `NEXT_APT_CODE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `NEXT_APT_CODE` (
+  `GroupID` int(11) NOT NULL AUTO_INCREMENT,
+  `NextAptDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`GroupID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `NEXT_APT_CODE`
+--
+
+LOCK TABLES `NEXT_APT_CODE` WRITE;
+/*!40000 ALTER TABLE `NEXT_APT_CODE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `NEXT_APT_CODE` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PATIENTS`
+--
+
+DROP TABLE IF EXISTS `PATIENTS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PATIENTS` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(150) NOT NULL,
+  `PatientID` varchar(150),
+  `FamilyID` int(11) DEFAULT NULL,
+  `EchoID` int(11) DEFAULT NULL,
+  `ZoneID` int(11) DEFAULT NULL,
+  `Gender` char(1) DEFAULT NULL,
+  `GroupID` int(11) DEFAULT NULL,
+  `RiskFactor` varchar(150),
+  `ChronicIllness` varchar(150),
+  `Notes` varchar(150),
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PATIENTS`
+--
+
+LOCK TABLES `PATIENTS` WRITE;
+/*!40000 ALTER TABLE `PATIENTS` DISABLE KEYS */;
+INSERT INTO `PATIENTS` VALUES (1,'Julio Perez', '06-14-U-[]-E-003-003-01',3,2,2,'M',2,'Smoking','Athsma','Notes'),(2,'Lupita Brizuela', '06-14-U-[]-E-005-005-02',5,1,1,3,'F','Biological','Artheritis','Notes'),(3,'Alvaro Diaz', '06-14-U-[]-E-002-002-01',2,4,6,4,'M','None','Intelligence','Notes');
+/*!40000 ALTER TABLE `PATIENTS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SEX`
+--
+
+DROP TABLE IF EXISTS `SEX`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SEX` (
+  `ID` char(1) NOT NULL,
+  `Name` varchar(10) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SEX`
+--
+
+LOCK TABLES `SEX` WRITE;
+/*!40000 ALTER TABLE `SEX` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SEX` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `VISIT_HISTORY`
+--
+
+DROP TABLE IF EXISTS `VISIT_HISTORY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `VISIT_HISTORY` (
+  `PatientID` int(11) DEFAULT NULL,
+  `Age` int(11) DEFAULT NULL,
+  `Incident` blob,
+  `Prevalence` blob,
+  `Deceased` tinyint(1) DEFAULT NULL,
+  `DateOfVisit` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `VISIT_HISTORY`
+--
+
+LOCK TABLES `VISIT_HISTORY` WRITE;
+/*!40000 ALTER TABLE `VISIT_HISTORY` DISABLE KEYS */;
+/*!40000 ALTER TABLE `VISIT_HISTORY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ZONE`
+--
+
+DROP TABLE IF EXISTS `ZONE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ZONE` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` blob NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ZONE`
+--
+
+LOCK TABLES `ZONE` WRITE;
+/*!40000 ALTER TABLE `ZONE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ZONE` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-03-31 13:22:18

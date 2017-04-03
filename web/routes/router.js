@@ -72,7 +72,7 @@ module.exports = function(app, passport, connection) {
     });
     app.get('/getNames', function(req, res){
 
-		connection.query('SELECT * from firstTable', function(err, rows, fields) {
+		connection.query('SELECT * from PATIENTS', function(err, rows, fields) {
 			if (!err)
 				console.log('The solution is: ', rows);
 			else
@@ -91,7 +91,23 @@ module.exports = function(app, passport, connection) {
     			return null;
     		}
     		else{
-    			//var patientInfo = getPatientInfoFromDB(patientID);
+    			
+
+                connection.query('select * from PATIENTS where id = ?;', [ id ], function(err, rows, fields) {
+                    if (!err)
+                        console.log('The solution is: ', rows);
+                    else
+                        console.log('Error while performing Query.');
+
+                    res.writeHead(200, {"Content-Type": "application/json"});
+                    var json = JSON.stringify(rows[0]);
+                    res.end(json);
+
+                });
+
+
+/*
+                //var patientInfo = getPatientInfoFromDB(patientID);
     			var patientInfo = {
     				ID: id,
     				Name: "Valeria Diaz",
@@ -132,10 +148,8 @@ module.exports = function(app, passport, connection) {
 
     				]
     			};
+*/
 
-    			res.writeHead(200, {"Content-Type": "application/json"});
-    			var json = JSON.stringify(patientInfo);
-    			res.end(json);
     		}
     	});
 
