@@ -1189,11 +1189,12 @@ DROP TABLE IF EXISTS `PATIENTS`;
 CREATE TABLE `PATIENTS` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(150) NOT NULL,
-  `PatientID` varchar(150),
+  `DOB` date NOT NULL,
+  `DescriptivePatientID` varchar(150),
   `FamilyID` int(11) DEFAULT NULL,
-  `EchoID` int(11) DEFAULT NULL,
+  `ECOName` int(11) DEFAULT NULL,
   `ZoneID` int(11) DEFAULT NULL,
-  `Gender` char(1) DEFAULT NULL,
+  `Sex` char(1) DEFAULT NULL,
   `GroupID` int(11) DEFAULT NULL,
   `RiskFactor` varchar(150),
   `ChronicIllness` varchar(150),
@@ -1208,7 +1209,7 @@ CREATE TABLE `PATIENTS` (
 
 LOCK TABLES `PATIENTS` WRITE;
 /*!40000 ALTER TABLE `PATIENTS` DISABLE KEYS */;
-INSERT INTO `PATIENTS` VALUES (1,'Julio Perez', '06-14-U-[]-E-003-003-01',3,2,2,'M',2,'Smoking','Athsma','Notes'),(2,'Lupita Brizuela', '06-14-U-[]-E-005-005-02',5,1,1,3,'F','Biological','Artheritis','Notes'),(3,'Alvaro Diaz', '06-14-U-[]-E-002-002-01',2,4,6,4,'M','None','Intelligence','Notes');
+INSERT INTO `PATIENTS` VALUES (1,'Julio Perez', '1940-01-03', '06-14-U-[]-E-003-003-01',3,2,2,'M',2,'Smoking','Athsma','Notes'),(2,'Lupita Brizuela', '1983-03-06', '06-14-U-[]-E-005-005-02',5,1,1,3,'F','Biological','Artheritis','Notes'),(3,'Alvaro Diaz', '2007-08-01', '06-14-U-[]-E-002-002-01',2,4,6,4,'M','None','Intelligence','Notes');
 /*!40000 ALTER TABLE `PATIENTS` ENABLE KEYS */;
 UNLOCK TABLES;
 
