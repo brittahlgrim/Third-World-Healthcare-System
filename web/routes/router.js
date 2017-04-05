@@ -67,6 +67,30 @@ module.exports = function(app, passport, connection) {
     app.get('/schedule', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
     });
+    app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
+        connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
+            if (!err)
+                console.log('The solution is: ', rows);
+            else
+                console.log('Error while performing Query.');
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+        });
+    });
+    app.get('/getSchedule', isLoggedIn, function(req, res) {
+        connection.query('SELECT * from schedule', function(err, rows, fields) {
+            if (!err)
+                console.log('The solution is: ', rows);
+            else
+                console.log('Error while performing Query.');
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+        });
+    });
     app.get('/patientInfo', isLoggedIn, function(req, res) {
         if(req.query.patientID)
             res.sendFile(path.join(__dirname + '/../static/views/patientInfo.html'));
