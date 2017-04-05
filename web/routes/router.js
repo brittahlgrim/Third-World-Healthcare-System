@@ -181,6 +181,23 @@ module.exports = function(app, passport, connection) {
     	});
 
 
+	//======================
+	//POSTING PATIENTS
+	//=====================
+
+var qs = require('querystring');
+app.post('/addNewPatient', function (req, res) {
+		console.log("Post request received!")
+		var jsonString = '';
+		req.on('data', function(data) {
+			jsonString += data;
+		});
+		req.on('end', function(){
+			console.log(JSON.parse(jsonString));
+		});
+  		res.send(201)
+	});
+
 	// =====================================
 	// LOGOUT ==============================
 	// =====================================
