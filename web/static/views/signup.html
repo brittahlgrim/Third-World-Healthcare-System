@@ -14,13 +14,16 @@
         body        { padding-top:80px; }
     </style>
 </head>
-<body style="background-color: #455a64; color: white;">
+<body style="background-color: #f4f3ed; color: white;">
 
 <div ng-app="myApp" ng-controller="signupCtrl" align="center" style="font-family: Tahoma, Geneva, sans-serif;">
     <div class="container" style="display:table;">
         <div class="row" style="height: 100%; display: table-row;">
             <div class="col-sm-6 vertical-center">
                 <img src="content/images/Globe.png" width="250px;" style="display: table-cell; float: none; vertical-align: middle;"/>
+            </div>
+            <div class="col-sm-6 vertical-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Seal_of_the_President_of_El_Salvador.svg/2000px-Seal_of_the_President_of_El_Salvador.svg.png" width="250px;" style="display: table-cell; float: none; vertical-align: middle;"/>
             </div>
             <div class="col-sm-6">
                 <h1>Signup</h1>
@@ -33,11 +36,11 @@
                 <!-- LOGIN FORM -->
                 <form action="/signup" method="post">
                     <div class="form-group">
-                        <label>Username</label>
+                        <label style="color:blue;">Username</label>
                         <input type="text" class="form-control" name="username">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
+                        <label style="color:blue;">Password</label>
                         <input type="password" class="form-control" name="password">
                     </div>
 
