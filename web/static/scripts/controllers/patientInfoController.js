@@ -1,7 +1,10 @@
 angular.module('myApp').controller('patientInfoCtrl', 
-	['$scope', '$http', function($scope, $http){
-		var indexOfHtml = window.location.href.indexOf("/patientInfo");
+	['$scope', '$http', '$window', function($scope, $http, $window){
+		var urlParam = "patientID=";
+		var indexOfHtml = window.location.href.indexOf(urlParam);
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
+		var patientID = window.location.href.substr(indexOfHtml + urlParam.length);
+		console.log(indexOfHtml + urlParam.length);
 
 		$scope.getNames = function() {
 			$http.get("/getNames").success(function (data) {
@@ -22,12 +25,11 @@ angular.module('myApp').controller('patientInfoCtrl',
 			var failureCallback = function(response){
 				alert("could not load patient data");
 			}
-			//todo: remove this from being hardcoded
-			var patientID = 3;
 			//TODO: create a patientService and add this http call to that
 			$http.get("/getPatientInfo?patientID=" + patientID)
 				.success(function (response) {
 					console.log("success");
+					$scope.patient = response;
 					successCallback(response);
 				}).error(function () {
 					console.log("failure");
@@ -91,6 +93,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 
 		/******scope init********/
 		$(document).ready(function(){
+			var href = $window.href
 			getPatientInfo();
 			Array.from(document.getElementsByClassName("tabcontent")).forEach(function(t){
 				t.style.display = "none";});

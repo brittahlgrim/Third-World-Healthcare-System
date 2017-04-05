@@ -53,7 +53,7 @@
 						<br/>
 						<div class="row">
 							<div class="col-xs-6">Classification:</div>
-							<div class="col-xs-6">{{patient.Classification}}</div>
+							<div class="col-xs-6">{{patient.GroupID}}</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Risk Factor:</div>
@@ -61,15 +61,19 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Birthdate:</div>
-							<div class="col-xs-6">{{patient.Birthdate}}</div>
+							<div class="col-xs-6">{{patient.birth}}</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Sex:</div>
-							<div class="col-xs-6">{{patient.Sex}}</div>
+							<div class="col-xs-6">{{patient.Gender}}</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Zone:</div>
 							<div class="col-xs-6">{{patient.Zone}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Info:</div>
+							<div class="col-xs-6">{{patient.Name}} {{patient.owner}}</div>
 						</div>
 					</div>
 					<div class="col-xs-8">
