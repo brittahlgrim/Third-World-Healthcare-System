@@ -67,8 +67,34 @@ module.exports = function(app, passport, connection) {
     app.get('/schedule', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
     });
+
     app.get('/createPatient', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/createPatient.html'));
+
+    app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
+        connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
+            if (!err)
+                console.log('The solution is: ', rows);
+            else
+                console.log('Error while performing Query.');
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+        });
+    });
+    app.get('/getSchedule', isLoggedIn, function(req, res) {
+        connection.query('SELECT * from schedule', function(err, rows, fields) {
+            if (!err)
+                console.log('The solution is: ', rows);
+            else
+                console.log('Error while performing Query.');
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+        });
+
     });
     app.get('/patientInfo', isLoggedIn, function(req, res) {
         if(req.query.patientID)
@@ -159,6 +185,23 @@ module.exports = function(app, passport, connection) {
     		}
     	});
 
+
+	//======================
+	//POSTING PATIENTS
+	//=====================
+
+var qs = require('querystring');
+app.post('/addNewPatient', function (req, res) {
+		console.log("Post request received!")
+		var jsonString = '';
+		req.on('data', function(data) {
+			jsonString += data;
+		});
+		req.on('end', function(){
+			console.log(JSON.parse(jsonString));
+		});
+  		res.send(201)
+	});
 
 	// =====================================
 	// LOGOUT ==============================
