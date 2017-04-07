@@ -67,6 +67,10 @@ module.exports = function(app, passport, connection) {
     app.get('/schedule', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
     });
+
+    app.get('/createPatient', isLoggedIn, function(req, res) {
+            res.sendFile(path.join(__dirname + '/../static/views/createPatient.html'));
+
     app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
         connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
             if (!err)
@@ -90,6 +94,7 @@ module.exports = function(app, passport, connection) {
             var json = JSON.stringify(rows);
             res.end(json);
         });
+
     });
     app.get('/patientInfo', isLoggedIn, function(req, res) {
         if(req.query.patientID)
