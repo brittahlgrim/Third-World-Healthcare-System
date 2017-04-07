@@ -18,9 +18,9 @@ require('../../config/passport')(passport); //pass passport for configuration
 var configDB    = require('../../config/database.js');
 var connection  = mysql.createConnection(configDB.connection);
 
-console.log("Attempting SQL connection at\nhost: " + configDB.host +
-"\nuser: " + configDB.user +
-"\npassword: " + configDB.password +
+console.log("Attempting SQL connection at\nhost: " + configDB.connection.host +
+"\nuser: " + configDB.connection.user +
+"\npassword: " + configDB.connection.password +
 "\ndatabase: " + configDB.database);
 
 connection.connect(function(err){

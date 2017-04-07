@@ -1,14 +1,14 @@
 angular.module('myApp').controller('loginCtrl',
-	['$scope', '$http', 'authenticationService', function($scope, $http, authenticationService){
+	['$scope', '$http', '$window', 'authenticationService', function($scope, $http, $window, authenticationService){
 		$scope.username = "";
 		$scope.password = "";
 
 		$scope.login = function()
 		{
 			if(!$scope.username)
-				alert("username required");
+				$window.alert("username required");
 			else if(!$scope.password)
-				alert("password required");
+				$window.alert("password required");
 
 			else
 			{
@@ -19,11 +19,11 @@ angular.module('myApp').controller('loginCtrl',
 
 				var successCallback = function(response)
                 {
-                    window.location.href = 'home';
+                    $window.location.href = 'home';
                 };
                 var failureCallback = function(response)
                 {
-                    alert("Invalid username and/or password");
+                    $window.alert("Invalid username and/or password");
                 }
 
 				authenticationService.login(request, successCallback, failureCallback);
