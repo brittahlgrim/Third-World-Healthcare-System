@@ -70,6 +70,7 @@ module.exports = function(app, passport, connection) {
 
     app.get('/createPatient', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/createPatient.html'));
+    });
 
     app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
         connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
@@ -94,7 +95,6 @@ module.exports = function(app, passport, connection) {
             var json = JSON.stringify(rows);
             res.end(json);
         });
-
     });
     app.get('/patientInfo', isLoggedIn, function(req, res) {
         if(req.query.patientID)
@@ -196,6 +196,7 @@ app.post('/addNewPatient', function (req, res) {
 		var jsonString = '';
 		req.on('data', function(data) {
 			jsonString += data;
+            console.log(JSON.parse(jsonString));
 		});
 		req.on('end', function(){
 			console.log(JSON.parse(jsonString));
