@@ -245,7 +245,7 @@ module.exports = function(app, passport, connection) {
         else
             res.redirect('/patientList');
     });
-    app.get('/getNames', function(req, res){
+    app.get('/getNames', isLoggedIn, function(req, res){
 
 		connection.query('SELECT * from PATIENTS', function(err, rows, fields) {
 			if (!err)
@@ -334,7 +334,7 @@ module.exports = function(app, passport, connection) {
 	//=====================
 
 var qs = require('querystring');
-app.post('/addNewPatient', function (req, res) {
+app.post('/addNewPatient', isLoggedIn, function (req, res) {
 		console.log("Post request received!")
 		var jsonString = '';
 		req.on('data', function(data) {
