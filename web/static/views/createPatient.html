@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+
+    <!--JQUERY must be before angular-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="content/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/controllers/createPatientController.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="content/custom/createPatient.css">
+	<title>CREATE PATIENT</title>
+</head>
+<body style="background-color: #455a64; color: white;">
+	<div ng-app="myApp" ng-controller="createPatientCtrl">
+		<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
+			<div class="row">
+				<div class="col-xs-4">
+					<h4>{{x.Name}}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="left" align="center" style="margin-top: 10px">
+			<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+			<br/>
+			<br/>
+			<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+			<br/>
+			<br/>
+			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+		</div>
+		<div class="main">
+			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
+				<div class="row">
+					<div class="col-xs-4">
+						<br/>
+						<div class="row">
+							<div class="col-xs-6">Name:</div>
+							<input type="text" name="name" ng-model="new_patient.Name" required>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Date of Birth:</div>
+							<input type="date" name="DOB" ng-model="new_patient.DOB" required>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Patient ID:</div>
+							<input type="text" name="descriptivePatientID" ng-model="new_patient.DescriptivePatientID">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">No. of People in Family:</div>
+							<input type="number" name="familyID" ng-model="new_patient.FamilyID">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">ECO Name:</div>
+							<input type="text" name="ECO" ng-model="new_patient.ECOName">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Zone:</div>
+							<input type="number" name="zoneID" ng-model="new_patient.ZoneID">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Sex:</div>
+							<form>
+								<label>
+									<input type="radio" name="sex" ng-model="new_patient.Sex" value="M">Male    
+								</label>
+								<label>
+									<input type="radio" name="sex" ng-model="new_patient.Sex" value="F">Female    
+								</label>
+							</form>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Group Classification:</div>
+							<form>
+								<label>
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="1">I    
+								</label>
+								<label>
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="2">II    
+								</label>
+								<label>
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="3">III    
+								</label>
+								<label>
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="4">IV    
+								</label>
+							</form>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Risk Factor:</div>
+							<select name="riskFactor">
+								<option ng-model="new_patient.RiskFactor" value="Option 1">Option 1</option>
+								<option ng-model="new_patient.RiskFactor" value="Option 2">Option 2</option>
+								<option ng-model="new_patient.RiskFactor" value="Option 3">Option 3</option>
+								<option ng-model="new_patient.RiskFactor" value="Option 4">Option 4</option>
+								<option ng-model="new_patient.RiskFactor" value="Option 5">Option 5</option>
+							</select>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Chronic Illness:</div>
+							<input type="text" name="chronicIllness" ng-model="new_patient.ChronicIllness">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Notes:</div>
+							<input type="text" name="notes" ng-model="new_patient.Notes">
+						</div>
+						<div class="row">
+							<button ng-click="create_patient()">Create Patient</button>
+						</div>
+					</div>
+		
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
