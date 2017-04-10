@@ -1,5 +1,5 @@
-angular.module("myApp").factory('SchedulingService', function($http) {
-	var patientService = {
+angular.module("myApp").factory('schedulingService', function($http) {
+	var schedulingService = {
 		getDefaultNextAppointmentPermutations: function(successCallback, failureCallback){
 			return $http.get("/getDefaultNextAppointmentPermutations/").success(function(response){
 				successCallback(response);
@@ -25,12 +25,17 @@ angular.module("myApp").factory('SchedulingService', function($http) {
 		},
 		getSchedule: function(request, successCallback, failureCallback)
 		{
-			return $http.get("/getSchedule/:" + request.date).success(function(response){
-				successCallback(response);
-			}).error(function(){
-				failureCallback(null);
-			});
+			$http({
+                url: 'getSchedule',
+                method: "POST",
+                data: 'requestDate=' + request,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).success(function (data, status, headers, config) {
+                    successCallback(data);
+                }).error(function (data, status, headers, config) {
+                    failureCallback(data)
+                });
 		}
 	};
-    return patientService;
+    return schedulingService;
 });
