@@ -75,7 +75,8 @@ module.exports = function(app, passport, connection) {
     app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
         connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
             if (!err)
-                console.log('The solution is: ', rows);
+//                console.log('The solution is: ', rows);
+                console.log("/getDefNextAppPerm success");
             else
                 console.log('Error while performing Query.');
 
@@ -87,7 +88,8 @@ module.exports = function(app, passport, connection) {
     app.get('/getSchedule', isLoggedIn, function(req, res) {
         connection.query('SELECT * from schedule', function(err, rows, fields) {
             if (!err)
-                console.log('The solution is: ', rows);
+//                console.log('The solution is: ', rows);
+                console.log("/getSchedule success");
             else
                 console.log('Error while performing Query.');
 
@@ -106,7 +108,8 @@ module.exports = function(app, passport, connection) {
 
 		connection.query('SELECT * from PATIENTS', function(err, rows, fields) {
 			if (!err)
-				console.log('The solution is: ', rows);
+//				console.log('The solution is: ', rows);
+                console.log("/getNames success");
 			else
 		    	console.log('Error while performing Query.');
 
@@ -127,7 +130,8 @@ module.exports = function(app, passport, connection) {
 
                 connection.query('select * from PATIENTS where id = ?;', [ id ], function(err, rows, fields) {
                     if (!err)
-                        console.log('The solution is: ', rows);
+//                        console.log('The solution is: ', rows);
+                        console.log("/getPatientInfo success");
                     else
                         console.log('Error while performing Query.');
 

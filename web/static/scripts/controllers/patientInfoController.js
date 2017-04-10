@@ -4,7 +4,6 @@ angular.module('myApp').controller('patientInfoCtrl',
 		var indexOfHtml = window.location.href.indexOf(urlParam);
 		var viewDirectory = window.location.href.substr(0, indexOfHtml);
 		var patientID = window.location.href.substr(indexOfHtml + urlParam.length);
-		console.log(indexOfHtml + urlParam.length);
 
 		$scope.getNames = function() {
 			$http.get("/getNames").success(function (data) {
