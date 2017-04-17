@@ -75,7 +75,8 @@ module.exports = function(app, passport, connection) {
     app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
         connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
             if (!err)
-                console.log('The solution is: ', rows);
+                console.log("");
+//                console.log('The solution is: ', rows);
             else
                 console.log('Error while performing Query.');
 
@@ -249,7 +250,8 @@ module.exports = function(app, passport, connection) {
 
 		connection.query('SELECT * from PATIENTS', function(err, rows, fields) {
 			if (!err)
-				console.log('The solution is: ', rows);
+				console.log("");
+//				console.log('The solution is: ', rows);
 			else
 		    	console.log('Error while performing Query.');
 
@@ -270,7 +272,8 @@ module.exports = function(app, passport, connection) {
 
                 connection.query('select * from PATIENTS where id = ?;', [ id ], function(err, rows, fields) {
                     if (!err)
-                        console.log('The solution is: ', rows);
+                        console.log("");
+                        //console.log('The solution is: ', rows);
                     else
                         console.log('Error while performing Query.');
 
@@ -279,54 +282,34 @@ module.exports = function(app, passport, connection) {
                     res.end(json);
 
                 });
-
-
-/*
-                //var patientInfo = getPatientInfoFromDB(patientID);
-    			var patientInfo = {
-    				ID: id,
-    				Name: "Valeria Diaz",
-    				Image: "content/images/Globe.png",
-    				Classification: "Healthy",
-    				RiskFactor: "Medium",
-    				Sex: "Female",
-    				Zone: "4",
-    				Birthdate: "11/24/1991",
-    				AppointmentHistory: [
-    					{
-    						Date: "06/02/2014",
-    						Month: 1,
-    						Year: 2014,
-    						Age: 23,
-    						TypeID: 2,
-    						Prevalence: "Healthy",
-    						Notes: ""
-    					},
-    					{
-    						Date: "06/02/2014",
-    						Month: 1,
-    						Year: 2014,
-    						Age: 23,
-    						TypeID: 2,
-    						Prevalence: "Healthy",
-    						Notes: ""
-    					},
-    					{
-    						Date: "06/02/2014",
-    						Month: 1,
-    						Year: 2014,
-    						Age: 23,
-    						TypeID: 2,
-    						Prevalence: "Healthy",
-    						Notes: ""
-    					},
-
-    				]
-    			};
-*/
-
     		}
     	});
+    app.post('/createNewAppointment', isLoggedIn, function(req, res) {
+        var newAppointment = JSON.parse(req.body.newAppointment);
+        var newAppointmentPatientID = newAppointment.PatientID;
+        var newAppointmentTypeID = newAppointment.TypeID;
+        var newAppointmentDate = newAppointment.Date;
+        //TODO: create sql query inserts new appointment
+
+//		connection.query('DECLARE @PatientID = ' + newAppointmentPatientID + '; ' +
+//				'DECLARE @Type = SELECT TOP 1 ID FROM APPOINTMENT_TYPE WHERE ID = ' + newAppointmentTypeID + '; '+
+//				'DECLARE @Date = ' + newAppointmentDate + '; ' +
+//				'INSERT INTO APPOINTMENTS (PatientID, TypeID, Date) VALUES (@PatientID, @Type, @Date)',
+//			function(err, rows, fields)
+//			{
+//				if(!err)
+//					console.log('Rows inserted successfully');
+//				else
+//					console.log('Error while performing insert');
+//
+//				res.writeHead(200, {"Content-Type": "application/json"});
+//				var json = JSON.stringify(rows);
+//				res.end(json);
+//			});
+        res.writeHead(200, {"Content-Type": "application/json"});
+        var json = JSON.stringify("Success");
+        res.end(json);
+    });
 
 
 	//======================

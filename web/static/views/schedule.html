@@ -58,7 +58,7 @@
 			</div>
 			<div id="patientInfo" class="sidenav" ng-show="selectedPatient">
 				<a href="javascript:void(0)" class="closebtn" ng-click="closePatientInfo()">&times;</a>
-				<div class="row" ng-click="openPatientInformation(selectedPatient.ID)">
+				<div class="row" ng-click="openPatientInformation(selectedPatient.PatientID)">
 					<div class="col-xs-6" style="font-size:25px; color: white;">{{selectedPatient.Name}}</div>
 					<div class="col-xs-6"><img ng-src={{selectedPatient.Image}} alt="image" style="width:100px;height:100;"></div>
 				</div>
