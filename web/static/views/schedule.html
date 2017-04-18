@@ -16,19 +16,19 @@
     <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="content/custom/schedule.css">
-	<title>SCHEDULE</title>
+	<title>HORARIO</title>
 </head>
-<body style="background-color: #455a64; color: white;">
+<body style="background-color: #f4f3ed; color: white;">
 	<div ng-app="myApp" ng-controller="scheduleCtrl">
 		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
-			<div class="col-xs-4">
-				<h5>YESTERDAY</h5>
+			<div style="color:#2f8ce2;" class="col-xs-4">
+				<h5>AYER</h5>
 			</div>
 			<div class="col-xs-4" style="background-color: #64b5f6">
-				<h5>TODAY</h5>
+				<h5>HOY</h5>
 			</div>
-			<div class="col-xs-4">
-				<h5>TOMORROW</h5>
+			<div style="color:#2f8ce2;" class="col-xs-4">
+				<h5>MAÑANA</h5>
 			</div>
 		</div>
 		<div class="left" align="center" style="margin-top: 10px">
@@ -42,7 +42,7 @@
 		</div>
 		<div class="main">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
-				<table style="color: white; font-size: 15px;" width="100%" rules="rows">
+				<table style="color:#2e8adf; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
 						<td width="65%">Pacientes</td>
 						<td>Hora</td>
@@ -58,7 +58,7 @@
 			<div id="patientInfo" class="sidenav" ng-show="selectedPatient">
 				<a href="javascript:void(0)" class="closebtn" ng-click="closePatientInfo()">&times;</a>
 				<div class="row" ng-click="openPatientInformation(selectedPatient.ID)">
-					<div class="col-xs-6" style="font-size:25px; color: white;">{{selectedPatient.Name}}</div>
+					<div class="col-xs-6" style="font-size:25px; color:2e8adf;">{{selectedPatient.Name}}</div>
 					<div class="col-xs-6"><img ng-src={{selectedPatient.Image}} alt="image" style="width:100px;height:100;"></div>
 				</div>
 				<table>

@@ -15,10 +15,10 @@
     <link rel="stylesheet" type="text/css" href="content/custom/schedule.css">
 	<title>SCHEDULE</title>
 </head>
-<body style="background-color: #455a64; color: white;">
+<body style="background-color: #f4f3ed; color: white;">
 	<div ng-app="myApp" ng-controller="patientListCtrl">
 		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
-			<h4>Lista de Pacientes</h4>
+			<h4 style="color:#2e8adf;">Lista de Pacientes</h4>
 			<div align="right" style="padding-right: 30px;"><a href="/createPatient"><i class="fa fa-plus fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>			
 		</div>
 		<div class="left" align="center" style="margin-top: 10px">
@@ -32,12 +32,12 @@
 		</div>
 		<div class="main">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
-				<table style="color: white; font-size: 15px;" width="100%" rules="rows">
+				<table style="color:#2e8adf; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
 						<td width="20px;"></td>
 						<td>Nombre</td>
-						<td>Patient ID</td>
-						<td>Risk Factor</td>
+						<td>Identificación del Paciente</td>
+						<td>Factores de Riesgo</td>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold;">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
@@ -48,7 +48,7 @@
 				</table>
 			</div>
 			<div class="footer navbar-fixed-bottom" style="color: #626465; text-align: center; background-color: white; font-size: 25px;">
-				<button onclick="window.location.href='/home'"><a href="/home"><i class="fa fa-arrow-left" aria-hidden="true"></i>Home</a></button>
+				<button onclick="window.location.href='/home'"><a href="/home"><i class="fa fa-arrow-left" aria-hidden="true"></i>Vivienda</a></button>
 			</div>
 		</div>
 	</div>
