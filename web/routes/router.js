@@ -72,6 +72,10 @@ module.exports = function(app, passport, connection) {
             res.sendFile(path.join(__dirname + '/../static/views/createPatient.html'));
     });
 
+    app.get('/editPatient', isLoggedIn, function(req, res) {
+            res.sendFile(path.join(__dirname + '/../static/views/editPatient.html'));
+    });
+
     app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
         connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
             if (!err)
@@ -319,8 +323,18 @@ module.exports = function(app, passport, connection) {
 	//=====================
 
 var qs = require('querystring');
-app.post('/addNewPatient', isLoggedIn, function (req, res) {
+app.post('/addNewPatient', function (req, res) {
 		console.log("Post request received!")
+        console.log(req.body.DOB);
+
+        connection.query(
+            'INSERT INTO PATIENTS (Name, DOB, DescriptivePatientID, FamilyID, ECOName, ZoneID, Sex, GroupID, RiskFactor, ChronicIllness, Notes)' + 
+            ' VALUES ("'+req.body.name+'", STR_TO_DATE("'+req.body.DOB+'", \'%d-%m-%Y\'), "'+req.body.patientID+'", "'+req.body.familyID+'", "'+req.body.ecoName+'", "'+req.body.zoneID+'", "'+req.body.gender+'", "'+req.body.groupID+'", "'+req.body.riskFactor+'", "'+req.body.chronicIllness+'", "'+req.body.notes+'")', 
+            function(err, res){
+                if(err)
+                    throw err;
+            });
+
 		var jsonString = '';
 		req.on('data', function(data) {
 			jsonString += data;
@@ -331,6 +345,31 @@ app.post('/addNewPatient', isLoggedIn, function (req, res) {
 		});
   		res.send(201)
 	});
+
+app.post('/editPatient', function (req, res) {
+        console.log("Post request received!")
+        console.log(req.body.DOB);
+        var id = req.query.patientID;
+
+        connection.query(
+            'UPDATE PATIENTS ' + 
+            'SET Name="'+req.body.name+'", DOB=STR_TO_DATE("'+req.body.DOB+'", \'%d-%m-%Y\'), DescriptivePatientID="'+req.body.patientID+'", FamilyID="'+req.body.familyID+'", ECOName="'+req.body.ecoName+'", ZoneID="'+req.body.zoneID+'", Sex="'+req.body.gender+'", GroupID="'+req.body.groupID+'", RiskFactor="'+req.body.riskFactor+'", ChronicIllness="'+req.body.chronicIllness+'", Notes="'+req.body.notes+'" ' + 
+            'WHERE ID='+id, 
+            function(err, res){
+                if(err)
+                    throw err;
+            });
+
+        var jsonString = '';
+        req.on('data', function(data) {
+            jsonString += data;
+            console.log(JSON.parse(jsonString));
+        });
+        req.on('end', function(){
+            console.log(JSON.parse(jsonString));
+        });
+        res.send(201)
+    });
 
 	// =====================================
 	// LOGOUT ==============================

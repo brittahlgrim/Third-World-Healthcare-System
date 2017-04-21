@@ -50,6 +50,7 @@ angular.module("myApp").factory('schedulingService', function($http) {
                     failureCallback(data)
                 });
 		}
+		
 	};
     return schedulingService;
 });
