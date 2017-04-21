@@ -36,48 +36,48 @@
 			<br/>
 			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
 		</div>
-		<div class="main">
+		<div class="main" style="color:#2e8adf">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
 				<div class="row">
 					<div class="col-xs-4">
 						<br/>
 						<div class="row">
-							<div class="col-xs-6">Name:</div>
+							<div class="col-xs-6">Nombre:</div>
 							<input type="text" name="name" ng-model="new_patient.Name" required>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Date of Birth:</div>
+							<div class="col-xs-6">Fecha de Nacimiento:</div>
 							<input type="text" placeholder="dd-mm-yyyy" name="DOB" ng-model="new_patient.DOB" required>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Patient ID:</div>
+							<div class="col-xs-6">ID del paciente:</div>
 							<input type="text" name="descriptivePatientID" ng-model="new_patient.DescriptivePatientID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">No. of People in Family:</div>
+							<div class="col-xs-6">Personas en la familia:</div>
 							<input type="number" name="familyID" ng-model="new_patient.FamilyID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">ECO Name:</div>
+							<div class="col-xs-6">Nombre del Eco:</div>
 							<input type="text" name="ECO" ng-model="new_patient.ECOName">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Zone:</div>
+							<div class="col-xs-6">Zona:</div>
 							<input type="number" name="zoneID" ng-model="new_patient.ZoneID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Sex:</div>
+							<div class="col-xs-6">Sexo:</div>
 							<form>
 								<label>
-									<input type="radio" name="sex" ng-model="new_patient.Sex" value="M">Male    
+									<input type="radio" name="sex" ng-model="new_patient.Sex" value="M">Hombre    
 								</label>
 								<label>
-									<input type="radio" name="sex" ng-model="new_patient.Sex" value="F">Female    
+									<input type="radio" name="sex" ng-model="new_patient.Sex" value="F">Mujer    
 								</label>
 							</form>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Group Classification:</div>
+							<div class="col-xs-6">Classification del Grupo:</div>
 							<form>
 								<label>
 									<input type="radio" name="group" ng-model="new_patient.GroupID" value="1">I    
@@ -94,15 +94,12 @@
 							</form>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Risk Factor:</div>
+							<div class="col-xs-6">Factores de Riesgo:</div>
 							<select name="riskFactor">
-								<option ng-model="new_patient.RiskFactor" value="Option 1">Option 1</option>
-								<option ng-model="new_patient.RiskFactor" value="Option 2">Option 2</option>
-								<option ng-model="new_patient.RiskFactor" value="Option 3">Option 3</option>
-								<option ng-model="new_patient.RiskFactor" value="Option 4">Option 4</option>
-								<option ng-model="new_patient.RiskFactor" value="Option 5">Option 5</option>
+								<option ng-repeat="x in factors">{{x.risk}}</option>
 							</select>
 						</div>
+
 						<div class="row">
 							<div class="col-xs-6">Chronic Illness:</div>
 							<input type="text" name="chronicIllness" ng-model="new_patient.ChronicIllness">
@@ -114,8 +111,7 @@
 						<div class="row">
 							<button ng-click="create_patient()">Create Patient</button>
 						</div>
-					</div>
-		
+					</div>		
 				</div>
 			</div>
 		</div>
