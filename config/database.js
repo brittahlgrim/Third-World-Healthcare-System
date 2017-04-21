@@ -3,7 +3,7 @@ module.exports = {
     'connection': {
         'host': 'localhost',
         'user': 'root',
-        'password': 'benbrittdavidjpsydney'
+        'password': 'gold20'
     },
 	'database': 'twhs_test_db',
     'users_table': 'authentication'

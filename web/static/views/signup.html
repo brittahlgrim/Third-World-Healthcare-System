@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Autenticación para el Nodo</title>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
@@ -14,7 +14,7 @@
         body        { padding-top:80px; }
     </style>
 </head>
-<body style="background-color: #455a64; color: white;">
+<body style="background-color: #f4f3ed; color: white;">
 
 <div ng-app="myApp" ng-controller="signupCtrl" align="center" style="font-family: Tahoma, Geneva, sans-serif;">
     <div class="container" style="display:table;">
@@ -22,8 +22,11 @@
             <div class="col-sm-6 vertical-center">
                 <img src="content/images/Globe.png" width="250px;" style="display: table-cell; float: none; vertical-align: middle;"/>
             </div>
+            <div class="col-sm-6 vertical-center">
+                <img src="https://s-media-cache-ak0.pinimg.com/originals/59/94/92/5994925c96c65cf265d964053ec4c541.png" width="250px;" style="display: table-cell; float: none; vertical-align: middle;"/>
+            </div>
             <div class="col-sm-6">
-                <h1>Signup</h1>
+                <h1 style="color:#2f8ce2;">Regístrate</h1>
 
                 <!-- show any messages that come back with authentication -->
                 <!--<% if (message.length > 0) { %>-->
@@ -33,21 +36,21 @@
                 <!-- LOGIN FORM -->
                 <form action="/signup" method="post">
                     <div class="form-group">
-                        <label>Username</label>
+                        <label style="color:#2f8ce2;">Nombre de Usuario</label>
                         <input type="text" class="form-control" name="username">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
+                        <label style="color:#2f8ce2;">Contraseña</label>
                         <input type="password" class="form-control" name="password">
                     </div>
 
-                    <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+                    <button type="submit" class="btn btn-warning btn-lg">Regístrate</button>
                 </form>
 
                 <hr>
 
-                <p>Already have an account? <a href="/login">Login</a></p>
-                <p>Or go <a href="/">home</a>.</p>
+                <p style="color:#2f8ce2;">¿Ya tienes una cuenta? <a href="/login">Iniciar Sesión</a></p>
+                <p style="color:#2f8ce2;">¿O navegar a? <a href="/">Vivienda</a>.</p>
             </div>
         </div>
     </div>

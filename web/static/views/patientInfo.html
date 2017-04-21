@@ -67,97 +67,94 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="left" align="center" style="margin-top: 10px">
-		<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-		<br/>
-		<br/>
-		<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-		<br/>
-		<br/>
-		<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-	</div>
-	<div class="main">
-		<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
-			<div class="row">
-				<div class="col-xs-4">
-					<br/>
-					<div class="row">
-						<div class="col-xs-6">Classification:</div>
-						<div class="col-xs-6">{{patient.GroupID}}</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">Risk Factor:</div>
-						<div class="col-xs-6">{{patient.RiskFactor}}</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">Birthdate:</div>
-						<div class="col-xs-6">{{patient.DOB}}</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">Sex:</div>
-						<div class="col-xs-6">{{patient.Gender}}</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">Zone:</div>
-						<div class="col-xs-6">{{patient.Zone}}</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6">Info:</div>
-						<div class="col-xs-6">{{patient.Name}} {{patient.owner}}</div>
-					</div>
-				</div>
-				<div class="col-xs-8">
-					<div id="Details" class="tabcontent">
-						<h3>Details</h3>
-						<div>
-							Description: Overall Valeria is a good patient with no major issues. Her family consists of
-							her mother, brother, and a cousin.
-							<br/>
-							Risk Factor: Her risk factor is medium because she is living in the industrial sector.
-							<br/>
-							Classification: The patient's classification is considered healthy because there are no
-							major issues associated with their health.
+		<div class="left" align="center" style="margin-top: 10px">
+			<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+			<br/>
+			<br/>
+			<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+			<br/>
+			<br/>
+			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+		</div>
+		<div class="main" style="color:blue">
+			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
+				<div class="row">
+					<div class="col-xs-4">
+						<br/>
+						<div class="row">
+							<div class="col-xs-6">Classificatión:</div>
+							<div class="col-xs-6">{{patient.GroupID}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Factores de Reisgo:</div>
+							<div class="col-xs-6">{{patient.RiskFactor}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Fecha de nacimiento:</div>
+							<div class="col-xs-6">{{patient.DOB}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Sexo:</div>
+							<div class="col-xs-6">{{patient.Gender}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Zona:</div>
+							<div class="col-xs-6">{{patient.Zone}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Information:</div>
+							<div class="col-xs-6">{{patient.Name}} {{patient.owner}}</div>
 						</div>
 					</div>
-					<div id="AppointmentHistory" class="tabcontent">
-						<h3>Appointment History</h3>
-						<div>
-							<table>
-								<tr style="font-weight: bold">
-									<td style="padding: 10px;">Year</td>
-									<td style="padding: 10px">Age</td>
-									<td style="padding: 10px">Incidence</td>
-									<td style="padding: 10px">Prevalence</td>
-									<td style="padding: 10px">Month</td>
-								</tr>
-								<tr>
-									<td style="padding: 10px">2014</td>
-									<td style="padding: 10px">23</td>
-									<td style="padding: 10px">Home visit</td>
-									<td style="padding: 10px">Healthy</td>
-									<td style="padding: 10px">Feb</td>
-								</tr>
-								<tr>
-									<td style="padding: 10px">2015</td>
-									<td style="padding: 10px">24</td>
-									<td style="padding: 10px">Consultation</td>
-									<td style="padding: 10px">Healthy</td>
-									<td style="padding: 10px">Jul</td>
-								</tr>
-								<tr>
-									<td style="padding: 10px">2016</td>
-									<td style="padding: 10px">25</td>
-									<td style="padding: 10px">Home Visit</td>
-									<td style="padding: 10px">Healthy</td>
-									<td style="padding: 10px">Dec</td>
-								</tr>
-							</table>
+					<div class="col-xs-8">
+						<div id="Details" class="tabcontent">
+							<h3>Detalles</h3>
+							<div>
+								Descripción: En general, Valeria es un paciente sano sin grandes problemas. Su familia consiste en su madre, hermano, y un primo
+								<br/>
+								Factor de riesgo: Su factor de riesgo es medio porque vive en el sector industrial.
+								<br/>
+								Clasificación: La clasificación del paciente se considera saludable porque no hay problemas importantes asociados con su salud.
+							</div>
 						</div>
-					</div>
-					<div id="Family" class="tabcontent">
-						<h3>Family</h3>
-						<p>Family information</p>
+						<div id="AppointmentHistory" class="tabcontent">
+							<h3>Historia de Citas</h3>
+							<div>
+								<table>
+									<tr style="font-weight: bold">
+										<td style="padding: 10px;">Año</td>
+										<td style="padding: 10px">Edad</td>
+										<td style="padding: 10px">Incidencia</td>
+										<td style="padding: 10px">Prevalencia</td>
+										<td style="padding: 10px">Mes</td>
+									</tr>
+									<tr>
+										<td style="padding: 10px">2014</td>
+										<td style="padding: 10px">23</td>
+										<td style="padding: 10px">Visita a la Casa</td>
+										<td style="padding: 10px">Sana</td>
+										<td style="padding: 10px">Feb</td>
+									</tr>
+									<tr>
+										<td style="padding: 10px">2015</td>
+										<td style="padding: 10px">24</td>
+										<td style="padding: 10px">Consultation</td>
+										<td style="padding: 10px">Sana</td>
+										<td style="padding: 10px">Jul</td>
+									</tr>
+									<tr>
+										<td style="padding: 10px">2016</td>
+										<td style="padding: 10px">25</td>
+										<td style="padding: 10px">Visita a la casa</td>
+										<td style="padding: 10px">Sana</td>
+										<td style="padding: 10px">Dec</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div id="Family" class="tabcontent">
+							<h3>Familia</h3>
+							<p>Information de la Familia</p>
 					</div>
 				</div>
 				<div class="col-xs-12" style="text-align: center;">

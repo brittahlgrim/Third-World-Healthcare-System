@@ -13,6 +13,14 @@ angular.module('myApp').controller('patientInfoCtrl',
 			});
 		};
 
+
+	$scope.factors = [ 
+        {risk:'smoking'},
+        {risk:'drugs'},
+        {risk:'exposure to chemicals'}
+			];
+
+
 		var getPatientInfo = function(){
 			var successCallback = function(response){
 				$scope.patient = response;
