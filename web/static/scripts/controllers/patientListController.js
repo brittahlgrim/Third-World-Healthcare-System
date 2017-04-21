@@ -6,7 +6,6 @@ angular.module('myApp').controller('patientListCtrl',
 		};
 
 
-//	$scope.RiskFactors = [{risk:smoking},{risk:disease},{risk:donald trump}];
 
 
 //Trial function to get risk factors from the mysql table
