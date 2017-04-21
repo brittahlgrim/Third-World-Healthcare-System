@@ -35,6 +35,20 @@ angular.module("myApp").factory('schedulingService', function($http) {
                 }).error(function (data, status, headers, config) {
                     failureCallback(data)
                 });
+		},
+		createNewAppointment: function(request, successCallback, failureCallback)
+		{
+			console.log(request);
+			$http({
+                url: 'createNewAppointment',
+                method: "POST",
+                data: 'newAppointment=' + JSON.stringify(request),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).success(function (data, status, headers, config) {
+                    successCallback(data);
+                }).error(function (data, status, headers, config) {
+                    failureCallback(data)
+                });
 		}
 	};
     return schedulingService;

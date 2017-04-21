@@ -1,132 +1,210 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
-    <!--JQUERY must be before angular-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="content/underscore/underscore-min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script type="text/javascript" src="scripts/app.js"></script>
-    <script type="text/javascript" src="scripts/controllers/patientInfoController.js"></script>
+	<!--JQUERY must be before angular-->
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$.datepicker.regional['es'] = {
+			closeText: 'Cerrar',
+			prevText: '< Ant',
+			nextText: 'Sig >',
+			currentText: 'Hoy',
+			monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+			dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+			weekHeader: 'Sm',
+			dateFormat: 'dd/mm/yy',
+			firstDay: 1,
+			isRTL: false,
+			showMonthAfterYear: false,
+			yearSuffix: ''
+		};
+		$.datepicker.setDefaults($.datepicker.regional['es']);
+		$(function () {
+		$("#fecha").datepicker();
+		});
 
-    <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="content/custom/schedule.css">
+	</script>
+	<script type="text/javascript" src="content/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/controllers/patientInfoController.js"></script>
+	<script type="text/javascript" src="scripts/services/schedulingService.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="content/custom/patientInfo.css">
 	<title>PATIENT INFORMATION</title>
 </head>
 <body style="background-color: #455a64; color: white;">
-	<div ng-app="myApp" ng-controller="patientInfoCtrl">
-		<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
-			<div class="row">
-				<div class="col-xs-4">
-					<h3>{{patient.Name}}</h3>
-				</div>
-				<div class="col-xs-8">
-					<div class="row" style="color: #64b5f6; margin-top: 10px; margin-bottom: 10px; margin-right: 40px;" align="center">
-						<div class="col-xs-4" ng-click="tabClick('Details')" style="border-right: solid 1px #64b5f6;border-left: solid 1px #64b5f6;">Details</div>
-						<div class="col-xs-4" ng-click="tabClick('AppointmentHistory')" style="border-right: solid 1px #64b5f6;border-left: solid 1px #64b5f6;">History</div>
-						<div class="col-xs-4" ng-click="tabClick('Family')" style="border-right: solid 1px #64b5f6;border-left: solid 1px #64b5f6;">Family</div>
+<div ng-app="myApp" ng-controller="patientInfoCtrl">
+	<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
+		<div class="row">
+			<div class="col-xs-4">
+				<h3>{{patient.Name}}</h3>
+			</div>
+			<div class="col-xs-8">
+				<div class="row" style="color: #64b5f6; margin-top: 10px; margin-bottom: 10px; margin-right: 40px;"
+				     align="center">
+					<div class="col-xs-4" ng-click="tabClick('Details')"
+					     style="border-right: solid 1px #64b5f6;border-left: solid 1px #64b5f6;">Details
+					</div>
+					<div class="col-xs-4" ng-click="tabClick('AppointmentHistory')"
+					     style="border-right: solid 1px #64b5f6;border-left: solid 1px #64b5f6;">History
+					</div>
+					<div class="col-xs-4" ng-click="tabClick('Family')"
+					     style="border-right: solid 1px #64b5f6;border-left: solid 1px #64b5f6;">Family
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="left" align="center" style="margin-top: 10px">
-			<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-			<br/>
-			<br/>
-			<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-			<br/>
-			<br/>
-			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-		</div>
-		<div class="main">
-			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
-				<div class="row">
-					<div class="col-xs-4">
-						<br/>
-						<div class="row">
-							<div class="col-xs-6">Classification:</div>
-							<div class="col-xs-6">{{patient.GroupID}}</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">Risk Factor:</div>
-							<div class="col-xs-6">{{patient.RiskFactor}}</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">Birthdate:</div>
-							<div class="col-xs-6">{{patient.DOB}}</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">Sex:</div>
-							<div class="col-xs-6">{{patient.Gender}}</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">Zone:</div>
-							<div class="col-xs-6">{{patient.Zone}}</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">Info:</div>
-							<div class="col-xs-6">{{patient.Name}} {{patient.owner}}</div>
+	</div>
+	<div class="left" align="center" style="margin-top: 10px">
+		<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+		<br/>
+		<br/>
+		<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+		<br/>
+		<br/>
+		<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+	</div>
+	<div class="main">
+		<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
+			<div class="row">
+				<div class="col-xs-4">
+					<br/>
+					<div class="row">
+						<div class="col-xs-6">Classification:</div>
+						<div class="col-xs-6">{{patient.GroupID}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">Risk Factor:</div>
+						<div class="col-xs-6">{{patient.RiskFactor}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">Birthdate:</div>
+						<div class="col-xs-6">{{patient.DOB}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">Sex:</div>
+						<div class="col-xs-6">{{patient.Gender}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">Zone:</div>
+						<div class="col-xs-6">{{patient.Zone}}</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">Info:</div>
+						<div class="col-xs-6">{{patient.Name}} {{patient.owner}}</div>
+					</div>
+				</div>
+				<div class="col-xs-8">
+					<div id="Details" class="tabcontent">
+						<h3>Details</h3>
+						<div>
+							Description: Overall Valeria is a good patient with no major issues. Her family consists of
+							her mother, brother, and a cousin.
+							<br/>
+							Risk Factor: Her risk factor is medium because she is living in the industrial sector.
+							<br/>
+							Classification: The patient's classification is considered healthy because there are no
+							major issues associated with their health.
 						</div>
 					</div>
-					<div class="col-xs-8">
-						<div id="Details" class="tabcontent">
-							<h3>Details</h3>
-							<div>
-								Description: Overall Valeria is a good patient with no major issues. Her family consists of her mother, brother, and a cousin.
-								<br/>
-								Risk Factor: Her risk factor is medium because she is living in the industrial sector.
-								<br/>
-								Classification: The patient's classification is considered healthy because there are no major issues associated with their health.
-							</div>
+					<div id="AppointmentHistory" class="tabcontent">
+						<h3>Appointment History</h3>
+						<div>
+							<table>
+								<tr style="font-weight: bold">
+									<td style="padding: 10px;">Year</td>
+									<td style="padding: 10px">Age</td>
+									<td style="padding: 10px">Incidence</td>
+									<td style="padding: 10px">Prevalence</td>
+									<td style="padding: 10px">Month</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px">2014</td>
+									<td style="padding: 10px">23</td>
+									<td style="padding: 10px">Home visit</td>
+									<td style="padding: 10px">Healthy</td>
+									<td style="padding: 10px">Feb</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px">2015</td>
+									<td style="padding: 10px">24</td>
+									<td style="padding: 10px">Consultation</td>
+									<td style="padding: 10px">Healthy</td>
+									<td style="padding: 10px">Jul</td>
+								</tr>
+								<tr>
+									<td style="padding: 10px">2016</td>
+									<td style="padding: 10px">25</td>
+									<td style="padding: 10px">Home Visit</td>
+									<td style="padding: 10px">Healthy</td>
+									<td style="padding: 10px">Dec</td>
+								</tr>
+							</table>
 						</div>
-						<div id="AppointmentHistory" class="tabcontent">
-							<h3>Appointment History</h3>
-							<div>
-								<table>
-									<tr style="font-weight: bold">
-										<td style="padding: 10px;">Year</td>
-										<td style="padding: 10px">Age</td>
-										<td style="padding: 10px">Incidence</td>
-										<td style="padding: 10px">Prevalence</td>
-										<td style="padding: 10px">Month</td>
-									</tr>
-									<tr>
-										<td style="padding: 10px">2014</td>
-										<td style="padding: 10px">23</td>
-										<td style="padding: 10px">Home visit</td>
-										<td style="padding: 10px">Healthy</td>
-										<td style="padding: 10px">Feb</td>
-									</tr>
-									<tr>
-										<td style="padding: 10px">2015</td>
-										<td style="padding: 10px">24</td>
-										<td style="padding: 10px">Consultation</td>
-										<td style="padding: 10px">Healthy</td>
-										<td style="padding: 10px">Jul</td>
-									</tr>
-									<tr>
-										<td style="padding: 10px">2016</td>
-										<td style="padding: 10px">25</td>
-										<td style="padding: 10px">Home Visit</td>
-										<td style="padding: 10px">Healthy</td>
-										<td style="padding: 10px">Dec</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="Family" class="tabcontent">
-							<h3>Family</h3>
-							<p>Family information</p>
+					</div>
+					<div id="Family" class="tabcontent">
+						<h3>Family</h3>
+						<p>Family information</p>
+					</div>
+				</div>
+				<div class="col-xs-12" style="text-align: center;">
+					<!-- Trigger/Open The Modal -->
+					<button id="myBtn">Open Modal</button>
+					<!-- The Modal -->
+					<div id="myModal" class="modal">
+						<!-- Modal content -->
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<p>
+							<form ng-submit="createNewAppointment()">
+								<h2>
+									Add New Appointment
+								</h2>
+								<div class="row">
+									<div class="col-xs-6">
+										Patient Name:
+									</div>
+									<div class="col-xs-6">
+										{{patient.Name}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">Appointment Type:</div>
+									<div class="col-xs-6">
+										<select name="appointmentType" ng-model="newAppointment.TypeID">
+											<option ng-repeat="t in visitTypes" value={{t.ID}}>{{t.Name}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">Date:</div>
+									<div class="col-xs-6">
+										<input type="text" id="datepicker" ng-model="newAppointment.Date">
+									</div>
+								</div>
+								<br><br>
+								<input type="submit">
+							</form>
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>
