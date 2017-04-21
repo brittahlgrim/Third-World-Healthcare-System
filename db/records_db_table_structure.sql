@@ -1192,7 +1192,7 @@ CREATE TABLE `PATIENTS` (
   `DOB` date NOT NULL,
   `DescriptivePatientID` varchar(150),
   `FamilyID` int(11) DEFAULT NULL,
-  `ECOName` int(11) DEFAULT NULL,
+  `ECOName` varchar(150),
   `ZoneID` int(11) DEFAULT NULL,
   `Sex` char(1) DEFAULT NULL,
   `GroupID` int(11) DEFAULT NULL,

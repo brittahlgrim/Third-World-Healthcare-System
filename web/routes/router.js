@@ -67,8 +67,178 @@ module.exports = function(app, passport, connection) {
     app.get('/schedule', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/schedule.html'));
     });
+
     app.get('/createPatient', isLoggedIn, function(req, res) {
             res.sendFile(path.join(__dirname + '/../static/views/createPatient.html'));
+    });
+
+    app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
+        connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
+            if (!err)
+                console.log("");
+//                console.log('The solution is: ', rows);
+            else
+                console.log('Error while performing Query.');
+
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+        });
+    });
+    app.post('/getSchedule', isLoggedIn, function(req, res) {
+        var requestDate = req.body.requestDate;
+        //TODO: create sql query that uses this date to search the database for appointments
+        //TODO: for the time being, use the hardcoded rows variable, once sql is implemented, remove everything below sql connection
+
+//        connection.query('SELECT * from schedule', function(err, rows, fields) {
+//            if (!err)
+//                console.log('The solution is: ', rows);
+//            else
+//                console.log('Error while performing Query.');
+//
+//            res.writeHead(200, {"Content-Type": "application/json"});
+//            var json = JSON.stringify(rows);
+//            res.end(json);
+//        });
+        var rows = [
+	                    {
+	                        ID: 1,
+	                        Appointment: {
+	                            Type: {
+	                                ID: 1,
+	                                Name: "Consultation"
+	                            },
+	                            Date: "2017-04-05"
+	                        },
+	                        Patient: {
+	                            PatientID: 1,
+	                            Name: "Jason Todd",
+	                              Image: "content/images/Globe.png",
+	                              Classification: "Healthy",
+	                              RiskFactor: "Medium",
+	                              Sex: "Male",
+	                              Zone: "4"
+	                        }
+	                    },
+	                    {
+	                        ID: 2,
+	                        Appointment: {
+	                            Type: {
+	                                ID: 2,
+	                                Name: "Consultation"
+	                            },
+	                            Date: "2017-04-05"
+	                        },
+	                        Patient: {
+	                            PatientID: 2,
+	                            Name: "Mary Lincoln",
+	                            Image: "content/images/Globe.png",
+	                            Classification: "Critical",
+	                            RiskFactor: "High",
+	                            Sex: "Female",
+	                            Zone: "4"
+	                        }
+	                    },
+	                      {
+	                          ID: 3,
+	                          Appointment: {
+	                              Type: {
+	                                  ID: 3,
+	                                  Name: "Consultation"
+	                              },
+	                              Date: "2017-04-05"
+	                          },
+	                          Patient: {
+	                              PatientID: 3,
+	                            Name: "Joe Smith",
+	                            Image: "content/images/Globe.png",
+	                            Classification: "Healthy",
+	                            RiskFactor: "Low",
+	                            Sex: "Male",
+	                            Zone: "4"
+	                          }
+	                      },
+	                      {
+	                          ID: 4,
+	                          Appointment: {
+	                              Type: {
+	                                ID: 4,
+	                                Name: "Consultation"
+	                              },
+	                              Date: "2017-04-05"
+	                          },
+	                          Patient: {
+	                              PatientID: 4,
+	                              Name: "John Cena",
+	                              Image: "content/images/Globe.png",
+	                              Classification: "Healthy",
+	                              RiskFactor: "Low",
+	                              Sex: "Male",
+	                              Zone: "4"
+	                          }
+	                      },
+	                      {
+	                        ID: 5,
+	                        Appointment: {
+	                              Type: {
+	                                ID: 5,
+	                                Name: "Consultation"
+	                              },
+	                              Date: "2017-04-05"
+	                          },
+	                        Patient: {
+	                            PatientID: 5,
+	                            Name: "Jenny Cena",
+	                            Image: "content/images/Globe.png",
+	                            Classification: "Healthy",
+	                            RiskFactor: "Low",
+	                            Sex: "Female",
+	                            Zone: "3"
+	                        }
+	                    },
+	                    {
+	                          ID: 6,
+	                          Appointment: {
+	                              Type: {
+	                                ID: 6,
+	                                Name: "Consultation"
+	                              },
+	                              Date: "2017-04-05"
+	                          },
+	                          Patient: {
+	                              PatientID: 6,
+	                            Name: "Addison Henning",
+	                            Image: "content/images/Globe.png",
+	                            Classification: "Healthy",
+	                            RiskFactor: "Low",
+	                            Sex: "Female",
+	                            Zone: "3"
+	                          }
+	                      },
+	                      {
+	                        ID: 7,
+	                        Appointment: {
+	                              Type: {
+	                                ID: 7,
+	                                Name: "Consultation"
+	                              },
+	                              Date: "2017-04-05"
+	                          },
+	                        Patient: {
+	                            PatientID: 7,
+	                            Name: "George Hill",
+	                            Image: "content/images/Globe.png",
+	                            Classification: "Healthy",
+	                            RiskFactor: "Low",
+	                            Sex: "Male",
+	                            Zone: "3"
+	                        }
+	                    }
+	                ];
+        res.writeHead(200, {"Content-Type": "application/json"});
+        var json = JSON.stringify(rows);
+        res.end(json);
+
     });
     app.get('/patientInfo', isLoggedIn, function(req, res) {
         if(req.query.patientID)
@@ -76,11 +246,12 @@ module.exports = function(app, passport, connection) {
         else
             res.redirect('/patientList');
     });
-    app.get('/getNames', function(req, res){
+    app.get('/getNames', isLoggedIn, function(req, res){
 
 		connection.query('SELECT * from PATIENTS', function(err, rows, fields) {
 			if (!err)
-				console.log('The solution is: ', rows);
+				console.log("");
+//				console.log('The solution is: ', rows);
 			else
 		    	console.log('Error while performing Query.');
 
@@ -101,7 +272,8 @@ module.exports = function(app, passport, connection) {
 
                 connection.query('select * from PATIENTS where id = ?;', [ id ], function(err, rows, fields) {
                     if (!err)
-                        console.log('The solution is: ', rows);
+                        console.log("");
+                        //console.log('The solution is: ', rows);
                     else
                         console.log('Error while performing Query.');
 
@@ -110,55 +282,53 @@ module.exports = function(app, passport, connection) {
                     res.end(json);
 
                 });
-
-
-/*
-                //var patientInfo = getPatientInfoFromDB(patientID);
-    			var patientInfo = {
-    				ID: id,
-    				Name: "Valeria Diaz",
-    				Image: "content/images/Globe.png",
-    				Classification: "Healthy",
-    				RiskFactor: "Medium",
-    				Sex: "Female",
-    				Zone: "4",
-    				Birthdate: "11/24/1991",
-    				AppointmentHistory: [
-    					{
-    						Date: "06/02/2014",
-    						Month: 1,
-    						Year: 2014,
-    						Age: 23,
-    						TypeID: 2,
-    						Prevalence: "Healthy",
-    						Notes: ""
-    					},
-    					{
-    						Date: "06/02/2014",
-    						Month: 1,
-    						Year: 2014,
-    						Age: 23,
-    						TypeID: 2,
-    						Prevalence: "Healthy",
-    						Notes: ""
-    					},
-    					{
-    						Date: "06/02/2014",
-    						Month: 1,
-    						Year: 2014,
-    						Age: 23,
-    						TypeID: 2,
-    						Prevalence: "Healthy",
-    						Notes: ""
-    					},
-
-    				]
-    			};
-*/
-
     		}
     	});
+    app.post('/createNewAppointment', isLoggedIn, function(req, res) {
+        var newAppointment = JSON.parse(req.body.newAppointment);
+        var newAppointmentPatientID = newAppointment.PatientID;
+        var newAppointmentTypeID = newAppointment.TypeID;
+        var newAppointmentDate = newAppointment.Date;
+        //TODO: create sql query inserts new appointment
 
+//		connection.query('DECLARE @PatientID = ' + newAppointmentPatientID + '; ' +
+//				'DECLARE @Type = SELECT TOP 1 ID FROM APPOINTMENT_TYPE WHERE ID = ' + newAppointmentTypeID + '; '+
+//				'DECLARE @Date = ' + newAppointmentDate + '; ' +
+//				'INSERT INTO APPOINTMENTS (PatientID, TypeID, Date) VALUES (@PatientID, @Type, @Date)',
+//			function(err, rows, fields)
+//			{
+//				if(!err)
+//					console.log('Rows inserted successfully');
+//				else
+//					console.log('Error while performing insert');
+//
+//				res.writeHead(200, {"Content-Type": "application/json"});
+//				var json = JSON.stringify(rows);
+//				res.end(json);
+//			});
+        res.writeHead(200, {"Content-Type": "application/json"});
+        var json = JSON.stringify("Success");
+        res.end(json);
+    });
+
+
+	//======================
+	//POSTING PATIENTS
+	//=====================
+
+var qs = require('querystring');
+app.post('/addNewPatient', isLoggedIn, function (req, res) {
+		console.log("Post request received!")
+		var jsonString = '';
+		req.on('data', function(data) {
+			jsonString += data;
+            console.log(JSON.parse(jsonString));
+		});
+		req.on('end', function(){
+			console.log(JSON.parse(jsonString));
+		});
+  		res.send(201)
+	});
 
 	// =====================================
 	// LOGOUT ==============================

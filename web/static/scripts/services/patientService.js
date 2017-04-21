@@ -1,4 +1,4 @@
-angular.module("myApp").factory('PatientService', function($http) {
+angular.module("myApp").factory('patientService', function($http) {
 	var patientService = {
 		getPatientInfo: function(patientID, successCallback, failureCallback){
 			return $http.get("/getPatientInfo/:" + patientID).success(function(response){

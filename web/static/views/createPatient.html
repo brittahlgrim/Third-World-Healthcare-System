@@ -11,18 +11,23 @@
     <script type="text/javascript" src="content/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
-    <script type="text/javascript" src="scripts/controllers/patientInfoController.js"></script>
+    <script type="text/javascript" src="scripts/controllers/createPatientController.js"></script>
 
     <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="content/custom/createPatient.css">
 	<title>CREATE PATIENT</title>
 </head>
+<<<<<<< HEAD
 <body style="background-color: #f4f3ed; color: white;">
 
 
 
 	<div ng-app="myApp" ng-controller="patientInfoCtrl">
+=======
+<body style="background-color: #455a64; color: white;">
+	<div ng-app="myApp" ng-controller="createPatientCtrl">
+>>>>>>> master
 		<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
 			<div class="row">
 				<div class="col-xs-4">
@@ -45,6 +50,7 @@
 					<div class="col-xs-4">
 						<br/>
 						<div class="row">
+<<<<<<< HEAD
 							<div class="col-xs-6">Nombre:</div>
 							<input type="text" name="name" ng-model="patient.Name" required>
 						</div>
@@ -67,15 +73,46 @@
 						<div class="row">
 							<div class="col-xs-6">Zona:</div>
 							<input type="number" name="zoneID" ng-model="patient.ZoneID">
+=======
+							<div class="col-xs-6">Name:</div>
+							<input type="text" name="name" ng-model="new_patient.Name" required>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Date of Birth:</div>
+							<input type="date" name="DOB" ng-model="new_patient.DOB" required>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Patient ID:</div>
+							<input type="text" name="descriptivePatientID" ng-model="new_patient.DescriptivePatientID">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">No. of People in Family:</div>
+							<input type="number" name="familyID" ng-model="new_patient.FamilyID">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">ECO Name:</div>
+							<input type="text" name="ECO" ng-model="new_patient.ECOName">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Zone:</div>
+							<input type="number" name="zoneID" ng-model="new_patient.ZoneID">
+>>>>>>> master
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Sexo:</div>
 							<form>
 								<label>
+<<<<<<< HEAD
 									<input type="radio" name="sex" ng-model="patient.Sex">Hombre    
 								</label>
 								<label>
 									<input type="radio" name="sex" ng-model="patient.Sex">Mujer    
+=======
+									<input type="radio" name="sex" ng-model="new_patient.Sex" value="M">Male    
+								</label>
+								<label>
+									<input type="radio" name="sex" ng-model="new_patient.Sex" value="F">Female    
+>>>>>>> master
 								</label>
 							</form>
 						</div>
@@ -83,16 +120,16 @@
 							<div class="col-xs-6">Classification del Grupo:</div>
 							<form>
 								<label>
-									<input type="radio" name="group" ng-model="patient.GroupID">I    
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="1">I    
 								</label>
 								<label>
-									<input type="radio" name="group" ng-model="patient.GroupID">II    
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="2">II    
 								</label>
 								<label>
-									<input type="radio" name="group" ng-model="patient.GroupID">III    
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="3">III    
 								</label>
 								<label>
-									<input type="radio" name="group" ng-model="patient.GroupID">IV    
+									<input type="radio" name="group" ng-model="new_patient.GroupID" value="4">IV    
 								</label>
 							</form>
 						</div>
@@ -105,11 +142,14 @@
 
 						<div class="row">
 							<div class="col-xs-6">Chronic Illness:</div>
-							<input type="text" name="chronicIllness" ng-model="patient.ChronicIllness">
+							<input type="text" name="chronicIllness" ng-model="new_patient.ChronicIllness">
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Notes:</div>
-							<input type="text" name="notes" ng-model="patient.Notes">
+							<input type="text" name="notes" ng-model="new_patient.Notes">
+						</div>
+						<div class="row">
+							<button ng-click="create_patient()">Create Patient</button>
 						</div>
 					</div>		
 				</div>
