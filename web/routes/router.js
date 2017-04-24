@@ -371,6 +371,30 @@ app.post('/editPatient', function (req, res) {
         res.send(201)
     });
 
+app.post('/deletePatient', function (req, res) {
+        console.log("Post request received!")
+        var id = req.query.patientID;
+
+        connection.query(
+            'DELETE from PATIENTS ' + 
+            'WHERE ID='+id + 
+            ' limit 1', 
+            function(err, res){
+                if(err)
+                    throw err;
+            });
+
+        var jsonString = '';
+        req.on('data', function(data) {
+            jsonString += data;
+            console.log(JSON.parse(jsonString));
+        });
+        req.on('end', function(){
+            console.log(JSON.parse(jsonString));
+        });
+        res.send(201)
+    });
+
 	// =====================================
 	// LOGOUT ==============================
 	// =====================================
