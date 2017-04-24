@@ -39,6 +39,21 @@ angular.module('myApp').controller('patientInfoCtrl',
 				});
 		};
 
+	    $scope.delete_patient = function() {
+            $http.post("/deletePatient?patientID=" + patientID,{})
+        		.success(function(data, status, headers, config){
+            		console.log("Patient Deleted Successfully");
+            		console.log('data',data);
+            		console.log('status',status);
+            		console.log('headers',headers);
+            		console.log('config',config);
+        		}).error(function () {
+				console.log("Patient delete failure");
+				failureCallback(null);
+				});
+        };
+
+
 		$scope.visitTypes = [
 			{ ID: 1, Name: "Consultation"},
 			{ ID: 2, Name: "Home Visit"}
