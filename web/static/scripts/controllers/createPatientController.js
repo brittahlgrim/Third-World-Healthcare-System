@@ -3,9 +3,28 @@ angular.module('myApp').controller('createPatientCtrl',
 		
             $scope.new_patient = {};
 
+			$scope.factors = [ 
+        		{risk:'smoking'},
+       			{risk:'drugs'},
+				{risk:'Saneamiento ambiental inadecuado'},
+                {risk:'Transporte público inexistente o desordenado'},
+                {risk:'Analfabetismo y deficiencias en la educación'},
+                {risk:'Inequidad en salud'},
+                {risk:'Dificultad en el acceso de los servicios de salud'},
+                {risk:'Ausencia de espacios públicos para realizar actividad física'},
+                {risk:'Contaminación ambiental'},
+                {risk:'Inseguridad vial'},
+                {risk:'Vulnerabilidad geográfica y geológica'},
+                {risk:'Consumo de alcohol, drogas, tabaco'},
+                {risk:'Consumo de dieta no saludable'},
+                {risk:'Inactividad física y sedentarismo'},
+                {risk:'Falta de práctica de lactancia materna'},
+                {risk:'Prácticas sexuales sin protección'},
+       			{risk:'exposure to chemicals'}
+                        	];  
 
 
-
+/*
 		$scope.factors = [ 
         		{risk:'Bajos ingresos económicos'},
         		{risk:'Malas condiciones de trabajo'},
@@ -37,7 +56,7 @@ angular.module('myApp').controller('createPatientCtrl',
             $scope.create_patient = function() {
 
 
-	            $scope.new_patient.RiskFactor = "Environmental Risks";
+//	            $scope.new_patient.RiskFactor = "Environmental Risks";
 	            $scope.new_patient.GroupID = parseInt($scope.new_patient.GroupID, 10);
 	           	console.log($scope.new_patient);
 
