@@ -38,7 +38,8 @@
 						<td>Nombre</td>
 						<td>Identificación del Paciente</td>
 						<td>Factores de Riesgo</td>
-					</tr>
+                        <input type="button" ng-click="sortPatientsBy(0)" value="Sort"/>
+                    </tr>
 					<tr ng-repeat="x in names" style="font-style: bold;">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
 						<td ng-click="openPatientInformation(x.ID)">{{x.ID}} {{x.Name}}</td>
