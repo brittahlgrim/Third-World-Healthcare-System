@@ -4,36 +4,59 @@ angular.module('myApp').controller('createPatientCtrl',
             $scope.new_patient = {};
 
 
-		$scope.factorsCom = [ 
-        		{risk_community:'Bajos ingresos económicos'},
-        		{risk_community:'Malas condiciones de trabajo'},
-        		{risk_community:'Violencia e inseguridad ciudadana'},
-        		{risk_community:'Hacinamiento y vivienda precaria'},
-        		{risk_community:'Baja disponibilidad y acceso a alimentos sanos e inocuos'},
-        		{risk_community:'Saneamiento ambiental inadecuado'},
-        		{risk_community:'Transporte público inexistente o desordenado'},
-        		{risk_community:'Analfabetismo y deficiencias en la educación'},
-        		{risk_community:'Inequidad en salud'},
-        		{risk_community:'Dificultad en el acceso de los servicios de salud'},
-        		{risk_community:'Ausencia de espacios públicos para realizar actividad física'},
-        		{risk_community:'Contaminación ambiental'},
-        		{risk_community:'Inseguridad vial'},
-        		{risk_community:'Vulnerabilidad geográfica y geológica'}
+
+
+			$scope.factors = [ 
+        		{risk:'smoking'},
+       			{risk:'drugs'},
+			{risk:'Saneamiento ambiental inadecuado'},
+                        {risk:'Transporte público inexistente o desordenado'},
+                        {risk:'Analfabetismo y deficiencias en la educación'},
+                        {risk:'Inequidad en salud'},
+                        {risk:'Dificultad en el acceso de los servicios de salud'},
+                        {risk:'Ausencia de espacios públicos para realizar actividad física'},
+                        {risk:'Contaminación ambiental'},
+                        {risk:'Inseguridad vial'},
+                        {risk:'Vulnerabilidad geográfica y geológica'},
+                        {risk:'Consumo de alcohol, drogas, tabaco'},
+                        {risk:'Consumo de dieta no saludable'},
+                        {risk:'Inactividad física y sedentarismo'},
+                        {risk:'Falta de práctica de lactancia materna'},
+                        {risk:'Prácticas sexuales sin protección'},
+       			{risk:'exposure to chemicals'}
+                        	];  
+
+
+/*
+		$scope.factors = [ 
+        		{risk_individual:'Bajos ingresos económicos'},
+        		{risk_individual:'Malas condiciones de trabajo'},
+        		{risk:'Violencia e inseguridad ciudadana'},
+        		{risk:'Hacinamiento y vivienda precaria'},
+        		{risk:'Baja disponibilidad y acceso a alimentos sanos e inocuos'},
+        		{risk:'Saneamiento ambiental inadecuado'},
+        		{risk:'Transporte público inexistente o desordenado'},
+        		{risk:'Analfabetismo y deficiencias en la educación'},
+        		{risk:'Inequidad en salud'},
+        		{risk:'Dificultad en el acceso de los servicios de salud'},
+        		{risk:'Ausencia de espacios públicos para realizar actividad física'},
+        		{risk:'Contaminación ambiental'},
+        		{risk:'Inseguridad vial'},
+        		{risk:'Vulnerabilidad geográfica y geológica'}
+        		{risk:'Consumo de alcohol, drogas, tabaco'},
+        		{risk:'Consumo de dieta no saludable'},
+        		{risk:'Inactividad física y sedentarismo'},
+        		{risk:'Falta de práctica de lactancia materna'},
+        		{risk:'Prácticas sexuales sin protección'},
+        		{risk:'Embarazo no deseado y precoz,'},
+        		{risk:'Irrespeto a las leyes de tránsito'},
+        		{risk:'Hábitos higiénicos inadecuados'},
+        		{risk:'Inadecuado autocuido'},
+        		{risk:'Violencia de género (familiar, sexual y otras)'},
+        		{risk:'Trabajo infantil'}
                         ];  
 
-		$scope.factorsIndv = [ 
-        		{risk_individual:'Consumo de alcohol, drogas, tabaco'},
-        		{risk_individual:'Consumo de dieta no saludable'},
-        		{risk_individual:'Inactividad física y sedentarismo'},
-        		{risk_individual:'Falta de práctica de lactancia materna'},
-        		{risk_individual:'Prácticas sexuales sin protección'},
-        		{risk_individual:'Embarazo no deseado y precoz,'},
-        		{risk_individual:'Irrespeto a las leyes de tránsito'},
-        		{risk_individual:'Hábitos higiénicos inadecuados'},
-        		{risk_individual:'Inadecuado autocuido'},
-        		{risk_individual:'Violencia de género (familiar, sexual y otras)'},
-        		{risk_individual:'Trabajo infantil'}
-                        ];  
+*/
             $scope.create_patient = function() {
 
 
