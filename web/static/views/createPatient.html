@@ -94,16 +94,9 @@
 							</form>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Factores de Riesgo en la Communidad:</div>
+							<div class="col-xs-6">Factores de Riesgo:</div>
 							<select name="riskFactor">
-								<option ng-repeat="x in factorsCom">{{x.risk_community}}</option>
-							</select>
-						</div>
-
-						<div class="row">
-							<div class="col-xs-6">Factores de Riesgo en el Individual:</div>
-							<select name="riskFactor">
-								<option ng-repeat="x in factorsIndv">{{x.risk_individual}}</option>
+								<option ng-repeat="x in factors">{{x.risk}}</option>
 							</select>
 						</div>
 

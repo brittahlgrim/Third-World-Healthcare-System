@@ -30,7 +30,7 @@ ul.tab li {float: left;}
 ul.tab li a {
     display: inline-block;
     color: black;
-    text-align: center;
+    /*text-align: center;*/
     padding: 14px 16px;
     text-decoration: none;
     transition: 0.3s;
@@ -90,8 +90,8 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 }
 
 .ui-datepicker {
-   background-color: #455a64;
-   border: 1px solid #555;
+   background-color: #f4f3ed;
+   /*border: 1px solid #555;*/
    color: #EEE;
    padding: 15px;
 }

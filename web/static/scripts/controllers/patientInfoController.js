@@ -14,12 +14,6 @@ angular.module('myApp').controller('patientInfoCtrl',
 		};
 
 
-	$scope.factors = [ 
-        {risk:'smoking'},
-        {risk:'drugs'},
-        {risk:'exposure to chemicals'}
-			];
-
 
 		var getPatientInfo = function(){
 			var successCallback = function(response){
@@ -136,7 +130,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 			getPatientInfo();
 			Array.from(document.getElementsByClassName("tabcontent")).forEach(function(t){
 				t.style.display = "none";});
-			$scope.tabClick("Details");
+			$scope.tabClick("AppointmentHistory");
 			$( function() {
                 $( "#datepicker" ).datepicker($.datepicker.regional['es']);
             } );
