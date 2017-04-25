@@ -26,8 +26,8 @@ angular.module('myApp').controller('createPatientCtrl',
 
 /*
 		$scope.factors = [ 
-        		{risk_individual:'Bajos ingresos económicos'},
-        		{risk_individual:'Malas condiciones de trabajo'},
+        		{risk:'Bajos ingresos económicos'},
+        		{risk:'Malas condiciones de trabajo'},
         		{risk:'Violencia e inseguridad ciudadana'},
         		{risk:'Hacinamiento y vivienda precaria'},
         		{risk:'Baja disponibilidad y acceso a alimentos sanos e inocuos'},
@@ -39,7 +39,7 @@ angular.module('myApp').controller('createPatientCtrl',
         		{risk:'Ausencia de espacios públicos para realizar actividad física'},
         		{risk:'Contaminación ambiental'},
         		{risk:'Inseguridad vial'},
-        		{risk:'Vulnerabilidad geográfica y geológica'}
+        		{risk:'Vulnerabilidad geográfica y geológica'},
         		{risk:'Consumo de alcohol, drogas, tabaco'},
         		{risk:'Consumo de dieta no saludable'},
         		{risk:'Inactividad física y sedentarismo'},
@@ -53,7 +53,6 @@ angular.module('myApp').controller('createPatientCtrl',
         		{risk:'Trabajo infantil'}
                         ];  
 
-*/
             $scope.create_patient = function() {
 
 
