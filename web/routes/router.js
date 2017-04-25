@@ -253,10 +253,13 @@ module.exports = function(app, passport, connection) {
     });
     app.get('/getNames', isLoggedIn, function(req, res){
 
-		connection.query('SELECT * from PATIENTS', function(err, rows, fields) {
-			if (!err)
-				console.log("");
-//				console.log('The solution is: ', rows);
+		connection.query('SELECT * from PATIENTS p LEFT JOIN APPOINTMENTS a ON p.ID = a.patientID', function(err, rows, fields) {
+			if (!err){
+				//				console.log('The solution is: ', rows);
+
+
+			}
+
 			else
 		    	console.log('Error while performing Query.');
 

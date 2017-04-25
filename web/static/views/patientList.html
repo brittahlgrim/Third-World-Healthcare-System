@@ -42,13 +42,15 @@
 					<tr style="font-weight: bold;">
 						<td width="20px;"></td>
 						<td>Nombre</td>
-						<td>Identificación del Paciente</td>
+						<td>Zone</td>
+						<td>Grupo</td>
+						<td>Appointmento Proximo</td>
 						<td>Factores de Riesgo</td>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold;">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
 						<td ng-click="openPatientInformation(x.ID)">{{x.ID}} {{x.Name}}</td>
-						<td ng-click="openPatientInformation(x.ID)">{{x.PatientID}}</td>
+						<td ng-click="openPatientInformation(x.ID)">{{x.ID}}</td>
 						<td>{{x.RiskFactor}}</td>
 					</tr>
 				</table>
