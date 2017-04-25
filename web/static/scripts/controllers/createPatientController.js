@@ -2,7 +2,7 @@ angular.module('myApp').controller('createPatientCtrl',
 	['$scope', '$http', '$window', function($scope, $http, $window){
 		
             $scope.new_patient = {};
-
+/*
 			$scope.factors = [ 
         		{risk:'smoking'},
        			{risk:'drugs'},
@@ -22,7 +22,36 @@ angular.module('myApp').controller('createPatientCtrl',
                 {risk:'Prácticas sexuales sin protección'},
        			{risk:'exposure to chemicals'}
                         	];  
+*/                        	
 
+
+		$scope.factors = [ 
+       		'Bajos ingresos economicos',
+       		'Malas condiciones de trabajo',
+       		'Violencia e inseguridad ciudadana',
+       		'Hacinamiento y vivienda precaria',
+       		'Baja disponibilidad y acceso a alimentos sanos e inocuos',
+       		'Saneamiento ambiental inadecuado',
+       		'Transporte publico inexistente o desordenado',
+       		'Analfabetismo y deficiencias en la educación',
+       		'Inequidad en salud',
+       		'Dificultad en el acceso de los servicios de salud',
+       		'Ausencia de espacios publicos para realizar actividad fisica',
+       		'Contaminacion ambiental',
+       		'Inseguridad vial',
+       		'Vulnerabilidad geografica y geologica',
+       		'Consumo de alcohol, drogas, tabaco',
+       		'Consumo de dieta no saludable',
+       		'Inactividad fisica y sedentarismo',
+       		'Falta de practica de lactancia materna',
+       		'Practicas sexuales sin proteccion',
+       		'Embarazo no deseado y precoz,',
+       		'Irrespeto a las leyes de transito',
+       		'Hábitos higienicos inadecuados',
+       		'Inadecuado autocuido',
+       		'Violencia de genero (familiar, sexual y otras)',
+      		'Trabajo infantil'
+        ];  
 
 /*
 		$scope.factors = [ 
@@ -52,7 +81,7 @@ angular.module('myApp').controller('createPatientCtrl',
         		{risk:'Violencia de género (familiar, sexual y otras)'},
         		{risk:'Trabajo infantil'}
                         ];  
-
+*/
             $scope.create_patient = function() {
 
 

@@ -96,8 +96,8 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Factores de Riesgo:</div>
-							<select name="riskFactor">
-								<option ng-repeat="x in factors" ng-model="new_patient.RiskFactor">{{x.risk}}</option>
+							<select name="riskFactor" ng-model="new_patient.RiskFactor">
+								<option ng-repeat="x in factors">{{x}}</option>
 							</select>
 						</div>
 
