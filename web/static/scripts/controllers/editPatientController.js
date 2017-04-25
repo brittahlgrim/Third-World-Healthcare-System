@@ -14,6 +14,10 @@ angular.module('myApp').controller('editPatientCtrl',
                 });
             };
 
+            $scope.openPatientInformation = function(patientID){
+                window.location.href = "/patientInfo?patientID=" + patientID;
+            };
+
             var getPatientInfo = function(){
                 var successCallback = function(response){
                     $scope.patient = response;
@@ -50,7 +54,7 @@ angular.module('myApp').controller('editPatientCtrl',
 					failureCallback(null);
 					});
 
-
+                $scope.openPatientInformation($scope.patient.ID);
             };
 
 

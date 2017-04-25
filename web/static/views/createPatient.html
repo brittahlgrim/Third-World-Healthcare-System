@@ -18,12 +18,12 @@
     <link rel="stylesheet" type="text/css" href="content/custom/createPatient.css">
 	<title>CREATE PATIENT</title>
 </head>
-<body style="background-color: #455a64; color: white;">
+<body style="background-color: #f4f3ed; color: 2f8ce2;">
 	<div ng-app="myApp" ng-controller="createPatientCtrl">
 		<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
 			<div class="row">
 				<div class="col-xs-4">
-					<h4>{{x.Name}}</h4>
+					<h4>Create Patient</h4>
 				</div>
 			</div>
 		</div>
@@ -48,6 +48,7 @@
 						<div class="row">
 							<div class="col-xs-6">Fecha de Nacimiento:</div>
 							<input type="text" placeholder="dd-mm-yyyy" name="DOB" ng-model="new_patient.DOB" required>
+							<span ng-show="!new_patient.DOB">Please enter a date!<span>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">ID del paciente:</div>
@@ -115,8 +116,8 @@
 							<div class="col-xs-6">Notes:</div>
 							<input type="text" name="notes" ng-model="new_patient.notes">
 						</div>
-						<div class="row">
-							<button ng-click="create_patient()">Create Patient</button>
+						<div class="row"><a href="/patientList">
+							<button style="color:#ffffff; background-color:#2e8adf" ng-click="create_patient()">Create Patient</button></a>
 						</div>
 					</div>		
 				</div>

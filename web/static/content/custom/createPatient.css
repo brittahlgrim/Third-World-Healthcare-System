@@ -46,6 +46,10 @@
 	font-size: 15px;
 }
 
+.col-xs-6 {
+    font-weight: bold;
+}
+
 input, select, textarea{
     color: #000000;
 }
