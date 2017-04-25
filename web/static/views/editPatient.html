@@ -18,12 +18,12 @@
     <link rel="stylesheet" type="text/css" href="content/custom/createPatient.css">
 	<title>EDIT PATIENT</title>
 </head>
-<body style="background-color: #455a64; color: white;">
+<body style="background-color: #f4f3ed; color: 2f8ce2;">
 	<div ng-app="myApp" ng-controller="editPatientCtrl">
 		<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
 			<div class="row">
 				<div class="col-xs-4">
-					<h4>{{x.Name}}</h4>
+					<h4>Edit Patient</h4>
 				</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 			<br/>
 			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
 		</div>
-		<div class="main">
+		<div class="main" style="color:#2e8adf">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
 				<div class="row">
 					<div class="col-xs-4">
@@ -112,7 +112,8 @@
 							<input type="text" name="notes" ng-model="patient.notes">
 						</div>
 						<div class="row">
-							<button ng-click="edit_patient()">Save Changes</button>
+							<button style="color:#ffffff; background-color:#2e8adf" ng-click="openPatientInformation(patient.ID)">Cancel</button>
+							<button style="color:#ffffff; background-color:#2e8adf" ng-click="edit_patient()">Save Changes</button>
 						</div>
 					</div>
 		

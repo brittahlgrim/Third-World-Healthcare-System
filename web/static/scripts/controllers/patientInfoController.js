@@ -14,12 +14,6 @@ angular.module('myApp').controller('patientInfoCtrl',
 		};
 
 
-	$scope.factors = [ 
-        {risk:'smoking'},
-        {risk:'drugs'},
-        {risk:'exposure to chemicals'}
-			];
-
 
 		var getPatientInfo = function(){
 			var successCallback = function(response){
@@ -38,6 +32,21 @@ angular.module('myApp').controller('patientInfoCtrl',
 					failureCallback(null);
 				});
 		};
+
+	    $scope.delete_patient = function() {
+            $http.post("/deletePatient?patientID=" + patientID,{})
+        		.success(function(data, status, headers, config){
+            		console.log("Patient Deleted Successfully");
+            		console.log('data',data);
+            		console.log('status',status);
+            		console.log('headers',headers);
+            		console.log('config',config);
+        		}).error(function () {
+				console.log("Patient delete failure");
+				failureCallback(null);
+				});
+        };
+
 
 		$scope.visitTypes = [
 			{ ID: 1, Name: "Consultation"},
@@ -121,7 +130,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 			getPatientInfo();
 			Array.from(document.getElementsByClassName("tabcontent")).forEach(function(t){
 				t.style.display = "none";});
-			$scope.tabClick("Details");
+			$scope.tabClick("AppointmentHistory");
 			$( function() {
                 $( "#datepicker" ).datepicker($.datepicker.regional['es']);
             } );
