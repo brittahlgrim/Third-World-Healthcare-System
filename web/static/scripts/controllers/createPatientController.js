@@ -3,6 +3,37 @@ angular.module('myApp').controller('createPatientCtrl',
 		
             $scope.new_patient = {};
 
+
+		$scope.factorsCom = [ 
+        		{risk_community:'Bajos ingresos económicos'},
+        		{risk_community:'Malas condiciones de trabajo'},
+        		{risk_community:'Violencia e inseguridad ciudadana'},
+        		{risk_community:'Hacinamiento y vivienda precaria'},
+        		{risk_community:'Baja disponibilidad y acceso a alimentos sanos e inocuos'},
+        		{risk_community:'Saneamiento ambiental inadecuado'},
+        		{risk_community:'Transporte público inexistente o desordenado'},
+        		{risk_community:'Analfabetismo y deficiencias en la educación'},
+        		{risk_community:'Inequidad en salud'},
+        		{risk_community:'Dificultad en el acceso de los servicios de salud'},
+        		{risk_community:'Ausencia de espacios públicos para realizar actividad física'},
+        		{risk_community:'Contaminación ambiental'},
+        		{risk_community:'Inseguridad vial'},
+        		{risk_community:'Vulnerabilidad geográfica y geológica'}
+                        ];  
+
+		$scope.factorsIndv = [ 
+        		{risk_individual:'Consumo de alcohol, drogas, tabaco'},
+        		{risk_individual:'Consumo de dieta no saludable'},
+        		{risk_individual:'Inactividad física y sedentarismo'},
+        		{risk_individual:'Falta de práctica de lactancia materna'},
+        		{risk_individual:'Prácticas sexuales sin protección'},
+        		{risk_individual:'Embarazo no deseado y precoz,'},
+        		{risk_individual:'Irrespeto a las leyes de tránsito'},
+        		{risk_individual:'Hábitos higiénicos inadecuados'},
+        		{risk_individual:'Inadecuado autocuido'},
+        		{risk_individual:'Violencia de género (familiar, sexual y otras)'},
+        		{risk_individual:'Trabajo infantil'}
+                        ];  
             $scope.create_patient = function() {
 
 
