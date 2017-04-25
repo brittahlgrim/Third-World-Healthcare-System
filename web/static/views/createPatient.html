@@ -97,7 +97,7 @@
 						<div class="row">
 							<div class="col-xs-6">Factores de Riesgo:</div>
 							<select name="riskFactor">
-								<option ng-repeat="x in factors">{{x.risk}}</option>
+								<option ng-repeat="x in factors" ng-model="new_patient.RiskFactor">{{x.risk}}</option>
 							</select>
 						</div>
 
@@ -110,8 +110,9 @@
 							<input type="text" name="notes" ng-model="new_patient.notes">
 						</div>
 						<div class="row"><a href="/patientList">
-							<button style="color:#ffffff; background-color:#2e8adf" ng-click="create_patient()">Create Patient</button></a>
-						</div>
+							<button style="color:#ffffff; background-color:#2e8adf">Cancel</button>
+							<button style="color:#ffffff; background-color:#2e8adf" ng-click="create_patient()">Create Patient</button>
+						</a></div>
 					</div>		
 				</div>
 			</div>
