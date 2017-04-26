@@ -6,6 +6,19 @@ angular.module('myApp').controller('patientListCtrl',
 		};
 
 
+		var  formatDate = function (date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        };
+
+
 
 
 //Trial function to get risk factors from the mysql table
@@ -25,6 +38,15 @@ angular.module('myApp').controller('patientListCtrl',
 		$scope.getNames = function() {
 			$http.get("/getNames").success(function (data) {
 				$scope.names = data;
+				Array.from($scope.names).forEach(function (patient) {
+                    var date = new Date(patient.AppointmentDate);
+                    var daysToAdd = patient.WeeksToAdd * 7;
+                    date.setDate(date.getDate() + ((patient.WeeksToAdd) * 7));
+                    patient.NextAppointmentDate = date;
+
+                    patient.AppointmentDateFormatted = formatDate(patient.AppointmentDate);
+                    patient.NextAppointmentDateFormatted = formatDate(patient.NextAppointmentDate);
+                });
 			}).error(function() {
 				alert("Error in request for getNames()" + error);
 			});

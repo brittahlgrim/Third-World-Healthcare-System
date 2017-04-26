@@ -13,6 +13,17 @@ angular.module('myApp').controller('scheduleCtrl',
 		var initScheduleListData = function(){
 			$scope.changeDate(new Date().toString())
 		};
+		var  formatDate = function (date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('-');
+        };
 
 		$scope.showPatientInfo = function(appointmentID){
 			var appointment = _.find($scope.schedule, function(a){
@@ -32,9 +43,9 @@ angular.module('myApp').controller('scheduleCtrl',
 			var nextDate = new Date(dateToChangeToFormatted);
 			nextDate.setDate(nextDate.getDate() + 1);
 
-			$scope.scheduleDateFormatted = scheduleDate.toString();
-            		$scope.previousDateFormatted = previousDate.toString();
-            		$scope.nextDateFormatted = nextDate.toString();
+			$scope.scheduleDateFormatted = formatDate(scheduleDate);
+            $scope.previousDateFormatted = formatDate(previousDate);
+            $scope.nextDateFormatted = formatDate(nextDate);
 
             var successCallback = function(response){
                 $scope.schedule = response;

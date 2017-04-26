@@ -38,13 +38,15 @@
 						<td>Nombre</td>
 						<td>Zone</td>
 						<td>Grupo</td>
-						<td>Appointmento Proximo</td>
+						<td>Cita Próxima</td>
 						<td>Factores de Riesgo</td>
 					</tr>
-					<tr ng-repeat="x in names" style="font-style: bold;">
+					<tr ng-repeat="x in names" style="font-style: bold;" ng-click="openPatientInformation(x.ID)">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
-						<td ng-click="openPatientInformation(x.ID)">{{x.ID}} {{x.Name}}</td>
-						<td ng-click="openPatientInformation(x.ID)">{{x.ID}}</td>
+						<td>{{x.ID}} {{x.Name}}</td>
+						<td>{{x.Zone}}</td>
+						<td>{{x.GroupID}}</td>
+						<td>{{x.NextAppointmentDateFormatted}}</td>
 						<td>{{x.RiskFactor}}</td>
 					</tr>
 				</table>
