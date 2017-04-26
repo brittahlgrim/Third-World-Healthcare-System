@@ -92,157 +92,18 @@ module.exports = function(app, passport, connection) {
 
     app.post('/getSchedule', isLoggedIn, function(req, res) {
         var requestDate = req.body.requestDate;
-        //TODO: create sql query that uses this date to search the database for appointments
-        //TODO: for the time being, use the hardcoded rows variable, once sql is implemented, remove everything below sql connection
 
-//        connection.query('SELECT * from schedule', function(err, rows, fields) {
-//            if (!err)
-//                console.log('The solution is: ', rows);
-//            else
-//                console.log('Error while performing Query.');
-//
-//            res.writeHead(200, {"Content-Type": "application/json"});
-//            var json = JSON.stringify(rows);
-//            res.end(json);
-//        });
-        var rows = [
-	                    {
-	                        ID: 1,
-	                        Appointment: {
-	                            Type: {
-	                                ID: 1,
-	                                Name: "Consultation"
-	                            },
-	                            Date: "2017-04-05"
-	                        },
-	                        Patient: {
-	                            PatientID: 1,
-	                            Name: "Jason Todd",
-	                              Image: "content/images/Globe.png",
-	                              Classification: "Healthy",
-	                              RiskFactor: "Medium",
-	                              Sex: "Male",
-	                              Zone: "4"
-	                        }
-	                    },
-	                    {
-	                        ID: 2,
-	                        Appointment: {
-	                            Type: {
-	                                ID: 2,
-	                                Name: "Consultation"
-	                            },
-	                            Date: "2017-04-05"
-	                        },
-	                        Patient: {
-	                            PatientID: 2,
-	                            Name: "Mary Lincoln",
-	                            Image: "content/images/Globe.png",
-	                            Classification: "Critical",
-	                            RiskFactor: "High",
-	                            Sex: "Female",
-	                            Zone: "4"
-	                        }
-	                    },
-	                      {
-	                          ID: 3,
-	                          Appointment: {
-	                              Type: {
-	                                  ID: 3,
-	                                  Name: "Consultation"
-	                              },
-	                              Date: "2017-04-05"
-	                          },
-	                          Patient: {
-	                              PatientID: 3,
-	                            Name: "Joe Smith",
-	                            Image: "content/images/Globe.png",
-	                            Classification: "Healthy",
-	                            RiskFactor: "Low",
-	                            Sex: "Male",
-	                            Zone: "4"
-	                          }
-	                      },
-	                      {
-	                          ID: 4,
-	                          Appointment: {
-	                              Type: {
-	                                ID: 4,
-	                                Name: "Consultation"
-	                              },
-	                              Date: "2017-04-05"
-	                          },
-	                          Patient: {
-	                              PatientID: 4,
-	                              Name: "John Cena",
-	                              Image: "content/images/Globe.png",
-	                              Classification: "Healthy",
-	                              RiskFactor: "Low",
-	                              Sex: "Male",
-	                              Zone: "4"
-	                          }
-	                      },
-	                      {
-	                        ID: 5,
-	                        Appointment: {
-	                              Type: {
-	                                ID: 5,
-	                                Name: "Consultation"
-	                              },
-	                              Date: "2017-04-05"
-	                          },
-	                        Patient: {
-	                            PatientID: 5,
-	                            Name: "Jenny Cena",
-	                            Image: "content/images/Globe.png",
-	                            Classification: "Healthy",
-	                            RiskFactor: "Low",
-	                            Sex: "Female",
-	                            Zone: "3"
-	                        }
-	                    },
-	                    {
-	                          ID: 6,
-	                          Appointment: {
-	                              Type: {
-	                                ID: 6,
-	                                Name: "Consultation"
-	                              },
-	                              Date: "2017-04-05"
-	                          },
-	                          Patient: {
-	                              PatientID: 6,
-	                            Name: "Addison Henning",
-	                            Image: "content/images/Globe.png",
-	                            Classification: "Healthy",
-	                            RiskFactor: "Low",
-	                            Sex: "Female",
-	                            Zone: "3"
-	                          }
-	                      },
-	                      {
-	                        ID: 7,
-	                        Appointment: {
-	                              Type: {
-	                                ID: 7,
-	                                Name: "Consultation"
-	                              },
-	                              Date: "2017-04-05"
-	                          },
-	                        Patient: {
-	                            PatientID: 7,
-	                            Name: "George Hill",
-	                            Image: "content/images/Globe.png",
-	                            Classification: "Healthy",
-	                            RiskFactor: "Low",
-	                            Sex: "Male",
-	                            Zone: "3"
-	                        }
-	                    }
-	                ];
-        res.writeHead(200, {"Content-Type": "application/json"});
-        var json = JSON.stringify(rows);
-        res.end(json);
+		connection.query('SELECT p.ID as patientID, p.Name as patientName, a.AppointmentID as appointmentID, a.AppointmentDate as appointmentDate, a.AppointmentType as appointmentType from APPOINTMENTS a INNER JOIN PATIENTS p on a.PatientID = p.ID WHERE AppointmentDate like \'%' + req.body.requestDate + '%\';', function(err, rows, fields)
+		{
+			if(!err){
+				console.log('the solution is: ', rows);
+			}else{
+				console.log('Error while performing Query.');
+			}
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+		});
 
     });
     app.get('/patientInfo', isLoggedIn, function(req, res) {
@@ -257,8 +118,6 @@ module.exports = function(app, passport, connection) {
 			'SELECT p.ID as ID, p.Name as Name, p.ZoneID as Zone, p.GroupID as GroupID, MAX(a.appointmentDate) as AppointmentDate, MAX(a.appointmentType) as AppointmentType, p.RiskFactor as RiskFactor, CASE WHEN (p.GroupID = 1) THEN 52 WHEN (p.GroupID = 2) THEN 26 WHEN (p.GroupID = 3) THEN CASE WHEN (p.ChronicIllness IS NOT NULL) THEN 17 ELSE 26 END ELSE 17 END AS WeeksToAdd FROM PATIENTS p LEFT JOIN APPOINTMENTS a ON p.ID = a.patientID and a.AppointmentDate <= CURDATE() GROUP BY p.ID;'
 			, function(err, rows, fields) {
 			if (!err){
-				console.log("successful");
-				//				console.log('The solution is: ', rows);
 			}
 
 			else
@@ -280,10 +139,8 @@ module.exports = function(app, passport, connection) {
     			
 
                 connection.query('select * from PATIENTS where id = ?;', [ id ], function(err, rows, fields) {
-                    if (!err)
-
-                        console.log("");
-                        //console.log('The solution is: ', rows);
+                    if (!err){
+                    }
                     else
                         console.log('Error while performing Query.');
 

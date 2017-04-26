@@ -1,8 +1,11 @@
 angular.module('myApp').controller('scheduleCtrl', 
 	['$scope', '$http', 'schedulingService', function($scope, $http, schedulingService){
 
+		$scope.scheduleDate = null;
 		$scope.scheduleDateFormatted = null;
+		$scope.previousDate = null;
 		$scope.previousDateFormatted = null;
+		$scope.nextDate = null;
 		$scope.nextDateFormatted = null;
 
 		$scope.openPatientInformation = function(patientID){
@@ -37,23 +40,30 @@ angular.module('myApp').controller('scheduleCtrl',
 		};
 
 		$scope.changeDate = function(dateToChangeToFormatted){
-			var scheduleDate = new Date(dateToChangeToFormatted);
-			var previousDate = new Date(dateToChangeToFormatted);
-			previousDate.setDate(previousDate.getDate() - 1);
-			var nextDate = new Date(dateToChangeToFormatted);
-			nextDate.setDate(nextDate.getDate() + 1);
+			console.log(dateToChangeToFormatted);
+			$scope.scheduleDate = new Date(dateToChangeToFormatted);
+			console.log($scope.scheduleDate);
+			$scope.previousDate = new Date(dateToChangeToFormatted);
+			$scope.previousDate.setDate($scope.previousDate.getDate() - 1);
+			$scope.nextDate = new Date(dateToChangeToFormatted);
+			$scope.nextDate.setDate($scope.nextDate.getDate() + 1);
 
-			$scope.scheduleDateFormatted = formatDate(scheduleDate);
-            $scope.previousDateFormatted = formatDate(previousDate);
-            $scope.nextDateFormatted = formatDate(nextDate);
+			$scope.scheduleDateFormatted = formatDate($scope.scheduleDate);
+            $scope.previousDateFormatted = formatDate($scope.previousDate);
+            $scope.nextDateFormatted = formatDate($scope.nextDate);
 
             var successCallback = function(response){
+                console.log(response);
                 $scope.schedule = response;
+                $scope.schedule.forEach(function(appointment)
+                {
+					appointment.appointmentDateFormatted = formatDate(appointment.appointmentDate);
+                });
             };
             var failureCallback = function(response){
                 console.log(response);
             }
-            $scope.schedule = schedulingService.getSchedule($scope.scheduleDateFormatted, successCallback, failureCallback);
+            schedulingService.getSchedule($scope.scheduleDateFormatted, successCallback, failureCallback);
 		}
 
 		/******scope init********/
