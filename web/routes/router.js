@@ -78,9 +78,8 @@ module.exports = function(app, passport, connection) {
 
     app.get('/getDefaultNextAppointmentPermutations', isLoggedIn, function(req, res) {
         connection.query('SELECT * from defaultNextAppointmentPermutations', function(err, rows, fields) {
-            if (!err)
-                console.log("");
-//                console.log('The solution is: ', rows);
+            if (!err){
+            }
             else
                 console.log('Error while performing Query.');
 
@@ -96,7 +95,24 @@ module.exports = function(app, passport, connection) {
 		connection.query('SELECT p.ID as patientID, p.Name as patientName, a.AppointmentID as appointmentID, a.AppointmentDate as appointmentDate, a.AppointmentType as appointmentType from APPOINTMENTS a INNER JOIN PATIENTS p on a.PatientID = p.ID WHERE AppointmentDate like \'%' + req.body.requestDate + '%\';', function(err, rows, fields)
 		{
 			if(!err){
-				console.log('the solution is: ', rows);
+			}else{
+				console.log('Error while performing Query.');
+			}
+            res.writeHead(200, {"Content-Type": "application/json"});
+            var json = JSON.stringify(rows);
+            res.end(json);
+		});
+
+    });
+
+    app.post('/getScheduleRange', isLoggedIn, function(req, res) {
+        var request = JSON.parse(req.body.request);
+        var startDate = request.startDate;
+        var endDate = request.endDate;
+
+		connection.query('SELECT p.ID as patientID, p.Name as patientName, a.AppointmentID as appointmentID, a.AppointmentDate as appointmentDate, a.AppointmentType as appointmentType from APPOINTMENTS a INNER JOIN PATIENTS p on a.PatientID = p.ID WHERE AppointmentDate BETWEEN \'' + startDate + ' 00:00:00\' and \'' + endDate + ' 23:59:59\';', function(err, rows, fields)
+		{
+			if(!err){
 			}else{
 				console.log('Error while performing Query.');
 			}

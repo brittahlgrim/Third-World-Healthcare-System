@@ -7,29 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
     <!--JQUERY must be before angular-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="content/underscore/underscore-min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- Include Required Prerequisites -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="content/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="content/custom/schedule.css">
+
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
     <script type="text/javascript" src="scripts/app.js"></script>
     <script type="text/javascript" src="scripts/controllers/scheduleController.js"></script>
 	<script type="text/javascript" src="scripts/services/schedulingService.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="content/custom/schedule.css">
 	<title>HORARIO</title>
 </head>
 <body style="background-color: #f4f3ed; color: white;">
 	<div ng-app="myApp" ng-controller="scheduleCtrl">
 		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
+
 			<div class="col-xs-4" ng-click="changeDate(previousDate)">
-				<h5>{{previousDateFormatted}}</h5>
 			</div>
 			<div class="col-xs-4" style="background-color: #64b5f6">
-				<h5>{{scheduleDateFormatted}}</h5>
+				<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+					<span></span> <b class="caret"></b>
+				</div>
 			</div>
 			<div class="col-xs-4" ng-click="changeDate(nextDate)">
-				<h5>{{nextDateFormatted}}</h5>
 			</div>
 		</div>
 		<div class="left" align="center" style="margin-top: 10px">

@@ -40,9 +40,7 @@ angular.module('myApp').controller('scheduleCtrl',
 		};
 
 		$scope.changeDate = function(dateToChangeToFormatted){
-			console.log(dateToChangeToFormatted);
 			$scope.scheduleDate = new Date(dateToChangeToFormatted);
-			console.log($scope.scheduleDate);
 			$scope.previousDate = new Date(dateToChangeToFormatted);
 			$scope.previousDate.setDate($scope.previousDate.getDate() - 1);
 			$scope.nextDate = new Date(dateToChangeToFormatted);
@@ -53,7 +51,6 @@ angular.module('myApp').controller('scheduleCtrl',
             $scope.nextDateFormatted = formatDate($scope.nextDate);
 
             var successCallback = function(response){
-                console.log(response);
                 $scope.schedule = response;
                 $scope.schedule.forEach(function(appointment)
                 {
@@ -68,5 +65,51 @@ angular.module('myApp').controller('scheduleCtrl',
 
 		/******scope init********/
 		initScheduleListData();
+
+		/***** DATERANGE PICKER ****/
+		$(function() {
+
+            var start = moment().subtract(29, 'days');
+            var end = moment();
+
+            function cb(start, end) {
+                console.log(start.format('YYYY-MM-DD'));
+                console.log(end.format('YYYY-MM-DD'));
+
+                var successCallback = function(response){
+                    $scope.schedule = response;
+                    $scope.schedule.forEach(function(appointment)
+                    {
+                        appointment.appointmentDateFormatted = formatDate(appointment.appointmentDate);
+                    });
+                };
+                var failureCallback = function(response){
+                    console.log(response);
+                }
+                var request = {
+                    startDate: start.format('YYYY-MM-DD'),
+                    endDate: end.format('YYYY-MM-DD')
+                };
+                schedulingService.getScheduleRange(request, successCallback, failureCallback);
+
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+
+            $('#reportrange').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                   'Today': [moment(), moment()],
+                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                   'This Month': [moment().startOf('month'), moment().endOf('month')],
+                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+        });
 	}]
 );
