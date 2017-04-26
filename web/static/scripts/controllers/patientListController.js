@@ -5,7 +5,6 @@ angular.module('myApp').controller('patientListCtrl',
 			window.location.href = "/patientInfo?patientID=" + patientID;
 		};
 
-
 		var  formatDate = function (date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
@@ -18,7 +17,25 @@ angular.module('myApp').controller('patientListCtrl',
             return [year, month, day].join('-');
         };
 
-
+        $scope.sortPatientsBy = function(fieldToSortBy){
+            console.log("Sort button pressed!")
+            if(fieldToSortBy == "name")
+                $scope.names.sort(nameSorting);
+       
+          /*console.log("This is the new $scope.names =>");
+            for(var i=0; i<$scope.names.length; i++){
+                console.log($scope.names[i].Name);
+            }*/
+        };
+ 
+        var nameSorting = function(a,b){
+            var nameA=a.Name.toLowerCase(), nameB=b.Name.toLowerCase()
+            if (nameA < nameB)
+                return -1; 
+            if (nameA > nameB)
+                return 1;
+            return 0;
+        };
 
 
 //Trial function to get risk factors from the mysql table

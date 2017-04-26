@@ -40,6 +40,7 @@
 						<td>Grupo</td>
 						<td>Cita Próxima</td>
 						<td>Factores de Riesgo</td>
+						<input type="button" ng-click="sortPatientsBy('name')" value="Sort By Name"/>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold;" ng-click="openPatientInformation(x.ID)">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
