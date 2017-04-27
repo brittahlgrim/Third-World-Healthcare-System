@@ -36,6 +36,19 @@ angular.module("myApp").factory('schedulingService', function($http) {
                     failureCallback(data)
                 });
 		},
+		getScheduleRange: function(request, successCallback, failureCallback)
+		{
+			$http({
+                url: 'getScheduleRange',
+                method: "POST",
+                data: 'request=' + JSON.stringify(request),
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).success(function (data, status, headers, config) {
+                    successCallback(data);
+                }).error(function (data, status, headers, config) {
+                    failureCallback(data)
+                });
+		},
 		createNewAppointment: function(request, successCallback, failureCallback)
 		{
 			console.log(request);

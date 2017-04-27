@@ -1,16 +1,1 @@
-USE [twhs_test_db];
-
-IF EXISTS(SELECT 1 FROM mysql.proc p WHERE db = 'twhs_test_db' AND name = 'get_scheduleByDate') THEN
-	DROP PROCEDURE get_scheduleByDate;
-
-CREATE PROCEDURE get_scheduleByDate
-(IN requestedDate CHAR(8))
-BEGIN
-	SELECT p.PatientID, p.PatientName, z.Zone
-	FROM dbo.Schedule s
-	INNER JOIN dbo.Patients p
-		on p.ID = s.PatientID
-	INNER JOIN dbo.zones z
-		on p.zone = z.ID
-	WHERE s.date = requestedDate;
-END;
+SELECT p.ID as ID, p.Name as Name, p.ZoneID as Zone, p.GroupID as GroupID, MAX(a.appointmentDate) as AppointmentDate, MAX(a.appointmentType) as AppointmentType, p.RiskFactor as RiskFactor, CASE WHEN (p.GroupID = 1) THEN 52 WHEN (p.GroupID = 2) THEN 26 WHEN (p.GroupID = 3) THEN CASE WHEN (p.ChronicIllness IS NOT NULL) THEN 17 ELSE 26 END ELSE 17 END AS WeeksToAdd FROM PATIENTS p LEFT JOIN APPOINTMENTS a ON p.ID = a.patientID and a.AppointmentDate <= CURDATE() GROUP BY p.ID;
