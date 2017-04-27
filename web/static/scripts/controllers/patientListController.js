@@ -17,14 +17,22 @@ angular.module('myApp').controller('patientListCtrl',
             return [year, month, day].join('-');
         };
 
+        var numTimesNameCalled=0
+
         $scope.sortPatientsBy = function(fieldToSortBy){
             console.log("Sort button pressed!")
-            if(fieldToSortBy == "name")
+            console.log($scope.names)
+            if(fieldToSortBy == "name"){
                 $scope.names.sort(nameSorting);
+                //toggle order if button pressed again
+                if(numTimesNameCalled++%2===0){$scope.names.reverse()}}
+                
         };
  
         var nameSorting = function(a,b){
-            var nameA=a.Name.toLowerCase(), nameB=b.Name.toLowerCase()
+            //split by space, take the last name
+            var nameA=a.Name.split(/(\s+)/)[2].toLowerCase()
+            var nameB=b.Name.split(/(\s+)/)[2].toLowerCase()
             if (nameA < nameB)
                 return -1; 
             if (nameA > nameB)

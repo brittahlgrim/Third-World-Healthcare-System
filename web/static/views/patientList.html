@@ -36,12 +36,12 @@
 				<table class="hover" style="color:#64b5f6; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
 						<td width="20px;"></td>
-						<td>Nombre</td>
+						<td ng-click="sortPatientsBy('name')">Nombre</td>
 						<td>Zone</td>
 						<td>Grupo</td>
 						<td>Cita Próxima</td>
 						<td>Factores de Riesgo</td>
-						<input type="button" ng-click="sortPatientsBy('name')" value="Sort By Name"/>
+						<input type="button" value="NotUsed"/>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold;" ng-click="openPatientInformation(x.ID)">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>
