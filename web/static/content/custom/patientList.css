@@ -13,3 +13,13 @@
     left:50px; top:40px; right:0; bottom:0;
     width: calc(100% - 70px);
 }
+
+.hover{
+    position: absolute;
+    width: calc(100% - 70px);
+}
+
+.hover tr:hover {
+    cursor: pointer;
+    background-color: #ffff99;
+}
