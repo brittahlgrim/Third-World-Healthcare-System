@@ -37,11 +37,11 @@
 					<tr style="font-weight: bold;">
 						<td width="20px;"></td>
 						<td ng-click="sortPatientsBy('name')">Nombre</td>
-						<td>Zone</td>
-						<td>Grupo</td>
-						<td>Cita Próxima</td>
-						<td>Factores de Riesgo</td>
-						<input type="button" value="NotUsed"/>
+						<td ng-click="sortPatientsBy('zone')">Zone</td>
+						<td ng-click="sortPatientsBy('group')">Grupo</td>
+						<td ng-click="sortPatientsBy('appt')">Cita Próxima</td>
+						<td ng-click="sortPatientsBy('risk')">Factores de Riesgo</td>
+						<input style="height: 0px;"/>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold;" ng-click="openPatientInformation(x.ID)">
 						<td><i class="fa fa-user" aria-hidden="true"></i></td>

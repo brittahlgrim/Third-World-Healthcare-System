@@ -18,26 +18,64 @@ angular.module('myApp').controller('patientListCtrl',
         };
 
         var numTimesNameCalled=0
+        var numTimesZoneCalled=0
+        var numTimesGroupCalled=0
+        var numTimesApptCalled=0
+        var numTimesRiskCalled=0
 
         $scope.sortPatientsBy = function(fieldToSortBy){
             console.log("Sort button pressed!")
             console.log($scope.names)
             if(fieldToSortBy == "name"){
-                $scope.names.sort(nameSorting);
+                $scope.names.sort(function(a,b){
+                    var nameA=a.Name.split(/(\s+)/)[2].toLowerCase()
+                    var nameB=b.Name.split(/(\s+)/)[2].toLowerCase()
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
                 //toggle order if button pressed again
                 if(numTimesNameCalled++%2===0){$scope.names.reverse()}}
-                
+            if(fieldToSortBy == "zone"){
+                $scope.names.sort(function(a,b){
+                    if (a.Zone < b.Zone)
+                        return -1; 
+                    if (a.Zone > b.Zone)
+                        return 1;
+                    return 0;});
+                if(numTimesZoneCalled++%2===0){$scope.names.reverse()}} 
+            if(fieldToSortBy == "group"){
+                $scope.names.sort(function(a,b){
+                    if (a.GroupID < b.GroupID)
+                        return -1; 
+                    if (a.GroupID > b.GroupID)
+                        return 1;
+                    return 0;});
+                if(numTimesGroupCalled++%2===0){$scope.names.reverse()}} 
+             if(fieldToSortBy == "appt"){
+                $scope.names.sort(function(a,b){
+                    if (a.NextAppointmentDateFormatted < b.NextAppointmentDateFormatted)
+                        return -1; 
+                    if (a.NextAppointmentDateFormatted > b.NextAppointmentDateFormatted)
+                        return 1;
+                    return 0;});
+                if(numTimesApptCalled++%2===0){$scope.names.reverse()}} 
+             if(fieldToSortBy == "risk"){
+                $scope.names.sort(function(a,b){
+                    var nameA=a.RiskFactor.toLowerCase()
+                    var nameB=b.RiskFactor.toLowerCase()
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                if(numTimesRiskCalled++%2===0){$scope.names.reverse()}}
+ 
         };
  
         var nameSorting = function(a,b){
             //split by space, take the last name
-            var nameA=a.Name.split(/(\s+)/)[2].toLowerCase()
-            var nameB=b.Name.split(/(\s+)/)[2].toLowerCase()
-            if (nameA < nameB)
-                return -1; 
-            if (nameA > nameB)
-                return 1;
-            return 0;
         };
 
 		$scope.getNames = function() {
