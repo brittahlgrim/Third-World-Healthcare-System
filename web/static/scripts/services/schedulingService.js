@@ -51,7 +51,6 @@ angular.module("myApp").factory('schedulingService', function($http) {
 		},
 		createNewAppointment: function(request, successCallback, failureCallback)
 		{
-			console.log(request);
 			$http({
                 url: 'createNewAppointment',
                 method: "POST",

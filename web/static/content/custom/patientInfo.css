@@ -92,7 +92,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 .ui-datepicker {
    background-color: #f4f3ed;
    /*border: 1px solid #555;*/
-   color: #EEE;
+   color: #337ab7;
    padding: 15px;
 }
 table.ui-datepicker-calendar{

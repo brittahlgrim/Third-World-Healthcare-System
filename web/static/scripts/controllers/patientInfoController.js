@@ -88,7 +88,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 
 		$scope.createNewAppointment = function()
 		{
-			if(!$scope.newAppointment || !$scope.newAppointment.TypeID)
+			if(!$scope.newAppointment || !$scope.newAppointment.TypeName)
 			{
 				$window.alert("Appointment Type required");
 				return;
@@ -108,10 +108,11 @@ angular.module('myApp').controller('patientInfoCtrl',
 			{
 				$window.alert("Save failed. Appointment not saved.");
 			}
+			var dateParts = $scope.newAppointment.Date.split("/");
 			var request = {
 				PatientID: patientID,
-				TypeID: $scope.newAppointment.TypeID,
-				Date: $scope.newAppointment.Date
+				TypeName: $scope.newAppointment.TypeName,
+				Date: dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0]
 			}
 			schedulingService.createNewAppointment(request, successCallback, failureCallback);
 		}
@@ -121,7 +122,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 		$scope.getNames();
 		$scope.newAppointment = {
 			PatientID: patientID,
-			Type: null,
+			TypeName: null,
 			Date: null
 		};
 
