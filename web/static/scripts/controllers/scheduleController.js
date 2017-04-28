@@ -1,6 +1,50 @@
 angular.module('myApp').controller('scheduleCtrl', 
 	['$scope', '$http', 'schedulingService', function($scope, $http, schedulingService){
 
+        var numTimesNameCalled = 0
+        var numTimesDateCalled = 0
+        var numTimesTypeCalled = 0
+
+        $scope.sortPatientsInSchedBy = function(fieldToSortBy){
+            console.log("Hello World!")
+            console.log($scope.schedule)
+            if(fieldToSortBy == "name"){
+                $scope.schedule.sort(function(a,b){
+                    var nameA=a.patientName.split(/(\s+)/)[2].toLowerCase()
+                    var nameB=b.patientName.split(/(\s+)/)[2].toLowerCase()
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                console.log($scope.schedule)
+                if(numTimesNameCalled++%2===0){$scope.schedule.reverse()}}
+        
+            if(fieldToSortBy == "date"){
+                $scope.schedule.sort(function(a,b){
+                    var nameA=a.appointmentDate
+                    var nameB=b.appointmentDate
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                console.log($scope.schedule)
+                if(numTimesDateCalled++%2===0){$scope.schedule.reverse()}}
+
+            if(fieldToSortBy == "type"){
+                $scope.schedule.sort(function(a,b){
+                    var nameA=a.appointmentType.toLowerCase()
+                    var nameB=b.appointmentType.toLowerCase()
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                console.log($scope.schedule)
+                if(numTimesTypeCalled++%2===0){$scope.schedule.reverse()}}
+        }
+
 		$scope.scheduleDate = null;
 		$scope.scheduleDateFormatted = null;
 		$scope.previousDate = null;

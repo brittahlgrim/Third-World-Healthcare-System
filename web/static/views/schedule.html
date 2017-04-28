@@ -54,9 +54,10 @@
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
 				<table ng-show="schedule && schedule.length" style="color:#2e8adf; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
-						<td width="65%">Pacientes</td>
-						<td>Dato</td>
-						<td>Tipo</td>
+						<td ng-click="sortPatientsInSchedBy('name')" width="65%">Pacientes</td>
+						<td ng-click="sortPatientsInSchedBy('date')">Dato</td>
+						<td ng-click="sortPatientsInSchedBy('type')">Tipo</td>
+                        <input style="height: 0px;"/>
 					</tr>
 					<tr ng-show="schedule && schedule.length > 0" ng-repeat="appointment in schedule" style="font-style: bold;">
 						<td width="65%" ng-click="showPatientInfo(appointment.patientID)">{{appointment.patientName}}</td>
