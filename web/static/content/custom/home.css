@@ -8,8 +8,16 @@
     left:0; top:40px; bottom: 0;
     width: 50px;
 }
+
+
+
+
 .main {
     position: absolute;
+    opacity:0.5; 
     left:50px; top:0px; right:0; bottom:0;
     width: calc(100% - 70px);
+    background-image: url("https://blog.compassion.com/wp-content/uploads/2010/12/el-salvador-facts-kids.jpg");
 }
+
+

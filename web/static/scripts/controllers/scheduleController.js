@@ -1,6 +1,50 @@
 angular.module('myApp').controller('scheduleCtrl', 
 	['$scope', '$http', 'schedulingService', function($scope, $http, schedulingService){
 
+        var numTimesNameCalled = 0
+        var numTimesDateCalled = 0
+        var numTimesTypeCalled = 0
+
+        $scope.sortPatientsInSchedBy = function(fieldToSortBy){
+            console.log("Hello World!")
+            console.log($scope.schedule)
+            if(fieldToSortBy == "name"){
+                $scope.schedule.sort(function(a,b){
+                    var nameA=a.patientName.split(/(\s+)/)[2].toLowerCase()
+                    var nameB=b.patientName.split(/(\s+)/)[2].toLowerCase()
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                console.log($scope.schedule)
+                if(numTimesNameCalled++%2===0){$scope.schedule.reverse()}}
+        
+            if(fieldToSortBy == "date"){
+                $scope.schedule.sort(function(a,b){
+                    var nameA=a.appointmentDate
+                    var nameB=b.appointmentDate
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                console.log($scope.schedule)
+                if(numTimesDateCalled++%2===0){$scope.schedule.reverse()}}
+
+            if(fieldToSortBy == "type"){
+                $scope.schedule.sort(function(a,b){
+                    var nameA=a.appointmentType.toLowerCase()
+                    var nameB=b.appointmentType.toLowerCase()
+                    if (nameA < nameB)
+                        return -1; 
+                    if (nameA > nameB)
+                        return 1;
+                    return 0;});
+                console.log($scope.schedule)
+                if(numTimesTypeCalled++%2===0){$scope.schedule.reverse()}}
+        }
+
 		$scope.scheduleDate = null;
 		$scope.scheduleDateFormatted = null;
 		$scope.previousDate = null;
@@ -98,13 +142,46 @@ angular.module('myApp').controller('scheduleCtrl',
             $('#reportrange').daterangepicker({
                 startDate: start,
                 endDate: end,
+                "locale": {
+                        "format": "YYYY/MM/DD",
+                        "separator": " - ",
+                        "applyLabel": "Aplicar",
+                        "cancelLabel": "Cancelar",
+                        "fromLabel": "Desde",
+                        "toLabel": "Hasta",
+                        "customRangeLabel": "A Medida",
+                        "daysOfWeek": [
+                            "Do",
+                            "Lu",
+                            "Ma",
+                            "Mi",
+                            "Ju",
+                            "Vi",
+                            "Sa"
+                        ],
+                        "monthNames": [
+                            "enero",
+                            "febrero",
+                            "marzo",
+                            "abril",
+                            "mayo",
+                            "junio",
+                            "julio",
+                            "agosot",
+                            "septiembre",
+                            "octubre",
+                            "noviembre",
+                            "diciembre"
+                        ],
+                        "firstDay": 1
+                    },
                 ranges: {
-                   'Today': [moment(), moment()],
-                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                   'This Month': [moment().startOf('month'), moment().endOf('month')],
-                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                   'Hoy': [moment(), moment()],
+                   'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                   '7 Días Anteriores': [moment().subtract(6, 'days'), moment()],
+                   '30 Días Anteriores': [moment().subtract(29, 'days'), moment()],
+                   'Este Mes': [moment().startOf('month'), moment().endOf('month')],
+                   'Mes Anterior': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 }
             }, cb);
 

@@ -1,62 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-	 <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
 
-    <!--JQUERY must be before angular-->
+	<!--JQUERY must be before angular-->
 	<!-- Include Required Prerequisites -->
 	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
 	<script type="text/javascript" src="content/underscore/underscore-min.js"></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="content/custom/schedule.css">
 
 	<!-- Include Date Range Picker -->
 	<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+	<link rel="stylesheet" type="text/css" href="content/custom/daterangepicker.css">
 
-    <script type="text/javascript" src="scripts/app.js"></script>
-    <script type="text/javascript" src="scripts/controllers/scheduleController.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/controllers/scheduleController.js"></script>
 	<script type="text/javascript" src="scripts/services/schedulingService.js"></script>
 
 	<title>HORARIO</title>
 </head>
-<body style="background-color: #f4f3ed; color: white;">
-	<div ng-app="myApp" ng-controller="scheduleCtrl">
-		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
-
-			<div class="col-xs-4" ng-click="changeDate(previousDate)">
+<body style="background-color: #f4f3ed; color: #64b5f6;;">
+<div ng-app="myApp" ng-controller="scheduleCtrl">
+	<div class="left schedule-left" align="center" style="margin-top: 10px">
+		<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+		<br/>
+		<br/>
+		<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+		<br/>
+		<br/>
+		<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
+	</div>
+	<div class="main schedule-main">
+		<div class="row">
+			<div class="col-xs-8">
+				<h3 style="text-align: center; color: #64b5f6; margin: 10px;">HORARIO</h3>
 			</div>
-			<div class="col-xs-4" style="background-color: #64b5f6">
-				<div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-					<span></span> <b class="caret"></b>
+			<div class="col-xs-4">
+				<div style="background-color: #64b5f6; margin: 10px;">
+					<div id="reportrange" class="pull-right"
+					     style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+						<span></span> <b class="caret"></b>
+					</div>
 				</div>
 			</div>
-			<div class="col-xs-4" ng-click="changeDate(nextDate)">
-			</div>
-		</div>
-		<div class="left" align="center" style="margin-top: 10px">
-			<div><a href="/home"><i class="fa fa-home fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-			<br/>
-			<br/>
-			<div><a href="/patientList"><i class="fa fa-users fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
-			<br/>
-			<br/>
-			<div><a href="/schedule"><i class="fa fa-calendar fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>
 		</div>
 		<div class="main">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
 				<table ng-show="schedule && schedule.length" style="color:#2e8adf; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
-						<td width="65%">Pacientes</td>
-						<td>Dato</td>
-						<td>Tipo</td>
+						<td ng-click="sortPatientsInSchedBy('name')" width="65%">Pacientes</td>
+						<td ng-click="sortPatientsInSchedBy('date')">Dato</td>
+						<td ng-click="sortPatientsInSchedBy('type')">Tipo</td>
 					</tr>
 					<tr ng-show="schedule && schedule.length > 0" ng-repeat="appointment in schedule" style="font-style: bold;">
 						<td width="65%" ng-click="showPatientInfo(appointment.patientID)">{{appointment.patientName}}</td>
@@ -68,35 +70,34 @@
 					There are no appointments scheduled for the selected date.
 				</div>
 			</div>
-			<div id="patientInfo" class="sidenav" ng-show="selectedPatient">
-				<a href="javascript:void(0)" class="closebtn" ng-click="closePatientInfo()">&times;</a>
-				<div class="row" ng-click="openPatientInformation(selectedPatient.PatientID)">
-					<div class="col-xs-6" style="font-size:25px; color: white;">{{selectedPatient.Name}}</div>
-					<div class="col-xs-6"><img ng-src={{selectedPatient.Image}} alt="image" style="width:100px;height:100;"></div>
+		</div>
+		<div id="patientInfo" class="sidenav" ng-show="selectedPatient">
+			<a href="javascript:void(0)" class="closebtn" ng-click="closePatientInfo()">&times;</a>
+			<div class="row" ng-click="openPatientInformation(selectedPatient.PatientID)">
+				<div class="col-xs-6" style="font-size:25px; color: white;">{{selectedPatient.Name}}</div>
+				<div class="col-xs-6"><img ng-src={{selectedPatient.Image}} alt="image" style="width:100px;height:100;">
 				</div>
-				<table>
-					<tr>
-						<td width="70%" class="patient-info-property-name">Classification: </td>
-						<td class="patient-info-property-value">{{selectedPatient.Classification}}</td>
-					</tr>
-					<tr>
-						<td class="patient-info-property-name">Risk Factor: </td>
-						<td class="patient-info-property-value">{{selectedPatient.RiskFactor}}</td>
-					</tr>
-					<tr>
-						<td class="patient-info-property-name">Sex: </td>
-						<td class="patient-info-property-value">{{selectedPatient.Sex}}</td>
-					</tr>
-					<tr>
-						<td class="patient-info-property-name">Zone: </td>
-						<td class="patient-info-property-value">{{selectedPatient.Zone}}</td>
-					</tr>
-				</table>
 			</div>
-			<div class="footer navbar-fixed-bottom" style="color: #626465; text-align: center; background-color: white; font-size: 25px;">
-				<button onclick="window.location.href='/home'"><i class="fa fa-arrow-left" aria-hidden="true"></i>Home</button>
-			</div>
+			<table>
+				<tr>
+					<td width="70%" class="patient-info-property-name">Classification:</td>
+					<td class="patient-info-property-value">{{selectedPatient.Classification}}</td>
+				</tr>
+				<tr>
+					<td class="patient-info-property-name">Risk Factor:</td>
+					<td class="patient-info-property-value">{{selectedPatient.RiskFactor}}</td>
+				</tr>
+				<tr>
+					<td class="patient-info-property-name">Sex:</td>
+					<td class="patient-info-property-value">{{selectedPatient.Sex}}</td>
+				</tr>
+				<tr>
+					<td class="patient-info-property-name">Zone:</td>
+					<td class="patient-info-property-value">{{selectedPatient.Zone}}</td>
+				</tr>
+			</table>
 		</div>
 	</div>
+</div>
 </body>
 </html>

@@ -1,14 +1,14 @@
-.top {
+.schedule-top {
     position:absolute;
     left:0; right:0;
     height: 40px;
 }
-.left {
+.schedule-left {
     position:absolute;
     left:0; top:40px; bottom: 0;
     width: 50px;
 }
-.main {
+.schedule-main {
     position: absolute;
     left:50px; top:40px; right:0; bottom:0;
     width: calc(100% - 70px);
