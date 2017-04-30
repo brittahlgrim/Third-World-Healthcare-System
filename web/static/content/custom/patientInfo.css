@@ -102,3 +102,10 @@ table.ui-datepicker-calendar{
 .ui-datepicker-next{
 	float: right;
 }
+
+
+.delete:hover {
+
+cursor:pointer;
+
+}
