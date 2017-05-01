@@ -172,28 +172,24 @@ module.exports = function(app, passport, connection) {
 	app.post('/createNewAppointment', isLoggedIn, function(req, res) {
 		var newAppointment = JSON.parse(req.body.newAppointment);
 		var newAppointmentPatientID = newAppointment.PatientID;
-		var newAppointmentTypeID = newAppointment.TypeID;
+		var newAppointmentTypeName = newAppointment.TypeName;
 		var newAppointmentDate = newAppointment.Date;
-		//TODO: create sql query inserts new appointment
 
-//		connection.query('DECLARE @PatientID = ' + newAppointmentPatientID + '; ' +
-//				'DECLARE @Type = SELECT TOP 1 ID FROM APPOINTMENT_TYPE WHERE ID = ' + newAppointmentTypeID + '; '+
-//				'DECLARE @Date = ' + newAppointmentDate + '; ' +
-//				'INSERT INTO APPOINTMENTS (PatientID, TypeID, Date) VALUES (@PatientID, @Type, @Date)',
-//			function(err, rows, fields)
-//			{
-//				if(!err)
-//					console.log('Rows inserted successfully');
-//				else
-//					console.log('Error while performing insert');
-//
-//				res.writeHead(200, {"Content-Type": "application/json"});
-//				var json = JSON.stringify(rows);
-//				res.end(json);
-//			});
-		res.writeHead(200, {"Content-Type": "application/json"});
-		var json = JSON.stringify("Success");
-		res.end(json);
+		var query = 'INSERT INTO APPOINTMENTS (PatientID, AppointmentType, AppointmentDate) VALUES (' +
+			newAppointmentPatientID + ', \'' + newAppointmentTypeName + '\', \'' + newAppointmentDate + '\');';
+		connection.query(
+				query,
+			function(err, rows, fields)
+			{
+				if(!err)
+					console.log('Rows inserted successfully');
+				else
+					console.log('Error while performing insert');
+
+				res.writeHead(200, {"Content-Type": "application/json"});
+				var json = JSON.stringify(rows);
+				res.end(json);
+			});
 	});
 
 

@@ -9,6 +9,7 @@
 	<!--JQUERY must be before angular-->
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		$.datepicker.regional['es'] = {
@@ -72,7 +73,7 @@
 			<div><a href="/editPatient?patientID={{patient.ID}}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div> 
 			<br/>
 			<br/>
-			<div ng-click="delete_patient()">
+			<div class="delete" ng-click="delete_patient()">
                                         <i class="fa fa-trash-o fa-2x" aria-hidden="true" style="color:#64b5f6"></i>
                                 </div>  
 
@@ -152,7 +153,7 @@
 				</div>
 				<div class="col-xs-12" style="text-align: center;">
 					<!-- Trigger/Open The Modal -->
-					<button id="myBtn">Open Modal</button>
+					<button id="myBtn">New Appointment</button>
 					<!-- The Modal -->
 					<div id="myModal" class="modal">
 						<!-- Modal content -->
@@ -174,8 +175,8 @@
 								<div class="row">
 									<div class="col-xs-6">Appointment Type:</div>
 									<div class="col-xs-6">
-										<select name="appointmentType" ng-model="newAppointment.TypeID">
-											<option ng-repeat="t in visitTypes" value={{t.ID}}>{{t.Name}}</option>
+										<select name="appointmentType" ng-model="newAppointment.TypeName">
+											<option ng-repeat="t in visitTypes" value={{t.Name}}>{{t.Name}}</option>
 										</select>
 									</div>
 								</div>

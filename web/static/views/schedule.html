@@ -61,7 +61,7 @@
 						<td ng-click="sortPatientsInSchedBy('type')">Tipo</td>
 					</tr>
 					<tr ng-show="schedule && schedule.length > 0" ng-repeat="appointment in schedule" style="font-style: bold;">
-						<td width="65%" ng-click="showPatientInfo(appointment.patientID)">{{appointment.patientName}}</td>
+						<td width="65%" ng-click="openPatientInformation(appointment.patientID)">{{appointment.patientName}}</td>
 						<td>{{appointment.appointmentDateFormatted}}</td>
 						<td>{{appointment.appointmentType}}
 					</tr>

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--<link rel="stylesheet" type="text/css" href="content/custom/schedule.css">-->
     <link rel="stylesheet" type="text/css" href="content/custom/patientList.css">
-	<title>Horario</title>
+	<title>Lista de Pacientes</title>
 </head>
 <body style="background-color: #f4f3ed; color: white;">
 	<div ng-app="myApp" ng-controller="patientListCtrl">
@@ -40,7 +40,7 @@
 						<td ng-click="sortPatientsBy('group')">Grupo</td>
 						<td ng-click="sortPatientsBy('appt')">Cita Próxima</td>
 						<td ng-click="sortPatientsBy('risk')">Factores de Riesgo</td>
-						<input style="height: 0px;"/>
+						<input style="visibility: hidden; height: 0px;"/>
 					</tr>
 					<tr ng-repeat="x in names" style="font-style: bold; color:#64b5f6; font-size: 15px;" ng-click="openPatientInformation(x.ID)">
 						<td>{{x.Name}}</td>

@@ -11,6 +11,9 @@ var mysql       = require('mysql');
 var passport    = require('passport');
 var flash       = require('connect-flash');
 
+//Force HTTPS
+//var secure = require('express-force-https');
+//app.use(secure)
 
 //connect to our database
 require('../../config/passport')(passport); //pass passport for configuration
@@ -32,6 +35,7 @@ connection.connect(function(err){
 });
 
 require('../../config/passport')(passport, connection); //pass passport for configuration
+
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
