@@ -6,6 +6,34 @@ angular.module('myApp').controller('editPatientCtrl',
             var patientID = window.location.href.substr(indexOfHtml + urlParam.length);
             console.log(patientID);
 
+            $scope.factors = [ 
+                'Bajos ingresos economicos',
+                'Malas condiciones de trabajo',
+                'Violencia e inseguridad ciudadana',
+                'Hacinamiento y vivienda precaria',
+                'Baja disponibilidad y acceso a alimentos sanos e inocuos',
+                'Saneamiento ambiental inadecuado',
+                'Transporte publico inexistente o desordenado',
+                'Analfabetismo y deficiencias en la educación',
+                'Inequidad en salud',
+                'Dificultad en el acceso de los servicios de salud',
+                'Ausencia de espacios publicos para realizar actividad fisica',
+                'Contaminacion ambiental',
+                'Inseguridad vial',
+                'Vulnerabilidad geografica y geologica',
+                'Consumo de alcohol, drogas, tabaco',
+                'Consumo de dieta no saludable',
+                'Inactividad fisica y sedentarismo',
+                'Falta de practica de lactancia materna',
+                'Practicas sexuales sin proteccion',
+                'Embarazo no deseado y precoz,',
+                'Irrespeto a las leyes de transito',
+                'Hábitos higienicos inadecuados',
+                'Inadecuado autocuido',
+                'Violencia de genero (familiar, sexual y otras)',
+                'Trabajo infantil'
+            ];  
+
             $scope.getNames = function() {
                 $http.get("/getNames").success(function (data) {
                     $scope.names = data;
@@ -42,7 +70,7 @@ angular.module('myApp').controller('editPatientCtrl',
 
             $scope.edit_patient = function() {
 
-                $http.post("/editPatient?patientID=" + patientID,{'name': $scope.patient.Name, 'DOB': $scope.patient.DOBFormatted, 'patientID': $scope.patient.DescriptivePatientID, 'familyID': $scope.patient.FamilyID, 'ecoName': $scope.patient.ECOName, 'zoneID': $scope.patient.ZoneID, 'gender': $scope.patient.Sex, 'groupID': $scope.patient.GroupID, 'riskFactor': $scope.patient.RiskFactor, 'chronicIllness': $scope.patient.ChronicIllness, 'notes': $scope.patient.notes})
+                $http.post("/editPatient?patientID=" + patientID,{'name': $scope.patient.Name, 'DOB': $scope.patient.DOBFormatted, 'patientID': $scope.patient.DescriptivePatientID, 'familyID': $scope.patient.FamilyID, 'ecoName': $scope.patient.ECOName, 'zoneID': $scope.patient.ZoneID, 'gender': $scope.patient.Sex, 'groupID': $scope.patient.GroupID, 'riskFactor': $scope.patient.RiskFactor, 'chronicIllness': $scope.patient.ChronicIllness, 'notes': $scope.patient.Notes})
         			.success(function(data, status, headers, config){
             			console.log("Patient Edited Successfully");
             			console.log('data',data);

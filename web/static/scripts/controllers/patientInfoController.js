@@ -13,7 +13,9 @@ angular.module('myApp').controller('patientInfoCtrl',
 			});
 		};
 
-
+        $scope.openPatientList = function(patientID){
+            window.location.href = "/patientList";
+        };
 
 		var getPatientInfo = function(){
 			var successCallback = function(response){
@@ -45,6 +47,8 @@ angular.module('myApp').controller('patientInfoCtrl',
 				console.log("Patient delete failure");
 				failureCallback(null);
 				});
+
+            $scope.openPatientList();
         };
 
 

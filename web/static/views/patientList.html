@@ -12,14 +12,14 @@
 
     <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="content/custom/schedule.css">--!>
+    <!--<link rel="stylesheet" type="text/css" href="content/custom/schedule.css">-->
     <link rel="stylesheet" type="text/css" href="content/custom/patientList.css">
 	<title>Horario</title>
 </head>
 <body style="background-color: #f4f3ed; color: white;">
 	<div ng-app="myApp" ng-controller="patientListCtrl">
 		<div class="top footer navbar-fixed-top row" align="center" style="margin-left: 1px; padding-top: 5px; ">
-			<h4 style="color:#64b5f6;">Lista de Pacientes</h4>
+			<h3 style="color:#4986b7;">Lista de Pacientes</h3>
 			<div align="right" style="padding-right:30px;"><a href="/createPatient"><i class="fa fa-plus fa-2x" aria-hidden="true" style="color:#64b5f6"></i></a></div>			
 		</div>
 		<div class="left" align="center" style="margin-top: 10px">
@@ -33,19 +33,17 @@
 		</div>
 		<div class="main">
 			<div style="margin: 10px 10px 44px 10px; padding-left: 10px; padding-right: 10px; width: 100%; border-left: 1px solid #64b5f6;">
-				<table class="hover" style="color:#64b5f6; font-size: 15px;" width="100%" rules="rows">
-					<tr style="font-weight: bold;">
-						<td width="20px;"></td>
+				<table class="hover" width="100%" rules="rows">
+					<tr style="font-weight: bold; color:#4986b7; font-size: 19px;">
 						<td ng-click="sortPatientsBy('name')">Nombre</td>
-						<td ng-click="sortPatientsBy('zone')">Zone</td>
+						<td ng-click="sortPatientsBy('zone')">Zona</td>
 						<td ng-click="sortPatientsBy('group')">Grupo</td>
 						<td ng-click="sortPatientsBy('appt')">Cita Próxima</td>
 						<td ng-click="sortPatientsBy('risk')">Factores de Riesgo</td>
 						<input style="height: 0px;"/>
 					</tr>
-					<tr ng-repeat="x in names" style="font-style: bold;" ng-click="openPatientInformation(x.ID)">
-						<td><i class="fa fa-user" aria-hidden="true"></i></td>
-						<td>{{x.ID}} {{x.Name}}</td>
+					<tr ng-repeat="x in names" style="font-style: bold; color:#64b5f6; font-size: 15px;" ng-click="openPatientInformation(x.ID)">
+						<td>{{x.Name}}</td>
 						<td>{{x.Zone}}</td>
 						<td>{{x.GroupID}}</td>
 						<td>{{x.NextAppointmentDateFormatted}}</td>
