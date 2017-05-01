@@ -12,8 +12,8 @@ var passport    = require('passport');
 var flash       = require('connect-flash');
 
 //Force HTTPS
-var secure = require('express-force-https');
-app.use(secure)
+//var secure = require('express-force-https');
+//app.use(secure)
 
 //connect to our database
 require('../../config/passport')(passport); //pass passport for configuration
