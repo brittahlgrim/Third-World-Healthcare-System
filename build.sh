@@ -70,10 +70,10 @@ then
 fi
 
 #do an npm update for all specified files
-if [ "$skip_npm_update" = false ]
-then
-	npm install
-fi
+#if [ "$skip_npm_update" = false ]
+#then
+#	npm install
+#fi
 
 #-----
 #SET UP MYSQL DB AND NODE SERVER
@@ -87,7 +87,7 @@ mysql --user=root --password="$db_root_password" -e "create database twhs_test_d
 mysql --user=root --password="$db_root_password" twhs_test_db < ./db/records_db_table_structure.sql
 
 echo "Attempting to start node server..." > $output
-sudo $open_node_command ./web/node/server.js &
+$open_node_command ./web/node/server.js &
 nodeserver_pid=$!
 sleep 5
 

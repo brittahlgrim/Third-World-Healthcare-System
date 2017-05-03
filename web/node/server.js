@@ -1,15 +1,25 @@
-
 var express     = require('express');
 var session      = require('express-session');
 var cookieParser    = require('cookie-parser');
 var bodyParser = require('body-parser');
 var path = require('path');
 
-var app         = express();
-var port        = 80;
+var port        = 8080;
 var mysql       = require('mysql');
 var passport    = require('passport');
 var flash       = require('connect-flash');
+
+//HTTPS STUFF
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+       key  : fs.readFileSync('web/node/key.pem'),
+       cert : fs.readFileSync('web/node/cert.pem')
+};
+
+var app = express();
 
 //Force HTTPS
 //var secure = require('express-force-https');
@@ -56,5 +66,13 @@ app.use(flash());
 require('../routes/router.js')(app, passport, connection); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
-app.listen(port);
+
+
+https.createServer(options, app).listen(port, function () {
+       console.log('Started!');
+});
+
+//https.createServer(options, app).listen(port)
+//http.createServer(app).listen(port)
+//app.listen(port)
 console.log('The magic happens on port ' + port);
