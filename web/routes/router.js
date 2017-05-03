@@ -125,7 +125,6 @@ module.exports = function(app, passport, connection) {
 			var json = JSON.stringify(rows);
 			res.end(json);
 		});
-
 	});
 	app.get('/patientInfo', isLoggedIn, function(req, res) {
 		if(req.query.patientID)
@@ -134,13 +133,11 @@ module.exports = function(app, passport, connection) {
 			res.redirect('/patientList');
 	});
 	app.get('/getNames', isLoggedIn, function(req, res){
-
 		connection.query(
 			'SELECT p.ID as ID, p.Name as Name, p.ZoneID as Zone, p.GroupID as GroupID, MAX(a.appointmentDate) as AppointmentDate, MAX(a.appointmentType) as AppointmentType, p.RiskFactor as RiskFactor, CASE WHEN (p.GroupID = 1) THEN 52 WHEN (p.GroupID = 2) THEN 26 WHEN (p.GroupID = 3) THEN CASE WHEN (p.ChronicIllness IS NOT NULL) THEN 17 ELSE 26 END ELSE 17 END AS WeeksToAdd FROM PATIENTS p LEFT JOIN APPOINTMENTS a ON p.ID = a.patientID and a.AppointmentDate <= CURDATE() GROUP BY p.ID;'
 			, function(err, rows, fields) {
 			if (!err){
 			}
-
 			else
 				console.log('Error while performing Query.');
 

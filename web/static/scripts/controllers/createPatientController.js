@@ -89,7 +89,7 @@ angular.module('myApp').controller('createPatientCtrl',
 	            $scope.new_patient.GroupID = parseInt($scope.new_patient.GroupID, 10);
 	           	console.log($scope.new_patient);
 
-                $http.post("/addNewPatient",{'name': $scope.new_patient.Name, 'DOB': $scope.new_patient.DOB, 'patientID': $scope.new_patient.DescriptivePatientID, 'familyID': $scope.new_patient.FamilyID, 'ecoName': $scope.new_patient.ECOName, 'zoneID': $scope.new_patient.ZoneID, 'gender': $scope.new_patient.Sex, 'groupID': $scope.new_patient.GroupID, 'riskFactor': $scope.new_patient.RiskFactor, 'chronicIllness': $scope.new_patient.ChronicIllness, 'notes': $scope.new_patient.notes})
+                $http.post("/addNewPatient",{'name': $scope.new_patient.Name, 'DOB': $scope.new_patient.DOB, 'patientID': $scope.new_patient.DescriptivePatientID, 'familyID': $scope.new_patient.FamilyID, 'ecoName': $scope.new_patient.ECOName, 'zoneID': $scope.new_patient.ZoneID, 'gender': $scope.new_patient.Sex, 'groupID': $scope.new_patient.GroupID, 'riskFactor': $scope.new_patient.RiskFactor, 'chronicIllness': $scope.new_patient.ChronicIllness, 'notes': $scope.new_patient.Notes})
         			.success(function(data, status, headers, config){
             			console.log("Patient Created Successfully");
             			console.log('data',data);

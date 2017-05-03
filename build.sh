@@ -70,10 +70,10 @@ then
 fi
 
 #do an npm update for all specified files
-if [ "$skip_npm_update" = false ]
-then
-	npm install
-fi
+#if [ "$skip_npm_update" = false ]
+#then
+#	npm install
+#fi
 
 #-----
 #SET UP MYSQL DB AND NODE SERVER

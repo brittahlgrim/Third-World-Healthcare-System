@@ -1150,7 +1150,7 @@ CREATE TABLE `PATIENTS` (
 
 LOCK TABLES `PATIENTS` WRITE;
 /*!40000 ALTER TABLE `PATIENTS` DISABLE KEYS */;
-INSERT INTO `PATIENTS` VALUES (1,'Julio Perez','1940-01-03','06-14-U-[]-E-003-003-01',3,'2',2,'M',2,'Smoking','Athsma','Notes'),(2,'Lupita Brizuela','1983-03-06','06-14-U-[]-E-005-005-02',5,'1',1,'3',0,'Biological','Artheritis','Notes'),(3,'Alvaro Diaz','2007-08-01','06-14-U-[]-E-002-002-01',2,'4',6,'4',0,'None','Intelligence','Notes');
+INSERT INTO `PATIENTS` VALUES (1,'Julio Perez','1940-01-03','06-14-U-[]-E-003-003-01',3,'2',2,'M',2,'Inseguridad vial','Bajos ingresos economico','Notes'),(2,'Lupita Brizuela','1983-03-06','06-14-U-[]-E-005-005-02',5,'1',1,'3',0,'Biological','Artheritis','Notes'),(3,'Alvaro Diaz','2007-08-01','06-14-U-[]-E-002-002-01',2,'4',6,'4',0,'None','Intelligence','Notes');
 /*!40000 ALTER TABLE `PATIENTS` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -51,7 +51,7 @@
 	<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
 		<div class="row">
 			<div class="col-xs-4">
-				<h3>{{patient.Name}}</h3>
+				<h3 style="color:#4986b7;">{{patient.Name}}</h3>
 			</div>
 			<div class="col-xs-8">
 				<div class="row" style="color: #64b5f6; margin-top: 10px; margin-bottom: 10px; margin-right: 40px;"
@@ -85,33 +85,57 @@
 						<br/>
 						<div class="row">
 							<div class="col-xs-6">Classificatión:</div>
-							<div class="col-xs-6">{{patient.GroupID}}</div>
+							<div class="col-xs-6">{{patient.ID}}</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Factores de Reisgo:</div>
-							<div class="col-xs-6">{{patient.RiskFactor}}</div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6">Fecha de nacimiento:</div>
 							<div class="col-xs-6">{{patient.DOB | date:'dd/MM/yyyy'}}</div>
 						</div>
 						<div class="row">
+							<div class="col-xs-6">Descriptive patient ID:</div>
+							<div class="col-xs-6">{{patient.DescriptivePatientID}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Fecha de nacimiento:</div>
+							<div class="col-xs-6">{{patient.FamilyID}}</div>
+						</div>
+						<div class="row">
 							<div class="col-xs-6">Sexo:</div>
-							<div class="col-xs-6">{{patient.Gender}}</div>
+							<div class="col-xs-6">{{patient.ECOName}}</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Zona:</div>
-							<div class="col-xs-6">{{patient.Zone}}</div>
+							<div class="col-xs-6">{{patient.ZoneID}}</div>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Information:</div>
+							<div class="col-xs-6">Patient Sex:</div>
+							<div class="col-xs-6">{{patient.Sex}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">ID:</div>
+							<div class="col-xs-6">{{patient.GroupID}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Eco Name:</div>
+							<div class="col-xs-6">{{patient.RiskFactor}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Chronic Illness:</div>
+							<div class="col-xs-6">{{patient.ChronicIlness}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Notes:</div>
+							<div class="col-xs-6">{{patient.Notes}}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6">Información:</div>
 							<div class="col-xs-6">{{patient.Name}} {{patient.owner}}</div>
 						</div>
 					</div>
 					<div class="col-xs-8">
 						
 						<div id="AppointmentHistory" class="tabcontent">
-							<h3>Historia de Citas</h3>
+							<h3 style="color:#4986b7;">Historia de Citas</h3>
 							<div>
 								<table>
 									<tr style="font-weight: bold">
@@ -153,7 +177,7 @@
 				</div>
 				<div class="col-xs-12" style="text-align: center;">
 					<!-- Trigger/Open The Modal -->
-					<button id="myBtn">New Appointment</button>
+					<button id="myBtn">Nueva Cita</button>
 					<!-- The Modal -->
 					<div id="myModal" class="modal">
 						<!-- Modal content -->
@@ -162,18 +186,18 @@
 							<p>
 							<form ng-submit="createNewAppointment()">
 								<h2>
-									Add New Appointment
+									Agregar nueva cita
 								</h2>
 								<div class="row">
 									<div class="col-xs-6">
-										Patient Name:
+										Nombre del Paciente:
 									</div>
 									<div class="col-xs-6">
 										{{patient.Name}}
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-6">Appointment Type:</div>
+									<div class="col-xs-6">Tipo de Cita:</div>
 									<div class="col-xs-6">
 										<select name="appointmentType" ng-model="newAppointment.TypeName">
 											<option ng-repeat="t in visitTypes" value={{t.Name}}>{{t.Name}}</option>
@@ -181,13 +205,13 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-6">Date:</div>
+									<div class="col-xs-6">Fecha:</div>
 									<div class="col-xs-6">
 										<input type="text" id="datepicker" ng-model="newAppointment.Date">
 									</div>
 								</div>
 								<br><br>
-								<input type="submit">
+								<input type="Enviar">
 							</form>
 							</p>
 						</div>

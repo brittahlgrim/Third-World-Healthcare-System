@@ -1,0 +1,7 @@
+Attempting SQL connection at
+host: localhost
+user: root
+password: benbrittdavidjpsydney
+database: twhs_test_db
+The magic happens on port 8080
+Database is connected ...

@@ -43,32 +43,31 @@
 						<br/>
 						<div class="row">
 							<div class="col-xs-6">Nombre:</div>
-							<input type="text" name="name" ng-model="new_patient.Name" required>
+							<input class="col-xs-6" type="text" name="name" ng-model="new_patient.Name" required>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Fecha de Nacimiento:</div>
-							<input type="text" placeholder="dd-mm-yyyy" name="DOB" ng-model="new_patient.DOB" required>
-							<span ng-show="!new_patient.DOB">Please enter a date!<span>
+							<input class="col-xs-6" type="text" placeholder="dd-mm-yyyy" name="DOB" ng-model="new_patient.DOB" required>
 						</div>
 						<div class="row">
 							<div class="col-xs-6">ID del paciente:</div>
-							<input type="text" name="descriptivePatientID" ng-model="new_patient.DescriptivePatientID">
+							<input class="col-xs-6" type="text" name="descriptivePatientID" ng-model="new_patient.DescriptivePatientID">
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Personas en la familia:</div>
-							<input type="number" name="familyID" ng-model="new_patient.FamilyID">
+							<input class="col-xs-6" type="number" name="familyID" ng-model="new_patient.FamilyID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Nombre del Eco:</div>
-							<input type="text" name="ECO" ng-model="new_patient.ECOName">
+							<div class="col-xs-6">Nombre del ECO:</div>
+							<input class="col-xs-6" type="text" name="ECO" ng-model="new_patient.ECOName">
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Zona:</div>
-							<input type="number" name="zoneID" ng-model="new_patient.ZoneID">
+							<input class="col-xs-6" type="number" name="zoneID" ng-model="new_patient.ZoneID">
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Sexo:</div>
-							<form>
+							<form class="col-xs-6">
 								<label>
 									<input type="radio" name="sex" ng-model="new_patient.Sex" value="M">Hombre    
 								</label>
@@ -79,7 +78,7 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Classification del Grupo:</div>
-							<form>
+							<form class="col-xs-6">
 								<label>
 									<input type="radio" name="group" ng-model="new_patient.GroupID" value="1">I    
 								</label>
@@ -96,22 +95,27 @@
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Factores de Riesgo:</div>
-							<select name="riskFactor" ng-model="new_patient.RiskFactor">
+							<select class="col-xs-6" name="riskFactor" ng-model="new_patient.RiskFactor">
 								<option ng-repeat="x in factors">{{x}}</option>
 							</select>
 						</div>
 
 						<div class="row">
 							<div class="col-xs-6">Chronic Illness:</div>
-							<input type="text" name="chronicIllness" ng-model="new_patient.ChronicIllness">
+							<input class="col-xs-6" type="text" name="chronicIllness" ng-model="new_patient.ChronicIllness">
 						</div>
 						<div class="row">
 							<div class="col-xs-6">Notes:</div>
-							<input type="text" name="notes" ng-model="new_patient.notes">
+							<input class="col-xs-6" type="text" name="notes" ng-model="new_patient.Nßotes">
 						</div>
+						</br>
 						<div class="row"><a href="/patientList">
-							<button style="color:#ffffff; background-color:#2e8adf">Cancel</button>
-							<button style="color:#ffffff; background-color:#2e8adf" ng-click="create_patient()">Create Patient</button>
+							<div class="col-xs-6" align="center">
+								<button style="color:#ffffff; background-color:#2e8adf">Cancel</button>
+							</div>
+							<div class="col-xs-6" align="center">
+								<button style="color:#ffffff; background-color:#2e8adf" ng-click="create_patient()">Create Patient</button>
+							</div>
 						</a></div>
 					</div>		
 				</div>
