@@ -68,11 +68,11 @@ require('../routes/router.js')(app, passport, connection); // load our routes an
 // launch ======================================================================
 
 
-https.createServer(options, app).listen(port, function () {
+https.createServer(options, app).listen(8081, function () {
        console.log('Started!');
 });
 
 //https.createServer(options, app).listen(port)
-//http.createServer(app).listen(port)
+http.createServer(app).listen(port)
 //app.listen(port)
 console.log('The magic happens on port ' + port);
