@@ -4,6 +4,7 @@ angular.module('myApp').controller('patientListCtrl',
 		$scope.openPatientInformation = function(patientID){
 			window.location.href = "/patientInfo?patientID=" + patientID;
 		};
+        $scope.zoneFilters = [];
 
 		var  formatDate = function (date) {
             var d = new Date(date),
@@ -24,10 +25,8 @@ angular.module('myApp').controller('patientListCtrl',
         var numTimesRiskCalled=0
 
         $scope.sortPatientsBy = function(fieldToSortBy){
-            console.log("Sort button pressed!")
-            console.log($scope.names)
             if(fieldToSortBy == "name"){
-                $scope.names.sort(function(a,b){
+                $scope.filteredNames.sort(function(a,b){
                     var nameA=a.Name.split(/(\s+)/)[2].toLowerCase()
                     var nameB=b.Name.split(/(\s+)/)[2].toLowerCase()
                     if (nameA < nameB)
@@ -36,33 +35,33 @@ angular.module('myApp').controller('patientListCtrl',
                         return 1;
                     return 0;});
                 //toggle order if button pressed again
-                if(numTimesNameCalled++%2===0){$scope.names.reverse()}}
+                if(numTimesNameCalled++%2===0){$scope.filteredNames.reverse()}}
             if(fieldToSortBy == "zone"){
-                $scope.names.sort(function(a,b){
+                $scope.filteredNames.sort(function(a,b){
                     if (a.Zone < b.Zone)
                         return -1; 
                     if (a.Zone > b.Zone)
                         return 1;
                     return 0;});
-                if(numTimesZoneCalled++%2===0){$scope.names.reverse()}} 
+                if(numTimesZoneCalled++%2===0){$scope.filteredNames.reverse()}}
             if(fieldToSortBy == "group"){
-                $scope.names.sort(function(a,b){
+                $scope.filteredNames.sort(function(a,b){
                     if (a.GroupID < b.GroupID)
                         return -1; 
                     if (a.GroupID > b.GroupID)
                         return 1;
                     return 0;});
-                if(numTimesGroupCalled++%2===0){$scope.names.reverse()}} 
+                if(numTimesGroupCalled++%2===0){$scope.filteredNames.reverse()}}
              if(fieldToSortBy == "appt"){
-                $scope.names.sort(function(a,b){
+                $scope.filteredNames.sort(function(a,b){
                     if (a.NextAppointmentDateFormatted < b.NextAppointmentDateFormatted)
                         return -1; 
                     if (a.NextAppointmentDateFormatted > b.NextAppointmentDateFormatted)
                         return 1;
                     return 0;});
-                if(numTimesApptCalled++%2===0){$scope.names.reverse()}} 
+                if(numTimesApptCalled++%2===0){$scope.filteredNames.reverse()}}
              if(fieldToSortBy == "risk"){
-                $scope.names.sort(function(a,b){
+                $scope.filteredNames.sort(function(a,b){
                     var nameA=a.RiskFactor.toLowerCase()
                     var nameB=b.RiskFactor.toLowerCase()
                     if (nameA < nameB)
@@ -70,13 +69,30 @@ angular.module('myApp').controller('patientListCtrl',
                     if (nameA > nameB)
                         return 1;
                     return 0;});
-                if(numTimesRiskCalled++%2===0){$scope.names.reverse()}}
- 
+                if(numTimesRiskCalled++%2===0){$scope.filteredNames.reverse()}}
         };
- 
-        var nameSorting = function(a,b){
-            //split by space, take the last name
+
+        var addToFilters = function (patient)
+        {
+            if (!$scope.zoneFilters.filter(function(z) { return z.Name == patient.Zone; }).length > 0) {
+				var zoneFilter = {
+					Name: patient.Zone,
+					Selected: false
+				};
+				$scope.zoneFilters.push(zoneFilter);
+            };
         };
+
+		$scope.filterNames = function(){
+			$scope.filteredNames = $scope.names.filter(function(n) {
+				var selectedZoneFilters = $scope.zoneFilters.filter(function(z){
+					return z.Selected;
+				});
+				return selectedZoneFilters.some(function (z) {
+					return z == n.Zone;
+				});
+            });
+		};
 
 		$scope.getNames = function() {
 			$http.get("/getNames").success(function (data) {
@@ -89,11 +105,15 @@ angular.module('myApp').controller('patientListCtrl',
 
                     patient.AppointmentDateFormatted = formatDate(patient.AppointmentDate);
                     patient.NextAppointmentDateFormatted = formatDate(patient.NextAppointmentDate);
+                    addToFilters(patient);
                 });
+                $scope.filteredNames = $scope.names;
 			}).error(function() {
 				alert("Error in request for getNames()" + error);
 			});
 		}
+
+		/**initialize **/
 		$scope.getNames();
 	}]
 );
