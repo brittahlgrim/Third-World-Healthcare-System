@@ -1021,7 +1021,7 @@ CREATE TABLE `APPOINTMENTS` (
 
 LOCK TABLES `APPOINTMENTS` WRITE;
 /*!40000 ALTER TABLE `APPOINTMENTS` DISABLE KEYS */;
-INSERT INTO `APPOINTMENTS` VALUES (1,231,'2012-08-10 10:10:09','Regular checkup'),(3,233,'2012-09-30 08:11:09','Home visit'),(2,232,'2012-09-27 20:10:09','Sick checkup'),(1,234,'2017-05-01 09:00:00','Home Visit'),(1,235,'2016-09-10 14:00:00','Home Visit'),(1,236,'2017-05-05 10:30:00','Consultation'),(2,237,'2017-05-01 09:00:00','Home Visit'),(2,238,'2015-10-13 23:40:00','Consultation'),(3,239,'2016-05-01 16:15:00','Home Visit'),(3,240,'2017-05-06 09:00:00','Consultation');
+INSERT INTO `APPOINTMENTS` VALUES (1,231,'2012-08-10 10:10:09','Consulta'),(3,233,'2012-09-30 08:11:09','Visita a al casa'),(2,232,'2012-09-27 20:10:09','Consulta'),(1,234,'2017-05-01 09:00:00','Visita a la Casa'),(1,235,'2016-09-10 14:00:00','Visita a la Casa'),(1,236,'2017-05-05 10:30:00','Consulta'),(2,237,'2017-05-01 09:00:00','Visita a la Casa'),(2,238,'2015-10-13 23:40:00','Consulta'),(3,239,'2016-05-01 16:15:00','Visita a la Casa'),(3,240,'2017-05-06 09:00:00','Consulta');
 /*!40000 ALTER TABLE `APPOINTMENTS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1150,7 +1150,7 @@ CREATE TABLE `PATIENTS` (
 
 LOCK TABLES `PATIENTS` WRITE;
 /*!40000 ALTER TABLE `PATIENTS` DISABLE KEYS */;
-INSERT INTO `PATIENTS` VALUES (1,'Julio Perez','1940-01-03','06-14-U-[]-E-003-003-01',3,'2',2,'M',2,'Inseguridad vial','Bajos ingresos economico','Notes'),(2,'Lupita Brizuela','1983-03-06','06-14-U-[]-E-005-005-02',5,'1',1,'3',0,'Biological','Artheritis','Notes'),(3,'Alvaro Diaz','2007-08-01','06-14-U-[]-E-002-002-01',2,'4',6,'4',0,'None','Intelligence','Notes');
+INSERT INTO `PATIENTS` VALUES (1,'Julio Perez','1940-01-03','06-14-U-[]-E-003-003-01',3,'2',2,'M',2,'Inseguridad vial','Bajos ingresos economico','Notas'),(2,'Lupita Brizuela','1983-03-06','06-14-U-[]-E-005-005-02',5,'1',1,'3',0,'Biologica','Artheritis','Notas'),(3,'Alvaro Diaz','2007-08-01','06-14-U-[]-E-002-002-01',2,'4',6,'4',0,'N/A','Intelligencia','Notas');
 /*!40000 ALTER TABLE `PATIENTS` ENABLE KEYS */;
 UNLOCK TABLES;
 

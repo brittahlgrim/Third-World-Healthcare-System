@@ -57,7 +57,7 @@
 				<table ng-show="schedule && schedule.length" style="color:#2e8adf; font-size: 15px;" width="100%" rules="rows">
 					<tr style="font-weight: bold;">
 						<td ng-click="sortPatientsInSchedBy('name')" width="65%">Pacientes</td>
-						<td ng-click="sortPatientsInSchedBy('date')">Dato</td>
+						<td ng-click="sortPatientsInSchedBy('date')">Fecha</td>
 						<td ng-click="sortPatientsInSchedBy('type')">Tipo</td>
 					</tr>
 					<tr ng-show="schedule && schedule.length > 0" ng-repeat="appointment in schedule" style="font-style: bold;">
@@ -80,19 +80,19 @@
 			</div>
 			<table>
 				<tr>
-					<td width="70%" class="patient-info-property-name">Classification:</td>
+					<td width="70%" class="patient-info-property-name">Clasificación::</td>
 					<td class="patient-info-property-value">{{selectedPatient.Classification}}</td>
 				</tr>
 				<tr>
-					<td class="patient-info-property-name">Risk Factor:</td>
+					<td class="patient-info-property-name">Factores de Resigo:</td>
 					<td class="patient-info-property-value">{{selectedPatient.RiskFactor}}</td>
 				</tr>
 				<tr>
-					<td class="patient-info-property-name">Sex:</td>
+					<td class="patient-info-property-name">Sexo:</td>
 					<td class="patient-info-property-value">{{selectedPatient.Sex}}</td>
 				</tr>
 				<tr>
-					<td class="patient-info-property-name">Zone:</td>
+					<td class="patient-info-property-name">Zona:</td>
 					<td class="patient-info-property-value">{{selectedPatient.Zone}}</td>
 				</tr>
 			</table>
