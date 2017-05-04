@@ -142,7 +142,7 @@
 
 							<div>
 								<table>
-									<tr ng-repeat="x in appointment">
+									<tr >
 										<td>{{x.AppointmentType}}</td>
 									</tr>
 									<tr>
@@ -155,31 +155,16 @@
 								<table>
 									<tr style="font-weight: bold">
 										<!--<td style="padding: 10px;">{{x.AppointmentType}}</td> !-->
-										<td style="padding: 10px">Edad</td>
+										<td style="padding: 10px">Fecha</td>
+										<td style="padding: 10px">Tipo</td>
 										<td style="padding: 10px">Incidencia</td>
 										<td style="padding: 10px">Prevalencia</td>
-										<td style="padding: 10px">Mes</td>
+										
 									</tr>
-									<tr>
-										<td style="padding: 10px">2014</td>
-										<td style="padding: 10px">23</td>
-										<td style="padding: 10px">Visita a la Casa</td>
-										<td style="padding: 10px">Sana</td>
-										<td style="padding: 10px">Feb</td>
-									</tr>
-									<tr>
-										<td style="padding: 10px">2015</td>
-										<td style="padding: 10px">24</td>
-										<td style="padding: 10px">Consultation</td>
-										<td style="padding: 10px">Sana</td>
-										<td style="padding: 10px">Jul</td>
-									</tr>
-									<tr>
-										<td style="padding: 10px">2016</td>
-										<td style="padding: 10px">25</td>
-										<td style="padding: 10px">Visita a la casa</td>
-										<td style="padding: 10px">Sana</td>
-										<td style="padding: 10px">Dec</td>
+									
+									<tr ng-repeat="x in appointment">
+										<td style="padding: 10px">{{x.AppointmentDate}}</td>
+										<td style="padding: 10px">{{x.AppointmentType}}</td>
 									</tr>
 								</table>
 							</div>
