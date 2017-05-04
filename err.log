@@ -1,1 +1,17 @@
 Tue, 02 May 2017 14:51:22 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at web/node/server.js:46:9
+Tue, 02 May 2017 22:41:45 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at web/node/server.js:46:9
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EACCES 0.0.0.0:80
+    at Object.exports._errnoException (util.js:1018:11)
+    at exports._exceptionWithHostPort (util.js:1041:20)
+    at Server._listen2 (net.js:1249:19)
+    at listen (net.js:1298:10)
+    at Server.listen (net.js:1394:5)
+    at EventEmitter.listen (/Users/jprivera/Documents/Third-World-Healthcare-System/node_modules/express/lib/application.js:617:24)
+    at Object.<anonymous> (/Users/jprivera/Documents/Third-World-Healthcare-System/web/node/server.js:59:5)
+    at Module._compile (module.js:570:32)
+    at Object.Module._extensions..js (module.js:579:10)
+    at Module.load (module.js:487:32)

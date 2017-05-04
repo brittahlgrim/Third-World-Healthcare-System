@@ -16,14 +16,14 @@
     <link rel="stylesheet" type="text/css" href="content/bootstrap-3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="content/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="content/custom/createPatient.css">
-	<title>EDIT PATIENT</title>
+	<title>Editar paciente</title>
 </head>
 <body style="background-color: #f4f3ed; color: 2f8ce2;">
 	<div ng-app="myApp" ng-controller="editPatientCtrl">
 		<div class="top footer navbar-fixed-top row" style="margin-left: 70px; padding-top: 5px; ">
 			<div class="row">
 				<div class="col-xs-4">
-					<h4>Edit Patient</h4>
+					<h4>Editar paciente</h4>
 				</div>
 			</div>
 		</div>
@@ -42,42 +42,42 @@
 					<div class="col-xs-4">
 						<br/>
 						<div class="row">
-							<div class="col-xs-6">Name:</div>
+							<div class="col-xs-6">Nombre:</div>
 							<input class="col-xs-6" type="text" name="name" ng-model="patient.Name" required>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Date of Birth:</div>
+							<div class="col-xs-6">Fecha de Nacer:</div>
 							<input class="col-xs-6" type="text" placeholder="dd-mm-yyyy" name="DOB" ng-model="patient.DOBFormatted" required>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Patient ID:</div>
+							<div class="col-xs-6">ID del Paciente:</div>
 							<input class="col-xs-6" type="text" name="descriptivePatientID" ng-model="patient.DescriptivePatientID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">No. of People in Family:</div>
+							<div class="col-xs-6">Numero de personas en la Familia:</div>
 							<input class="col-xs-6" type="number" name="familyID" ng-model="patient.FamilyID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">ECO Name:</div>
+							<div class="col-xs-6">Nombre del ECO:</div>
 							<input class="col-xs-6" type="text" name="ECO" ng-model="patient.ECOName">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Zone:</div>
+							<div class="col-xs-6">Zona:</div>
 							<input class="col-xs-6" type="number" name="zoneID" ng-model="patient.ZoneID">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Sex:</div>
+							<div class="col-xs-6">Sexo:</div>
 							<form class="col-xs-6">
 								<label>
-									<input type="radio" name="sex" ng-model="patient.Sex" value="M">Male    
+									<input type="radio" name="sex" ng-model="patient.Sex" value="M">Hombre    
 								</label>
 								<label>
-									<input type="radio" name="sex" ng-model="patient.Sex" value="F">Female    
+									<input type="radio" name="sex" ng-model="patient.Sex" value="F">Mujer    
 								</label>
 							</form>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Group Classification:</div>
+							<div class="col-xs-6">Clasificación Grupal:</div>
 							<form class="col-xs-6">
 								<label>
 									<input type="radio" name="group" ng-model="patient.GroupID" value="1">I    
@@ -94,26 +94,26 @@
 							</form>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Risk Factor:</div>
+							<div class="col-xs-6">Factores de Reisgo:</div>
 							<select class="col-xs-6" name="riskFactor" ng-model="patient.RiskFactor">
 								<option ng-repeat="x in factors">{{x}}</option>
 							</select>
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Chronic Illness:</div>
+							<div class="col-xs-6">Enfermedad Crónica:</div>
 							<input class="col-xs-6" type="text" name="chronicIllness" ng-model="patient.ChronicIllness">
 						</div>
 						<div class="row">
-							<div class="col-xs-6">Notes:</div>
+							<div class="col-xs-6">Notas:</div>
 							<input class="col-xs-6" type="text" name="notes" ng-model="patient.Notes">
 						</div>
 						</br>
 						<div class="row">
 							<div class="col-xs-6" align="center">
-								<button style="color:#ffffff; background-color:#2e8adf" ng-click="openPatientInformation(patient.ID)">Cancel</button>
+								<button style="color:#ffffff; background-color:#2e8adf" ng-click="openPatientInformation(patient.ID)">Cancelar</button>
 							</div>
 							<div class="col-xs-6" align="center">
-								<button style="color:#ffffff; background-color:#2e8adf" ng-click="edit_patient()">Save Changes</button>
+								<button style="color:#ffffff; background-color:#2e8adf" ng-click="edit_patient()">Guardar Cambios</button>
 							</div>
 						</div>
 					</div>

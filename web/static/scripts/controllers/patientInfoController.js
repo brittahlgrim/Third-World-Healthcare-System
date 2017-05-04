@@ -35,16 +35,38 @@ angular.module('myApp').controller('patientInfoCtrl',
 				});
 		};
 
+
+
+		var getAppointmentInfo = function(){
+			var successCallback = function(response){
+				$scope.appointment = response;
+				console.log(response);
+			};
+			var failureCallback = function(response){
+				alert("could not load patient data");
+			}
+			//TODO: create a patientService and add this http call to that
+			$http.get("/getAppointmentInfo?patientID=" + patientID)
+				.success(function (response) {
+					$scope.appointment = response;
+					successCallback(response);
+				}).error(function () {
+					console.log("failure");
+					failureCallback(null);
+				});
+		};
+
+
 	    $scope.delete_patient = function() {
             $http.post("/deletePatient?patientID=" + patientID,{})
         		.success(function(data, status, headers, config){
-            		console.log("Patient Deleted Successfully");
+            		console.log("Paciente eliminado con éxito");
             		console.log('data',data);
             		console.log('status',status);
             		console.log('headers',headers);
             		console.log('config',config);
         		}).error(function () {
-				console.log("Patient delete failure");
+				console.log("Error de eliminación del paciente ");
 				failureCallback(null);
 				});
 
@@ -53,8 +75,8 @@ angular.module('myApp').controller('patientInfoCtrl',
 
 
 		$scope.visitTypes = [
-			{ ID: 1, Name: "Consultation"},
-			{ ID: 2, Name: "Home Visit"}
+			{ ID: 1, Name: "Consulta"},
+			{ ID: 2, Name: "Visita a Casa"}
 		];
 
 		$scope.tabClick = function(tabID){
@@ -94,23 +116,28 @@ angular.module('myApp').controller('patientInfoCtrl',
 		{
 			if(!$scope.newAppointment || !$scope.newAppointment.TypeName)
 			{
-				$window.alert("Appointment Type required");
+				//$window.alert("Appointment Type required");
+				$window.alert("Tipo de cita requerido");
 				return;
 			}
 			if(!$scope.newAppointment || !$scope.newAppointment.Date)
 			{
-				$window.alert("Appointment Date required");
+				//$window.alert("Appointment Date required");
+				$window.alert("Fecha de cita requerida");
 				return;
 			}
 
 			var successCallback = function()
 			{
-				$window.alert("Save successful. Refresh to update appointment schedule.");
+				//$window.alert("Save successful. Refresh to update appointment schedule.");
+				$window.alert("Se guardo correctamente. Actualizar para actualizar el programa de citas.");
 				span.onclick();
 			}
 			var failureCallback = function()
 			{
-				$window.alert("Save failed. Appointment not saved.");
+
+			//	$window.alert("Save failed. Appointment not saved.");
+				$window.alert("Error al guardar. La cita no se guardó.");
 			}
 			var dateParts = $scope.newAppointment.Date.split("/");
 			var request = {
@@ -123,6 +150,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 
 		/******scope init********/
 		$scope.patient = null;
+
 		$scope.getNames();
 		$scope.newAppointment = {
 			PatientID: patientID,
@@ -133,6 +161,7 @@ angular.module('myApp').controller('patientInfoCtrl',
 		$(document).ready(function(){
 			var href = $window.href
 			getPatientInfo();
+			getAppointmentInfo();
 			Array.from(document.getElementsByClassName("tabcontent")).forEach(function(t){
 				t.style.display = "none";});
 			$scope.tabClick("AppointmentHistory");

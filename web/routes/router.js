@@ -169,6 +169,30 @@ module.exports = function(app, passport, connection) {
 				});
 			}
 		});
+		app.get('/getAppointmentInfo', isLoggedIn, function(req, res){
+			var id = req.query.patientID;
+			if(!id){
+				return null;
+			}
+			else{
+
+
+				connection.query('select * from APPOINTMENTS where PatientID = ?;', [ id ], function(err, rows, fields) {
+					if (!err){
+					}
+					else
+						console.log('Error while performing Query.');
+
+					res.writeHead(200, {"Content-Type": "application/json"});
+					var json = JSON.stringify(rows);
+					res.end(json);
+
+				});
+			}
+		});
+
+
+
 	app.post('/createNewAppointment', isLoggedIn, function(req, res) {
 		var newAppointment = JSON.parse(req.body.newAppointment);
 		var newAppointmentPatientID = newAppointment.PatientID;

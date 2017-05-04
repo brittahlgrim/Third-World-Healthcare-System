@@ -5,3 +5,9 @@ password: benbrittdavidjpsydney
 database: twhs_test_db
 The magic happens on port 8080
 Database is connected ...
+Attempting SQL connection at
+host: localhost
+user: root
+password: gold20
+database: twhs_test_db
+The magic happens on port 80
