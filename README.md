@@ -1,8 +1,40 @@
 # Third-World-Healthcare-System
-Senior Design project to find a solution to improve the healthcare systems in underdeveloped countries.
+Dynamic content medical records web application designed to help El Salvadoran health promoters with appointment scheduling.
 
-At the moment, it is a Node.js web application with an Angular front-end.
+-----
 
-In this base directory, run "./build.sh -p {password}" to run the server, set up the test db, and open a web page.
-This build script will do an npm install on everything in ./web/node/required-npm-packages . If you want to skip this process, add an -s flag. i.e.
-"./build.sh -p {password} -s"
+![](http://i983.photobucket.com/albums/ae313/DavidJosephVitale/SDGitHub1_zpshcflmwga.gif)
+
+-----
+
+![](http://i983.photobucket.com/albums/ae313/DavidJosephVitale/SDGitHub2_zpsvz1sw8n2.gif)
+
+-----
+
+## Background
+This is a Senior Design project with the ultimate goal of finding a solution to improve the healthcare systems in underdeveloped countries. 5 Marquette University students worked on this project: Brittany Ahlgrim, Sydney Barovsky, Ben Durette, J.P. Rivera, David Vitale.
+
+## Technical Details
+This web application has a Node.js/Express backend with an Angular.js frontend. A MySQL database is used for all data storage/retention. This whole system is "bare-bones" enough run on one low-spec computer, preferably in a Unix-like environment.
+
+# Project Structure Breakdown
+
+* config
+    * All configuration specific bits of information needed to connect to the right database or use the correct passport information.
+* db
+    * Different MySQL database dumps, effectively version controlling different database schemas for development purposes.
+* web
+    * node
+        * The entry point of the Node.js back-end server
+    * routes
+        * Functions used by all endpoints
+    * static
+        * All of the front-end files, including the .html views and the .js controller/service scripts.
+* README.md
+    * This file
+* build.sh
+    * The bash script that will make sure all correct software is installed, set up the correct version database schema, start the backend node.js server, etc. Use like './build.sh -p {MySQL_password}
+* package.json
+    * What node_module packages to include
+* startForever.sh / stopForever.sh
+    * Two bash scripts that will automatically restart the instance on failure, keep logs, etc. Use this for deploying instances.
