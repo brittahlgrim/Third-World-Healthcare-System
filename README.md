@@ -3,11 +3,11 @@ Dynamic content medical records web application designed to help El Salvadoran h
 
 -----
 
-![](http://i983.photobucket.com/albums/ae313/DavidJosephVitale/SDGitHub1_zpshcflmwga.gif)
+![](https://raw.githubusercontent.com/brittahlgrim/Third-World-Healthcare-System/master/pics/1.gif)
 
 -----
 
-![](http://i983.photobucket.com/albums/ae313/DavidJosephVitale/SDGitHub2_zpsvz1sw8n2.gif)
+![](https://raw.githubusercontent.com/brittahlgrim/Third-World-Healthcare-System/master/pics/2.gif)
 
 -----
 
