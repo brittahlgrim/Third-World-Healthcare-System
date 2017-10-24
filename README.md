@@ -21,6 +21,8 @@ This web application has a Node.js/Express backend with an Angular.js frontend. 
 
 * config
     * All configuration specific bits of information needed to connect to the right database or use the correct passport information.
+* doc
+    * This senior design project had many deliverable documentation writeups of the progress this project made outside of the code: this folder contains the final deliverable and final powerpoint presentation delivered by the team members.
 * db
     * Different MySQL database dumps, effectively version controlling different database schemas for development purposes.
 * web
